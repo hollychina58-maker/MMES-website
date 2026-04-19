@@ -1,0 +1,310 @@
+[
+  {
+    "id": "PA-3ARG",
+    "slug": "pa-3arg",
+    "image": "/images/PA-3ARG-A.jpg",
+    "specs": [
+      { "name": "Accuracy", "value": "0.1", "unit": "deg" },
+      { "name": "Range", "value": "±180", "unit": "deg" },
+      { "name": "Power", "value": "5", "unit": "W" },
+      { "name": "Weight", "value": "150", "unit": "g" }
+    ],
+    "published": true,
+    "content": {
+      "en": { "name": "PA-3ARG Attitude Reference Gyroscope", "description": "High-performance attitude reference gyroscope for aerospace applications. Provides precise roll, pitch, and yaw measurements with excellent stability." },
+      "zh": { "name": "PA-3ARG 姿态参考陀螺仪", "description": "面向航空航天应用的高性能姿态参考陀螺仪提供精确的横滚、俯仰和偏航测量，具有出色的稳定性。" },
+      "ru": { "name": "PA-3ARG Гироскоп эталонной ориентации", "description": "Высокопроизводительный гироскоп эталонной ориентации для аэрокосмических приложений. Обеспечивает точные измерения крена, тангажа и рыскания с превосходной стабильностью." },
+      "ar": { "name": "PA-3ARG جيروسكوب مرجع الوضعية", "description": "جيروسكوب مرجع وضعية عالي الأداء للتطبيقات الجوية والفضائية. يوفر قياسات دقيقة للتدحرج والانعراج مع استقرار ممتاز." },
+      "fa": { "name": "PA-3ARG ژیروسکوپ مرجع جهت‌یابی", "description": "ژیروسکوپ مرجع جهت‌یابی با کارایی بالا برای کاربردهای هوافضا. با پایداری عالی، اندازه‌گیری‌های دقیق رول، پیچ و یاو را فراهم می‌کند." },
+      "la": { "name": "PA-3ARG Gyroscopium Referentiae Attitudinis", "description": "Gyroscopium referentiae attitudinis alti performantiae pro applicationibus astronauticis. Praebet mensuras precisas rotundi, inclinationis et declinationis cum stabilitate excellenti." }
+    },
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "PA-AHRS01",
+    "slug": "pa-ahrs01",
+    "image": "/images/PA-AHRS01.jpg",
+    "specs": [
+      { "name": "Accuracy", "value": "0.05", "unit": "deg" },
+      { "name": "Range", "value": "±360", "unit": "deg" },
+      { "name": "Power", "value": "3", "unit": "W" },
+      { "name": "Weight", "value": "80", "unit": "g" }
+    ],
+    "published": true,
+    "content": {
+      "en": { "name": "PA-AHRS01 Attitude Heading Reference System", "description": "Integrated AHRS combining accelerometers, gyroscopes, and magnetometers for comprehensive attitude and heading determination." },
+      "zh": { "name": "PA-AHRS01 姿态航向参考系统", "description": "集成AHRS，结合加速度计、陀螺仪和磁力计，实现全面的姿态和航向确定。" },
+      "ru": { "name": "PA-AHRS01 Система ориентации и курса", "description": "Интегрированная система AHRS, объединяющая акселерометры, гироскопы и магнитометры для комплексного определения ориентации и курса." },
+      "ar": { "name": "PA-AHRS01 نظام المرجع للاتجاه والاتجاه", "description": "نظام AHRS متكامل يجمع بين مقاييس التسارع والجيروسكوبات والمغناطيسية لتحديد شامل للاتجاه والاتجاه." },
+      "fa": { "name": "PA-AHRS01 سیستم مرجع جهت و وضعیت", "description": "AHRS یکپارچه که شتاب‌سنج‌ها، ژیروسکوپ‌ها و مغناطیس‌سنج‌ها را برای تعیین جامع جهت و وضعیت ترکیب می‌کند." },
+      "la": { "name": "PA-AHRS01 Systema Referentiae Attitudinis et Capitis", "description": "AHRS integratum quod accelerometra, gyroscopia et magnetometra combinat ad determinationem attitudinis et capitis comprehensive." }
+    },
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "PA-IMU-01",
+    "slug": "pa-imu-01",
+    "image": "/images/PA-IMU-01G.jpg",
+    "specs": [
+      { "name": "Bias Stability", "value": "0.01", "unit": "deg/hr" },
+      { "name": "Angular Range", "value": "±100", "unit": "deg/s" },
+      { "name": "Power", "value": "2", "unit": "W" },
+      { "name": "Weight", "value": "50", "unit": "g" }
+    ],
+    "published": true,
+    "content": {
+      "en": { "name": "PA-IMU-01 Inertial Measurement Unit", "description": "High-precision inertial measurement unit with exceptional bias stability for navigation and guidance systems." },
+      "zh": { "name": "PA-IMU-01 惯性测量单元", "description": "具有出色偏置稳定性的高精度惯性测量单元，用于导航和制导系统。" },
+      "ru": { "name": "PA-IMU-01 Инерциальный измерительный блок", "description": "Высокоточный инерциальный измерительный блок с исключительной стабильностью смещения для навигации и систем наведения." },
+      "ar": { "name": "PA-IMU-01 وحدة القياس بالقصور الذاتي", "description": "وحدة قياس بالقصور الذاتي عالية الدقة مع استقرار ممتاز في التحيز لأنظمة الملاحة والتوجيه." },
+      "fa": { "name": "PA-IMU-01 واحده اندازه‌گیری اینرسی", "description": "واحد اندازه‌گیری اینرسی با دقت بالا با پایداری بایاس استثنایی برای سیستم‌های ناوبری و هدایت." },
+      "la": { "name": "PA-IMU-01 Unitatis Mensurae Inertialis", "description": "Unitatis mensurae inertialis altae precisionis cum stabilitate bias exceptionali pro systematis navigationis et ductus." }
+    },
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "PA-GS",
+    "slug": "pa-gs",
+    "image": "/images/PA-GS.jpg",
+    "specs": [
+      { "name": "Bias Stability", "value": "0.001", "unit": "deg/hr" },
+      { "name": "Angular Range", "value": "±500", "unit": "deg/s" },
+      { "name": "Power", "value": "8", "unit": "W" },
+      { "name": "Weight", "value": "200", "unit": "g" }
+    ],
+    "published": true,
+    "content": {
+      "en": { "name": "PA-GS Navigation Gyroscope System", "description": "Premium navigation-grade gyroscope system with ultra-high bias stability for critical aerospace applications." },
+      "zh": { "name": "PA-GS 导航陀螺仪系统", "description": "面向关键航空航天应用的超高偏置稳定性顶级导航级陀螺仪系统。" },
+      "ru": { "name": "PA-GS Навигационная гироскопическая система", "description": "Премиальная навигационная гироскопическая система с ультравысокой стабильностью смещения для критических аэрокосмических приложений." },
+      "ar": { "name": "PA-GS نظام الجيروسكوب الملاحي", "description": "نظام جيروسكوب ملاحي فائق مع استقرار تحيز فائق الارتفاع للتطبيقات الجوية والفضائية الحرجة." },
+      "fa": { "name": "PA-GS سیستم ژیروسکوپ ناوبری", "description": "سیستم ژیروسکوپ درجه ناوبری ممتاز با پایداری بایاس فوق‌العاده بالا برای کاربردهای حیاتی هوافضا." },
+      "la": { "name": "PA-GS Systema Gyroscopium Navigationis", "description": "Systema gyroscopium navigationis praemii cum stabilitate bias ultraalta pro applicationibus astronauticis criticis." }
+    },
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "PA-ARG",
+    "slug": "pa-arg",
+    "image": "/images/PA-ARG-A.jpg",
+    "specs": [
+      { "name": "Accuracy", "value": "0.2", "unit": "deg" },
+      { "name": "Range", "value": "±90", "unit": "deg" },
+      { "name": "Power", "value": "4", "unit": "W" },
+      { "name": "Weight", "value": "120", "unit": "g" }
+    ],
+    "published": true,
+    "content": {
+      "en": { "name": "PA-ARG Air Reference Gyroscope", "description": "Cost-effective attitude reference gyroscope ideal for commercial aviation and UAV applications." },
+      "zh": { "name": "PA-ARG 空气参考陀螺仪", "description": "性价比高的姿态参考陀螺仪，非常适合商业航空和无人机应用。" },
+      "ru": { "name": "PA-ARG Воздушный эталонный гироскоп", "description": "Экономичный гироскоп эталонной ориентации, идеальный для коммерческой авиации и приложений БПЛА." },
+      "ar": { "name": "PA-ARG جيروسكوب المرجع الجوي", "description": "جيروسكوب مرجع وضعية فعال من حيث التكلفة مثالي لتطبيقات الطيران التجاري والطائرات بدون طيار." },
+      "fa": { "name": "PA-ARG ژیروسکوپ مرجع هوایی", "description": "ژیروسکوپ مرجع وضعیت مقرون به صرفه ایده‌آل برای کاربردهای هوانوردی تجاری و پهپاد." },
+      "la": { "name": "PA-ARG Gyroscopium Referentiae Aereae", "description": "Gyroscopium referentiae attitudinis efficientiae costae idealis pro applicationibus aviationis commercialis et UAV." }
+    },
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "PA-LAMIII",
+    "slug": "pa-lamiii",
+    "image": "/images/PA-LAMIII-D.jpg",
+    "specs": [
+      { "name": "Accuracy", "value": "0.001", "unit": "deg" },
+      { "name": "Range", "value": "±45", "unit": "deg" },
+      { "name": "Power", "value": "10", "unit": "W" },
+      { "name": "Weight", "value": "500", "unit": "g" }
+    ],
+    "published": true,
+    "content": {
+      "en": { "name": "PA-LAMIII Laser Angular Measurement System", "description": "Ultra-precision laser-based angular measurement system for laboratory and calibration applications." },
+      "zh": { "name": "PA-LAMIII 激光角度测量系统", "description": "超精密基于激光的角度测量系统，适用于实验室和校准应用。" },
+      "ru": { "name": "PA-LAMIII Лазерная система измерения углов", "description": "Ультраточная лазерная система измерения углов для лабораторных приложений и калибровки." },
+      "ar": { "name": "PA-LAMIII نظام قياس الزاوية بالليزر", "description": "نظام قياس زاوية فائق الدقة قائم على الليزر للتطبيقات المختبرية والمعايرة." },
+      "fa": { "name": "PA-LAMIII سیستم اندازه‌گیری زاویه لیزری", "description": "سیستم اندازه‌گیری زاویه‌ای فوق‌دقیق مبتنی بر لیزر برای کاربردهای آزمایشگاهی و کالیبراسیون." },
+      "la": { "name": "PA-LAMIII Systema Mensurae Angularis Laser", "description": "Systema mensurae angularis ultra-precisionis fundatum in laser pro applicationibus laboratory et calibrationis." }
+    },
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "PA-LASI",
+    "slug": "pa-lasi",
+    "image": "/images/PA-LASI-A.jpg",
+    "specs": [
+      { "name": "Accuracy", "value": "1", "unit": "μg" },
+      { "name": "Acceleration Range", "value": "±10", "unit": "g" },
+      { "name": "Power", "value": "2", "unit": "W" },
+      { "name": "Weight", "value": "40", "unit": "g" }
+    ],
+    "published": true,
+    "content": {
+      "en": { "name": "PA-LASI Accelerometer System", "description": "MEMS-based high-performance accelerometer with micro-g resolution for precision navigation." },
+      "zh": { "name": "PA-LASI 加速度计系统", "description": "基于MEMS的高性能加速度计，具有微重力分辨率，用于精密导航。" },
+      "ru": { "name": "PA-LASI Акселерометрическая система", "description": "Высокопроизводительный акселерометр на основе МЭМС с разрешением микрогравитации для прецизионной навигации." },
+      "ar": { "name": "PA-LASI نظام مقاييس التسارع", "description": "مقياس تسارع عالي الأداء قائم على MEMS بدقة ميكروغرام للملاحة الدقيقة." },
+      "fa": { "name": "PA-LASI سیستم شتاب‌سنج", "description": "شتاب‌سنج با کارایی بالا مبتنی بر MEMS با دقت میکروگرانشی برای ناوبری دقیق." },
+      "la": { "name": "PA-LASI Systema Accelerometri", "description": "Accelerometrum alti performantiae fundatum in MEMS cum resolutione micro-g pro navigatione precisa." }
+    },
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "PM-C3000",
+    "slug": "pm-c3000",
+    "image": "/images/PM-C3000.jpg",
+    "specs": [
+      { "name": "Resolution", "value": "16", "unit": "bit" },
+      { "name": "Interface", "value": "RS485", "unit": "" },
+      { "name": "Power", "value": "5", "unit": "W" },
+      { "name": "Weight", "value": "100", "unit": "g" }
+    ],
+    "published": true,
+    "content": {
+      "en": { "name": "PM-C3000 Compass Module", "description": "Digital compass module with RS485 interface for marine and land navigation systems." },
+      "zh": { "name": "PM-C3000 罗盘模块", "description": "带RS485接口的数字罗盘模块，用于船舶和陆地导航系统。" },
+      "ru": { "name": "PM-C3000 Модуль компаса", "description": "Модуль цифрового компаса с интерфейсом RS485 для морских и наземных навигационных систем." },
+      "ar": { "name": "PM-C3000 وحدة البوصلة", "description": "وحدة بوصلة رقمية مع واجهة RS485 لأنظمة الملاحة البحرية والبرية." },
+      "fa": { "name": "PM-C3000 ماژول قطب‌نما", "description": "ماژول قطب‌نمای دیجیتال با رابط RS485 برای سیستم‌های ناوبری دریایی و زمینی." },
+      "la": { "name": "PM-C3000 Modulus Compass", "description": "Modulus compassus digitalis cum interfacie RS485 pro systematis navigationis marinae et terrestris." }
+    },
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "PA-VG11",
+    "slug": "pa-vg11",
+    "image": "/images/PA-VG11.jpg",
+    "specs": [
+      { "name": "Accuracy", "value": "0.01", "unit": "deg" },
+      { "name": "Range", "value": "±90", "unit": "deg" },
+      { "name": "Power", "value": "5", "unit": "W" },
+      { "name": "Weight", "value": "120", "unit": "g" }
+    ],
+    "published": true,
+    "content": {
+      "en": { "name": "PA-VG11 Vertical Gyroscope", "description": "Precision vertical gyroscope for attitude determination in stabilized platforms and weapons systems." },
+      "zh": { "name": "PA-VG11 垂直陀螺仪", "description": "用于稳定平台和武器系统姿态确定的高精度垂直陀螺仪。" },
+      "ru": { "name": "PA-VG11 Вертикальный гироскоп", "description": "Прецизионный вертикальный гироскоп для определения ориентации в стабилизированных платформах и оружейных системах." },
+      "ar": { "name": "PA-VG11 جيروسكوب عمودي", "description": "جيروسكوب عمودي دقيق لتحديد الوضعية في المنصات المستقرة وأنظمة الأسلحة." },
+      "fa": { "name": "PA-VG11 ژیروسکوپ عمودی", "description": "ژیروسکوپ عمودی دقیق برای تعیین وضعیت در سکوهای پایدار و سیستم‌های تسلیحاتی." },
+      "la": { "name": "PA-VG11 Gyroscopium Verticale", "description": "Gyroscopium verticale precisum ad determinationem attitudinis in platformis stabilitis et systematis armorum." }
+    },
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "PA-LASIII",
+    "slug": "pa-lasiii",
+    "image": "/images/PA-LASIII-A.jpg",
+    "specs": [
+      { "name": "Accuracy", "value": "0.0005", "unit": "deg" },
+      { "name": "Range", "value": "±60", "unit": "deg" },
+      { "name": "Power", "value": "15", "unit": "W" },
+      { "name": "Weight", "value": "600", "unit": "g" }
+    ],
+    "published": true,
+    "content": {
+      "en": { "name": "PA-LASIII High-Precision Laser Angular Sensor", "description": "Research-grade laser angular sensor with sub-millidegree accuracy for metrology applications." },
+      "zh": { "name": "PA-LASIII 高精度激光角度传感器", "description": "研究级激光角度传感器，具有亚毫度精度，适用于计量应用。" },
+      "ru": { "name": "PA-LASIII Высокоточный лазерный датчик углов", "description": "Исследовательский лазерный датчик углов с точностью менее миллиградуса для метрологических приложений." },
+      "ar": { "name": "PA-LASIII مستشعر الزاوية الليزري عالي الدقة", "description": "مستشعر زاوية ليزري من فئة البحث بدقة أقل من جزء من الألف من الدرجة للتطبيقات المترولوجية." },
+      "fa": { "name": "PA-LASIII سنسور زاویه لیزری با دقت بالا", "description": "سنسور زاویه لیزری درجه تحقیقاتی با دقت زیر میلی‌درجه برای کاربردهای اندازه‌شناسی." },
+      "la": { "name": "PA-LASIII Sensor Angularis Laser Altae Precisionis", "description": "Sensor angularis laser investigationis gradus cum accuratione sub-millidegri pro applicationibus metrologicis." }
+    },
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "PA-IMU-02",
+    "slug": "pa-imu-02",
+    "image": "/images/PA-IMU-02D03D.jpg",
+    "specs": [
+      { "name": "Bias Stability", "value": "0.005", "unit": "deg/hr" },
+      { "name": "Angular Range", "value": "±200", "unit": "deg/s" },
+      { "name": "Power", "value": "3", "unit": "W" },
+      { "name": "Weight", "value": "60", "unit": "g" }
+    ],
+    "published": true,
+    "content": {
+      "en": { "name": "PA-IMU-02 Tactical Grade IMU", "description": "Tactical-grade inertial measurement unit balancing performance and cost for demanding defense applications." },
+      "zh": { "name": "PA-IMU-02 战术级IMU", "description": "战术级惯性测量单元，在性能和成本之间取得平衡，适用于苛刻的国防应用。" },
+      "ru": { "name": "PA-IMU-02 ИМУ тактического класса", "description": "Инерциальный измерительный блок тактического класса, обеспечивающий баланс производительности и стоимости для требовательных оборонных приложений." },
+      "ar": { "name": "PA-IMU-02 وحدة القياس بالقصور الذاتي من الدرجة التكتيكية", "description": "وحدة قياس بالقصور الذاتي من الدرجة التكتيكية توازن بين الأداء والتكلفة للتطبيقات الدفاعية demanding." },
+      "fa": { "name": "PA-IMU-02 IMU درجه تاکتیکی", "description": "واحد اندازه‌گیری اینرسی درجه تاکتیکی با تعادل بین عملکرد و هزینه برای کاربردهای دفاعی." },
+      "la": { "name": "PA-IMU-02 IMU Gradus Tacticus", "description": "Unitatis mensurae inertialis gradus tactici aequilibrium performantiae et costae pro applicationibus defensionis." }
+    },
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "PA-GSAUTO",
+    "slug": "pa-gsauto",
+    "image": "/images/PA-GSAUTO.jpg",
+    "specs": [
+      { "name": "Bias Stability", "value": "0.001", "unit": "deg/hr" },
+      { "name": "Heading Range", "value": "±360", "unit": "deg" },
+      { "name": "Power", "value": "10", "unit": "W" },
+      { "name": "Weight", "value": "250", "unit": "g" }
+    ],
+    "published": true,
+    "content": {
+      "en": { "name": "PA-GSAUTO Autonomous Vehicle Gyroscope", "description": "High-stability gyroscope designed for autonomous vehicles, delivering reliable heading and attitude data." },
+      "zh": { "name": "PA-GSAUTO 自动驾驶车辆陀螺仪", "description": "高稳定性陀螺仪，专为自动驾驶车辆设计，提供可靠的航向和姿态数据。" },
+      "ru": { "name": "PA-GSAUTO Гироскоп для автономных транспортных средств", "description": "Гироскоп с высокой стабильностью, разработанный для автономных транспортных средств, обеспечивающий надежные данные о курсе и ориентации." },
+      "ar": { "name": "PA-GSAUTO جيروسكوب المركبات المستقلة", "description": "جيروسكوب عالي الاستقرار مصمم للمركبات المستقلة،提供 بيانات الاتجاه والاتجاه الموثوقة." },
+      "fa": { "name": "PA-GSAUTO ژیروسکوپ وسیله نقلیه خودمختار", "description": "ژیروسکوپ با پایداری بالا طراحی شده برای وسایل نقلیه خودمختار، ارائه‌دهنده داده‌های جهت و وضعیت قابل اعتماد." },
+      "la": { "name": "PA-GSAUTO Gyroscopium Vehiculi Autonomousi", "description": "Gyroscopium altae stabilitatis designatum pro vehiculis autonomousis, praebens datos capitis et attitudinis fidentes." }
+    },
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "PA-GSFA1",
+    "slug": "pa-gsfa1",
+    "image": "/images/PA-GSFA1.jpg",
+    "specs": [
+      { "name": "Bias Stability", "value": "0.002", "unit": "deg/hr" },
+      { "name": "Heading Range", "value": "±180", "unit": "deg" },
+      { "name": "Power", "value": "8", "unit": "W" },
+      { "name": "Weight", "value": "180", "unit": "g" }
+    ],
+    "published": true,
+    "content": {
+      "en": { "name": "PA-GSFA1 Fiber Optic Gyroscope", "description": "Fiber optic gyroscope with excellent long-term stability for precision heading reference applications." },
+      "zh": { "name": "PA-GSFA1 光纤陀螺仪", "description": "具有出色长期稳定性的光纤陀螺仪，用于精密航向参考应用。" },
+      "ru": { "name": "PA-GSFA1 Волоконно-оптический гироскоп", "description": "Волоконно-оптический гироскоп с превосходной долговременной стабильностью для приложений прецизионного определения курса." },
+      "ar": { "name": "PA-GSFA1 جيروسكوب الألياف البصرية", "description": "جيروسكوب الألياف البصرية مع استقرار ممتاز على المدى الطويل لتطبيقات مرجع الاتجاه الدقيق." },
+      "fa": { "name": "PA-GSFA1 ژیروسکوپ فیبر نوری", "description": "ژیروسکوپ فیبر نوری با پایداری عالی درازمدت برای کاربردهای مرجع جهت دقیق." },
+      "la": { "name": "PA-GSFA1 Gyroscopium Fibrae Opticae", "description": "Gyroscopium fibrae opticae cum stabilitate temporali excellenti pro applicationibus referentiae capitis precisae." }
+    },
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "PM-TS-VG",
+    "slug": "pm-ts-vg",
+    "image": "/images/PM-TS-VG.jpg",
+    "specs": [
+      { "name": "Accuracy", "value": "0.02", "unit": "deg" },
+      { "name": "Range", "value": "±45", "unit": "deg" },
+      { "name": "Power", "value": "4", "unit": "W" },
+      { "name": "Weight", "value": "90", "unit": "g" }
+    ],
+    "published": true,
+    "content": {
+      "en": { "name": "PM-TS-VG Tilt Sensor with Vertical Gyro", "description": "Combined tilt sensor and vertical gyro for platform leveling and attitude monitoring." },
+      "zh": { "name": "PM-TS-VG 带垂直陀螺的倾斜传感器", "description": "组合倾斜传感器和垂直陀螺仪，用于平台调平和姿态监测。" },
+      "ru": { "name": "PM-TS-VG Датчик наклона с вертикальным гироскопом", "description": "Комбинированный датчик наклона и вертикальный гироскоп для выравнивания платформы и мониторинга ориентации." },
+      "ar": { "name": "PM-TS-VG مستشعر الان倾斜 مع جيروسكوب عمودي", "description": "مستشعر ان倾斜 مدمج وجيروسكوب عمودي لتسوية المنصة ومراقبة الوضعية." },
+      "fa": { "name": "PM-TS-VG سنسور شیب با ژیروسکوپ عمودی", "description": "سنسور شیب ترکیبی و ژیروسکوپ عمودی برای تراز کردن سکو و پایش وضعیت." },
+      "la": { "name": "PM-TS-VG Sensor Tiltationis cum Gyroscopio Verticali", "description": "Sensor tiltationis combinatus et gyroscopium verticale pro nivelatione platformae et monitorio attitudinis." }
+    },
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  }
+]
