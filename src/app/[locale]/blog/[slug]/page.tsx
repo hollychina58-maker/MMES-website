@@ -1,11 +1,12 @@
 "use client";
 
-import { use, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
 import { Link } from "@/routing";
 import { ShareButtons } from "@/components/ShareButtons";
 import { API_ENDPOINTS, IMAGE_BASE_URL } from "@/lib/api-config";
+import { useParams } from "next/navigation";
 
 interface BlogContent {
   title: string;
@@ -25,9 +26,9 @@ interface BlogPost {
   content: Record<string, BlogContent>;
 }
 
-export default function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug: rawSlug } = use(params);
-  const slug = decodeURIComponent(rawSlug);
+export default function BlogPostPage() {
+  const params = useParams();
+  const slug = decodeURIComponent(params.slug as string);
   const t = useTranslations("blog");
   const locale = useLocale();
   const [post, setPost] = useState<BlogPost | null>(null);

@@ -42,9 +42,11 @@ function getLocalizedContent(product: Product, locale: string) {
 
 // Get image URL - use relative paths directly (from /public folder)
 // when they start with '/', otherwise prepend IMAGE_BASE_URL
+// If already an absolute URL (http:// or https://), return as-is
 function getImageUrl(imagePath: string | undefined): string {
   if (!imagePath) return "";
   if (imagePath.startsWith("/")) return imagePath;
+  if (imagePath.startsWith("http://") || imagePath.startsWith("https://")) return imagePath;
   return `${IMAGE_BASE_URL}${imagePath}`;
 }
 
@@ -63,7 +65,7 @@ export default function ProductDetailPage() {
         const fbRes = await Promise.race([
           fetch('/data/products.json'),
           new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 3000))
-        ]);
+        ]) as Response;
         const fbData = await fbRes.json();
         const fbFound = (fbData.data || []).find((p: Product) => p.slug.toLowerCase() === slug.toLowerCase());
         if (fbFound) {
