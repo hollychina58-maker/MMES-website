@@ -105,7 +105,7 @@ export default function ProductsPage() {
                   <div className="aspect-square relative bg-slate-100 dark:bg-slate-700">
                     {product.image ? (
                       <img
-                        src={`${IMAGE_BASE_URL}${product.image}`}
+                        src={product.image.startsWith('http') ? product.image : `${IMAGE_BASE_URL}${product.image}`}
                         alt={getLocalizedContent(product, locale).name}
                         className="w-full h-full object-cover"
                       />
