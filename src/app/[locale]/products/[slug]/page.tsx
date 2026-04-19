@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { useParams } from "next/navigation";
 import { Link } from "@/routing";
 import { ShareButtons } from "@/components/ShareButtons";
+import { ProductSchema, BreadcrumbSchema } from "@/components/StructuredData";
 import { API_ENDPOINTS, IMAGE_BASE_URL } from "@/lib/api-config";
 
 interface ProductSpec {
@@ -100,6 +101,21 @@ export default function ProductDetailPage() {
     .filter((entry): entry is [string, string] => (entry[0].trim() !== "" || entry[1].trim() !== ""));
 
   return (
+    <>
+      <ProductSchema
+        name={localized.name}
+        description={localized.description}
+        image={`${IMAGE_BASE_URL}${product.image}`}
+        url={`https://mmes-mcti.com/${locale}/products/${product.slug}`}
+        sku={product.id}
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: `https://mmes-mcti.com/${locale}` },
+          { name: "Products", url: `https://mmes-mcti.com/${locale}/products` },
+          { name: localized.name, url: `https://mmes-mcti.com/${locale}/products/${product.slug}` },
+        ]}
+      />
     <div className="min-h-screen py-12">
       <div className="container mx-auto px-4">
         {/* Back Link */}
@@ -221,5 +237,6 @@ export default function ProductDetailPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }

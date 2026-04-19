@@ -1,4 +1,5 @@
 import { routing } from "@/routing";
+import { OrganizationSchema, WebSiteSchema } from "./StructuredData";
 
 const BASE_URL = "https://mmes-mcti.com";
 
@@ -46,6 +47,7 @@ export function SEO({
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={`${BASE_URL}${image}`} />
+      <meta name="twitter:site" content="@mmes_mcti" />
 
       {/* hreflang */}
       <link rel="alternate" hrefLang="x-default" href={`${BASE_URL}/en${canonical || ""}`} />
@@ -58,15 +60,12 @@ export function SEO({
         />
       ))}
 
-      {/* Geo Tags */}
-      <meta name="geo.region" content="CN" />
-      <meta name="geo.placename" content="Beijing" />
-      <meta name="geo.position" content="39.9042;116.4074" />
-      <meta name="ICBM" content="39.9042, 116.4074" />
+      {/* Robots */}
+      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
-      {/* Business Info */}
-      <meta name="organization" content="MMES-MCTI" />
-      <meta name="robots" content="index, follow" />
+      {/* Structured Data */}
+      <OrganizationSchema />
+      <WebSiteSchema />
     </>
   );
 }
