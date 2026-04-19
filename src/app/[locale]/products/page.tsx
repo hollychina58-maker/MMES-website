@@ -37,8 +37,12 @@ export default function ProductsPage() {
 
   useEffect(() => {
     async function fetchProducts() {
+      // Try API first with timeout
       try {
-        const res = await fetch(API_ENDPOINTS.products);
+        const res = await Promise.race([
+          fetch(API_ENDPOINTS.products),
+          new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 3000))
+        ]) as Response;
         const data = await res.json();
         // Filter only published products
         const publishedProducts = (data.data || []).filter(
@@ -46,12 +50,15 @@ export default function ProductsPage() {
         );
         setProducts(publishedProducts);
       } catch (error) {
-        console.error("Failed to fetch products:", error);
+        console.error("API fetch failed or timed out:", error);
         // Fallback to static JSON when API unavailable
         try {
-          const fbRes = await fetch("/data/products.json");
+          const fbRes = await Promise.race([
+            fetch("/data/products.json"),
+            new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 3000))
+          ]) as Response;
           const fbData = await fbRes.json();
-          const fbProducts = (fbData.data || []).filter((p) => p.published);
+          const fbProducts = (fbData.data || []).filter((p: Product) => p.published);
           setProducts(fbProducts);
         } catch (fbErr) {
           console.error("Fallback also failed:", fbErr);

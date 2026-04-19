@@ -50,6 +50,24 @@ export default function ProductDetailPage() {
 
   useEffect(() => {
     async function fetchProduct() {
+      // Try fallback first for local dev (API likely not running)
+      try {
+        const fbRes = await Promise.race([
+          fetch('/data/products.json'),
+          new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 3000))
+        ]);
+        const fbData = await fbRes.json();
+        const fbFound = (fbData.data || []).find((p: Product) => p.slug.toLowerCase() === slug.toLowerCase());
+        if (fbFound) {
+          setProduct(fbFound);
+          setLoading(false);
+          return;
+        }
+      } catch (e) {
+        console.log('Fallback timeout or failed, trying API...');
+      }
+      
+      // Try API
       try {
         const res = await fetch(API_ENDPOINTS.products);
         const data = await res.json();
@@ -57,15 +75,7 @@ export default function ProductDetailPage() {
         const found = products.find((p) => p.slug.toLowerCase() === slug.toLowerCase());
         setProduct(found || null);
       } catch (error) {
-        console.error("Failed to fetch product:", error);
-        try {
-          const fbRes = await fetch("/data/products.json");
-          const fbData = await fbRes.json();
-          const fbFound = (fbData.data || []).find((p: Product) => p.slug.toLowerCase() === slug.toLowerCase());
-          setProduct(fbFound || null);
-        } catch (fbErr) {
-          console.error("Fallback also failed:", fbErr);
-        }
+        console.error("API fetch failed:", error);
       } finally {
         setLoading(false);
       }

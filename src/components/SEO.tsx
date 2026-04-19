@@ -20,12 +20,10 @@ export function SEO({
   type = "website",
   image = "/images/og-image.jpg",
 }: SEOProps) {
-  const alternateLinks = routing.locales
-    .map((l) => ({
-      locale: l,
-      href: `${BASE_URL}/${l}${canonical || ""}`,
-    }))
-    .filter((link) => link.locale !== locale);
+  const allLocales = routing.locales.map((l) => ({
+    locale: l,
+    href: `${BASE_URL}/${l}${canonical || ""}`,
+  }));
 
   return (
     <>
@@ -49,9 +47,9 @@ export function SEO({
       <meta name="twitter:image" content={`${BASE_URL}${image}`} />
       <meta name="twitter:site" content="@mmes_mcti" />
 
-      {/* hreflang */}
+      {/* hreflang - include all locales including current */}
       <link rel="alternate" hrefLang="x-default" href={`${BASE_URL}/en${canonical || ""}`} />
-      {alternateLinks.map((link) => (
+      {allLocales.map((link) => (
         <link
           key={link.locale}
           rel="alternate"
