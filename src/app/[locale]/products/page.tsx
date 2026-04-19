@@ -47,6 +47,15 @@ export default function ProductsPage() {
         setProducts(publishedProducts);
       } catch (error) {
         console.error("Failed to fetch products:", error);
+        // Fallback to static JSON when API unavailable
+        try {
+          const fbRes = await fetch("/data/products.json");
+          const fbData = await fbRes.json();
+          const fbProducts = (fbData.data || []).filter((p) => p.published);
+          setProducts(fbProducts);
+        } catch (fbErr) {
+          console.error("Fallback also failed:", fbErr);
+        }
       } finally {
         setLoading(false);
       }
