@@ -40,6 +40,14 @@ function getLocalizedContent(product: Product, locale: string) {
   };
 }
 
+// Get image URL - use relative paths directly (from /public folder)
+// when they start with '/', otherwise prepend IMAGE_BASE_URL
+function getImageUrl(imagePath: string | undefined): string {
+  if (!imagePath) return "";
+  if (imagePath.startsWith("/")) return imagePath;
+  return `${IMAGE_BASE_URL}${imagePath}`;
+}
+
 export default function ProductDetailPage() {
   const params = useParams();
   const t = useTranslations("products");
@@ -123,7 +131,7 @@ export default function ProductDetailPage() {
       <ProductSchema
         name={localized.name}
         description={localized.description}
-        image={`${IMAGE_BASE_URL}${product.image}`}
+        image={getImageUrl(product.image)}
         url={`https://mmes-mcti.com/${locale}/products/${product.slug}`}
         sku={product.id}
       />
@@ -166,7 +174,7 @@ export default function ProductDetailPage() {
               <div className="absolute inset-0 backdrop-blur-xl opacity-20" />
               {product.image ? (
                 <img
-                  src={`${IMAGE_BASE_URL}${product.image}`}
+                  src={getImageUrl(product.image)}
                   alt={localized.name}
                   className="w-full h-full object-cover"
                 />
