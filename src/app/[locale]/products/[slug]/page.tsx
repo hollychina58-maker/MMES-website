@@ -41,10 +41,11 @@ function getLocalizedContent(product: Product, locale: string) {
 }
 
 // Get image URL - use relative paths directly (from /public folder)
-// when they start with '/', otherwise prepend IMAGE_BASE_URL
+// when they start with '/images/' (static assets), otherwise prepend IMAGE_BASE_URL
 // If already an absolute URL (http:// or https://), return as-is
 function getImageUrl(imagePath: string | undefined): string {
   if (!imagePath) return "";
+  if (imagePath.startsWith("/images/")) return imagePath;
   if (imagePath.startsWith("/")) return imagePath;
   if (imagePath.startsWith("http://") || imagePath.startsWith("https://")) return imagePath;
   return `${IMAGE_BASE_URL}${imagePath}`;
