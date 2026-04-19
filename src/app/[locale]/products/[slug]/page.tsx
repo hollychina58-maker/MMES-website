@@ -58,6 +58,14 @@ export default function ProductDetailPage() {
         setProduct(found || null);
       } catch (error) {
         console.error("Failed to fetch product:", error);
+        try {
+          const fbRes = await fetch("/data/products.json");
+          const fbData = await fbRes.json();
+          const fbFound = (fbData.data || []).find((p: Product) => p.slug.toLowerCase() === slug.toLowerCase());
+          setProduct(fbFound || null);
+        } catch (fbErr) {
+          console.error("Fallback also failed:", fbErr);
+        }
       } finally {
         setLoading(false);
       }
