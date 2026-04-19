@@ -56,7 +56,25 @@ export default function ProductDetailPage() {
 
   useEffect(() => {
     async function fetchProduct() {
-      // Try fallback first for local dev (API likely not running)
+      // Try API first with timeout
+      try {
+        const res = await Promise.race([
+          fetch(API_ENDPOINTS.products),
+          new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 3000))
+        ]) as Response;
+        const data = await res.json();
+        const products: Product[] = data.data || [];
+        const found = products.find((p) => p.slug.toLowerCase() === slug.toLowerCase());
+        setProduct(found || null);
+        if (found) {
+          setLoading(false);
+          return;
+        }
+      } catch (error) {
+        console.error("API fetch failed or timed out:", error);
+      }
+
+      // Fallback to static JSON when API unavailable
       try {
         const fbRes = await Promise.race([
           fetch('/data/products.json'),
@@ -66,22 +84,9 @@ export default function ProductDetailPage() {
         const fbFound = (fbData.data || []).find((p: Product) => p.slug.toLowerCase() === slug.toLowerCase());
         if (fbFound) {
           setProduct(fbFound);
-          setLoading(false);
-          return;
         }
-      } catch (e) {
-        console.log('Fallback timeout or failed, trying API...');
-      }
-
-      // Try API
-      try {
-        const res = await fetch(API_ENDPOINTS.products);
-        const data = await res.json();
-        const products: Product[] = data.data || [];
-        const found = products.find((p) => p.slug.toLowerCase() === slug.toLowerCase());
-        setProduct(found || null);
-      } catch (error) {
-        console.error("API fetch failed:", error);
+      } catch (fbErr) {
+        console.error("Fallback also failed:", fbErr);
       } finally {
         setLoading(false);
       }
