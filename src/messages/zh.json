@@ -1,0 +1,288 @@
+{
+  "nav": {
+    "home": "首页",
+    "products": "产品",
+    "about": "关于我们",
+    "contact": "联系我们",
+    "blog": "博客"
+  },
+  "home": {
+    "hero": {
+      "title": "精密惯性导航系统",
+      "subtitle": "先进的AHRS、IMU和陀螺仪解决方案",
+      "cta": "浏览产品"
+    },
+    "features": {
+      "title": "选择MMES-MCTI的理由",
+      "highPrecision": "高精度",
+      "highPrecisionDesc": "关键应用下的亚度精度",
+      "reliable": "可靠",
+      "reliableDesc": "恶劣环境下的稳健设计",
+      "innovative": "创新",
+      "innovativeDesc": "尖端技术集成",
+      "support": "全球支持",
+      "supportDesc": "全球技术支持"
+    },
+    "cta": {
+      "title": "准备好开始了吗？",
+      "description": "联系我们获取定制化解决方案。",
+      "button": "索取报价"
+    },
+    "list": {
+      "PA-3ARG": {
+        "name": "PA-3ARG",
+        "desc": "高性能姿态航向参考系统"
+      },
+      "PA-AHRS01": {
+        "name": "PA-AHRS01",
+        "desc": "先进无人机和机器人姿态航向参考系统"
+      },
+      "PA-IMU-01": {
+        "name": "PA-IMU-01",
+        "desc": "高精度惯性测量单元"
+      },
+      "PA-GS": {
+        "name": "PA-GS",
+        "desc": "导航陀螺仪系统"
+      }
+    },
+    "products": {
+      "title": "我们的产品",
+      "viewAll": "查看全部产品"
+    }
+  },
+  "products": {
+    "title": "产品",
+    "subtitle": "高性能惯性导航组件",
+    "inquiry": "发送询价",
+    "parameters": "技术参数",
+    "list": {
+      "PA-3ARG": {
+        "name": "PA-3ARG",
+        "desc": "高性能姿态航向参考系统",
+        "specs": {
+          "accuracy": "0.1°",
+          "range": "±180°",
+          "power": "5W",
+          "weight": "150g"
+        }
+      },
+      "PA-AHRS01": {
+        "name": "PA-AHRS01",
+        "desc": "先进无人机和机器人姿态航向参考系统",
+        "specs": {
+          "accuracy": "0.05°",
+          "range": "±360°",
+          "power": "3W",
+          "weight": "80g"
+        }
+      },
+      "PA-IMU-01": {
+        "name": "PA-IMU-01",
+        "desc": "高精度惯性测量单元",
+        "specs": {
+          "accuracy": "0.01°/hr",
+          "range": "±100°/s",
+          "power": "2W",
+          "weight": "50g"
+        }
+      },
+      "PA-GS": {
+        "name": "PA-GS",
+        "desc": "导航陀螺仪系统",
+        "specs": {
+          "accuracy": "0.001°/hr",
+          "range": "±500°/s",
+          "power": "8W",
+          "weight": "200g"
+        }
+      },
+      "PA-ARG": {
+        "name": "PA-ARG",
+        "desc": "姿态参考陀螺仪",
+        "specs": {
+          "accuracy": "0.2°",
+          "range": "±90°",
+          "power": "4W",
+          "weight": "120g"
+        }
+      },
+      "PA-LAMIII": {
+        "name": "PA-LAMIII",
+        "desc": "激光角度测量系统",
+        "specs": {
+          "accuracy": "0.001°",
+          "range": "±45°",
+          "power": "10W",
+          "weight": "500g"
+        }
+      },
+      "PA-LASI": {
+        "name": "PA-LASI",
+        "desc": "线性加速度计系统",
+        "specs": {
+          "accuracy": "1μg",
+          "range": "±10g",
+          "power": "2W",
+          "weight": "40g"
+        }
+      },
+      "PM-C3000": {
+        "name": "PM-C3000",
+        "desc": "运动控制器模块",
+        "specs": {
+          "accuracy": "16位",
+          "interface": "RS485",
+          "power": "5W",
+          "weight": "100g"
+        }
+      },
+      "PA-VG11": {
+        "name": "PA-VG11",
+        "desc": "垂直陀螺仪系统",
+        "specs": {
+          "accuracy": "0.01°",
+          "range": "±90°",
+          "power": "5W",
+          "weight": "120g"
+        }
+      },
+      "PA-LASIII": {
+        "name": "PA-LASIII",
+        "desc": "激光角度传感器系统III",
+        "specs": {
+          "accuracy": "0.0005°",
+          "range": "±60°",
+          "power": "15W",
+          "weight": "600g"
+        }
+      },
+      "PA-IMU-02": {
+        "name": "PA-IMU-02",
+        "desc": "双轴惯性测量单元",
+        "specs": {
+          "accuracy": "0.005°/hr",
+          "range": "±200°/s",
+          "power": "3W",
+          "weight": "60g"
+        }
+      },
+      "PA-GSAUTO": {
+        "name": "PA-GSAUTO",
+        "desc": "自动陀螺仪系统",
+        "specs": {
+          "accuracy": "0.001°/hr",
+          "range": "±360°",
+          "power": "10W",
+          "weight": "250g"
+        }
+      },
+      "PA-GSFA1": {
+        "name": "PA-GSFA1",
+        "desc": "光纤陀螺仪系统",
+        "specs": {
+          "accuracy": "0.002°/hr",
+          "range": "±180°",
+          "power": "8W",
+          "weight": "180g"
+        }
+      },
+      "PM-TS-VG": {
+        "name": "PM-TS-VG",
+        "desc": "倾斜传感器垂直陀螺",
+        "specs": {
+          "accuracy": "0.02°",
+          "range": "±45°",
+          "power": "4W",
+          "weight": "90g"
+        }
+      }
+    },
+    "viewDetails": "查看详情",
+    "detail": {
+      "title": "产品详情",
+      "specs": "技术参数",
+      "quote": "索取报价"
+    },
+    "specsLabels": {
+      "accuracy": "精度",
+      "range": "范围",
+      "power": "功率",
+      "weight": "重量",
+      "interface": "接口"
+    },
+    "back": "返回产品列表",
+    "ctaText": "对此产品感兴趣？联系我们获取定制解决方案。",
+    "share": "分享此产品"
+  },
+  "about": {
+    "title": "关于MMES-MCTI",
+    "description": "MMES-MCTI是精密惯性导航系统的领先供应商，为全球航空航天、国防和工业应用提供先进解决方案。",
+    "yearsExperience": "年经验",
+    "countriesServed": "服务国家",
+    "productsDelivered": "交付产品",
+    "ourMission": "我们的使命",
+    "missionText": "提供尖端的惯性导航解决方案，帮助全球各行业实现前所未有的精度和可靠性。",
+    "ourVision": "我们的愿景",
+    "visionText": "成为精密导航技术的全球领导者，为航空航天、国防和工业领域树立精度、耐用性和创新的新标准。"
+  },
+  "contact": {
+    "title": "联系我们",
+    "name": "姓名",
+    "email": "邮箱",
+    "phone": "电话",
+    "message": "留言",
+    "submit": "提交",
+    "success": "谢谢！我们会尽快与您联系。",
+    "error": "出了点问题，请重试。"
+  },
+  "inquiry": {
+    "title": "产品询价",
+    "company": "公司名称",
+    "contact": "联系人",
+    "email": "邮箱",
+    "phone": "电话",
+    "product": "感兴趣的产品",
+    "details": "需求详情",
+    "submit": "提交询价",
+    "success": "您的询价已提交，我们会尽快与您联系。",
+    "error": "发送失败，请重试。"
+  },
+  "footer": {
+    "copyright": "MMES-MCTI 版权所有。",
+    "description": "精密惯性导航系统的领先供应商，为全球航空航天、国防和工业应用提供先进解决方案。",
+    "quickLinks": "快速链接",
+    "languages": "语言"
+  },
+  "specsLabels": {
+    "accuracy": "精度",
+    "range": "范围",
+    "power": "功率",
+    "weight": "重量",
+    "interface": "接口",
+    "bias": "零偏",
+    "scale": "标度",
+    "bandwidth": "带宽",
+    "voltage": "电压",
+    "dimensions": "尺寸",
+    "operatingTemp": "工作温度"
+  },
+  "language": {
+    "select": "语言"
+  },
+  "blog": {
+    "title": "技术博客",
+    "subtitle": "精密导航技术的见解、指南和行业动态",
+    "featured": "精选",
+    "newsletter": "保持更新",
+    "newsletterDesc": "获取最新的导航技术见解。",
+    "subscribe": "立即订阅",
+    "relatedPosts": "相关文章",
+    "back": "返回博客",
+    "shareArticle": "分享这篇文章",
+    "needSolutions": "需要导航解决方案？",
+    "contactForSolution": "联系我们，获取适合您应用的定制惯性导航系统。",
+    "getInTouch": "联系我们",
+    "minRead": "分钟阅读"
+  }
+}

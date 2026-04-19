@@ -1,0 +1,288 @@
+{
+  "nav": {
+    "home": "الرئيسية",
+    "products": "المنتجات",
+    "about": "من نحن",
+    "contact": "اتصل بنا",
+    "blog": "المدونة"
+  },
+  "home": {
+    "hero": {
+      "title": "أنظمة الملاحة بالقصور الذاتي الدقيقة",
+      "subtitle": "حلول AHRS و IMU والجيروسكوب المتقدمة للتطبيقات الصناعية",
+      "cta": "استكشف المنتجات"
+    },
+    "features": {
+      "title": "لماذا تختار MMES-MCTI",
+      "highPrecision": "دقة عالية",
+      "highPrecisionDesc": "دقة أقل من الدرجة للتطبيقات الحرجة",
+      "reliable": "موثوق",
+      "reliableDesc": "تصميم متين للبيئات القاسية",
+      "innovative": "مبتكر",
+      "innovativeDesc": "تكامل تكنولوجي متطور",
+      "support": "دعم عالمي",
+      "supportDesc": "دعم تقني في جميع أنحاء العالم"
+    },
+    "cta": {
+      "title": "هل أنت مستعد للبدء؟",
+      "description": "اتصل بنا للحصول على حل مخصص يناسب احتياجاتك.",
+      "button": "طلب عرض أسعار"
+    },
+    "list": {
+      "PA-3ARG": {
+        "name": "PA-3ARG",
+        "desc": "نظام مرجع الاتجاه والوضعية عالي الأداء"
+      },
+      "PA-AHRS01": {
+        "name": "PA-AHRS01",
+        "desc": "نظام AHRS متقدم للطائرات بدون طيار والروبوتات"
+      },
+      "PA-IMU-01": {
+        "name": "PA-IMU-01",
+        "desc": "وحدة القياس inertial عالية الدقة"
+      },
+      "PA-GS": {
+        "name": "PA-GS",
+        "desc": "نظام الجيروسكوب للملاحة"
+      }
+    },
+    "products": {
+      "title": "منتجاتنا",
+      "viewAll": "عرض جميع المنتجات"
+    }
+  },
+  "products": {
+    "title": "المنتجات",
+    "subtitle": "مكونات الملاحة بالقصور الذاتي عالية الأداء",
+    "inquiry": "إرسال استفسار",
+    "parameters": "المعايير الفنية",
+    "list": {
+      "PA-3ARG": {
+        "name": "PA-3ARG",
+        "desc": "نظام مرجع الاتجاه والوضعية عالي الأداء",
+        "specs": {
+          "accuracy": "0.1°",
+          "range": "±180°",
+          "power": "5W",
+          "weight": "150g"
+        }
+      },
+      "PA-AHRS01": {
+        "name": "PA-AHRS01",
+        "desc": "نظام AHRS متقدم للطائرات بدون طيار والروبوتات",
+        "specs": {
+          "accuracy": "0.05°",
+          "range": "±360°",
+          "power": "3W",
+          "weight": "80g"
+        }
+      },
+      "PA-IMU-01": {
+        "name": "PA-IMU-01",
+        "desc": "وحدة القياس inertial عالية الدقة",
+        "specs": {
+          "accuracy": "0.01°/hr",
+          "range": "±100°/s",
+          "power": "2W",
+          "weight": "50g"
+        }
+      },
+      "PA-GS": {
+        "name": "PA-GS",
+        "desc": "نظام الجيروسكوب للملاحة",
+        "specs": {
+          "accuracy": "0.001°/hr",
+          "range": "±500°/s",
+          "power": "8W",
+          "weight": "200g"
+        }
+      },
+      "PA-ARG": {
+        "name": "PA-ARG",
+        "desc": "جيروسكوب مرجع الوضعية",
+        "specs": {
+          "accuracy": "0.2°",
+          "range": "±90°",
+          "power": "4W",
+          "weight": "120g"
+        }
+      },
+      "PA-LAMIII": {
+        "name": "PA-LAMIII",
+        "desc": "نظام قياس الزاوية بالليزر",
+        "specs": {
+          "accuracy": "0.001°",
+          "range": "±45°",
+          "power": "10W",
+          "weight": "500g"
+        }
+      },
+      "PA-LASI": {
+        "name": "PA-LASI",
+        "desc": "نظام مقياس التسارع الخطي",
+        "specs": {
+          "accuracy": "1μg",
+          "range": "±10g",
+          "power": "2W",
+          "weight": "40g"
+        }
+      },
+      "PM-C3000": {
+        "name": "PM-C3000",
+        "desc": "وحدة تحكم الحركة",
+        "specs": {
+          "accuracy": "16-bit",
+          "interface": "RS485",
+          "power": "5W",
+          "weight": "100g"
+        }
+      },
+      "PA-VG11": {
+        "name": "PA-VG11",
+        "desc": "نظام الجيروسكوب العمودي",
+        "specs": {
+          "accuracy": "0.01°",
+          "range": "±90°",
+          "power": "5W",
+          "weight": "120g"
+        }
+      },
+      "PA-LASIII": {
+        "name": "PA-LASIII",
+        "desc": "نظام قياس الزاوية بالليزر III",
+        "specs": {
+          "accuracy": "0.0005°",
+          "range": "±60°",
+          "power": "15W",
+          "weight": "600g"
+        }
+      },
+      "PA-IMU-02": {
+        "name": "PA-IMU-02",
+        "desc": "وحدة القياس الذاتي ذات المحورين",
+        "specs": {
+          "accuracy": "0.005°/hr",
+          "range": "±200°/s",
+          "power": "3W",
+          "weight": "60g"
+        }
+      },
+      "PA-GSAUTO": {
+        "name": "PA-GSAUTO",
+        "desc": "نظام الجيروسكوب التلقائي",
+        "specs": {
+          "accuracy": "0.001°/hr",
+          "range": "±360°",
+          "power": "10W",
+          "weight": "250g"
+        }
+      },
+      "PA-GSFA1": {
+        "name": "PA-GSFA1",
+        "desc": "نظام الجيروسكوب بالألياف الضوئية",
+        "specs": {
+          "accuracy": "0.002°/hr",
+          "range": "±180°",
+          "power": "8W",
+          "weight": "180g"
+        }
+      },
+      "PM-TS-VG": {
+        "name": "PM-TS-VG",
+        "desc": "مستشعر الميل جيروسكوب عمودي",
+        "specs": {
+          "accuracy": "0.02°",
+          "range": "±45°",
+          "power": "4W",
+          "weight": "90g"
+        }
+      }
+    },
+    "viewDetails": "عرض التفاصيل",
+    "detail": {
+      "title": "تفاصيل المنتج",
+      "specs": "المواصفات الفنية",
+      "quote": "طلب عرض أسعار"
+    },
+    "specsLabels": {
+      "accuracy": "Accuracy",
+      "range": "Range",
+      "power": "Power",
+      "weight": "Weight",
+      "interface": "Interface"
+    },
+    "back": "العودة إلى المنتجات",
+    "ctaText": "هل تهتم بهذا المنتج؟ تواصل معنا للحصول على حل مخصص.",
+    "share": "شارك هذا المنتج"
+  },
+  "about": {
+    "title": "حول MMES-MCTI",
+    "description": "MMES-MCTI هي شركة رائدة في مجال أنظمة الملاحة بالقصور الذاتي الدقيقة، تقدم حلولاً متقدمة لصناعة الطيران والدفاع والتطبيقات الصناعية في جميع أنحاء العالم.",
+    "yearsExperience": "سنوات الخبرة",
+    "countriesServed": "دولة تم خدمتها",
+    "productsDelivered": "منتج تم تسليمه",
+    "ourMission": "مهمتنا",
+    "missionText": "تقديم حلول ملاحة بالقصور الذاتي متطورة تمكّن الصناعات في جميع أنحاء العالم من تحقيق دقة وموثوقية غير مسبوقة.",
+    "ourVision": "رؤيتنا",
+    "visionText": "أن نكون الشركة الرائدة عالمياً في تقنية الملاحة الدقيقة، ووضع معايير جديدة للدقة والمتانة والابتكار في قطاعات الطيران والدفاع والصناعة."
+  },
+  "contact": {
+    "title": "اتصل بنا",
+    "name": "الاسم",
+    "email": "البريد الإلكتروني",
+    "phone": "الهاتف",
+    "message": "الرسالة",
+    "submit": "إرسال",
+    "success": "شكراً! سنتواصل معك قريباً.",
+    "error": "حدث خطأ ما. يرجى المحاولة مرة أخرى."
+  },
+  "inquiry": {
+    "title": "استفسار المنتج",
+    "company": "اسم الشركة",
+    "contact": "الشخص المسؤول",
+    "email": "البريد الإلكتروني",
+    "phone": "الهاتف",
+    "product": "المنتج المطلوب",
+    "details": "تفاصيل المتطلبات",
+    "submit": "إرسال الاستفسار",
+    "success": "تم إرسال استفسارك. سنتواصل معك قريباً.",
+    "error": "فشل الإرسال. يرجى المحاولة مرة أخرى."
+  },
+  "footer": {
+    "copyright": "MMES-MCTI. جميع الحقوق محفوظة.",
+    "description": "مزود رائد لأنظمة الملاحة بالقصور الذاتي الدقيقة للتطبيقات الفضائية والدفاعية والصناعية في جميع أنحاء العالم.",
+    "quickLinks": "روابط سريعة",
+    "languages": "اللغات"
+  },
+  "specsLabels": {
+    "accuracy": "الدقة",
+    "range": "المدى",
+    "power": "الطاقة",
+    "weight": "الوزن",
+    "interface": "الواجهة",
+    "bias": "التحيز",
+    "scale": "المقياس",
+    "bandwidth": "عرض النطاق",
+    "voltage": "الجهد",
+    "dimensions": "الأبعاد",
+    "operatingTemp": "درجة حرارة التشغيل"
+  },
+  "language": {
+    "select": "اللغة"
+  },
+  "blog": {
+    "title": "المدونة التقنية",
+    "subtitle": "رؤى وأدلة وأخبار الصناعة حول تقنية الملاحة الدقيقة",
+    "featured": "مميز",
+    "newsletter": "ابق على اطلاع",
+    "newsletterDesc": "احصل على آخر المعلومات حول تقنية الملاحة.",
+    "subscribe": "اشترك الآن",
+    "relatedPosts": "مقالات ذات صلة",
+    "back": "العودة إلى المدونة",
+    "shareArticle": "شارك هذا المقال",
+    "needSolutions": "هل تحتاج حلول الملاحة؟",
+    "contactForSolution": "تواصل معنا للحصول على أنظمة ملاحة بالقصور الذاتي مخصصة لتطبيقك.",
+    "getInTouch": "تواصل معنا",
+    "minRead": "دقيقة للقراءة"
+  }
+}

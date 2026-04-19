@@ -1,0 +1,288 @@
+{
+  "nav": {
+    "home": "خانه",
+    "products": "محصولات",
+    "about": "درباره ما",
+    "contact": "تماس با ما",
+    "blog": "وبلاگ"
+  },
+  "home": {
+    "hero": {
+      "title": "سیستم‌های ناوبری اینرسی دقیق",
+      "subtitle": "راه‌حل‌های پیشرفته AHRS، IMU و ژیروسکوپ برای کاربردهای صنعتی",
+      "cta": "مشاهده محصولات"
+    },
+    "features": {
+      "title": "چرا MMES-MCTI را انتخاب کنید",
+      "highPrecision": "دقت بالا",
+      "highPrecisionDesc": "دقت کمتر از درجه برای کاربردهای حیاتی",
+      "reliable": "قابل اعتماد",
+      "reliableDesc": "طراحی مقاوم برای محیط‌های سخت",
+      "innovative": "نوآورانه",
+      "innovativeDesc": "یکپارچگی فناوری پیشرفته",
+      "support": "پشتیبانی جهانی",
+      "supportDesc": "پشتیبانی فنی در سراسر جهان"
+    },
+    "cta": {
+      "title": "آماده شروع هستید؟",
+      "description": "برای راه‌حل سفارشی با ما تماس بگیرید.",
+      "button": "درخواست قیمت"
+    },
+    "list": {
+      "PA-3ARG": {
+        "name": "PA-3ARG",
+        "desc": "سیستم مرجع وضعیت و سمت با عملکرد بالا"
+      },
+      "PA-AHRS01": {
+        "name": "PA-AHRS01",
+        "desc": "AHRS پیشرفته برای پهپاد و رباتیک"
+      },
+      "PA-IMU-01": {
+        "name": "PA-IMU-01",
+        "desc": "واحد اندازه‌گیری اینرسی با دقت بالا"
+      },
+      "PA-GS": {
+        "name": "PA-GS",
+        "desc": "سیستم ژیروسکوپ برای ناوبری"
+      }
+    },
+    "products": {
+      "title": "محصولات ما",
+      "viewAll": "مشاهده همه محصولات"
+    }
+  },
+  "products": {
+    "title": "محصولات",
+    "subtitle": "اجزای ناوبری اینرسی با عملکرد بالا",
+    "inquiry": "ارسال استعلام",
+    "parameters": "پارامترهای فنی",
+    "list": {
+      "PA-3ARG": {
+        "name": "PA-3ARG",
+        "desc": "سیستم مرجع وضعیت و سمت با عملکرد بالا",
+        "specs": {
+          "accuracy": "0.1°",
+          "range": "±180°",
+          "power": "5W",
+          "weight": "150g"
+        }
+      },
+      "PA-AHRS01": {
+        "name": "PA-AHRS01",
+        "desc": "AHRS پیشرفته برای پهپاد و رباتیک",
+        "specs": {
+          "accuracy": "0.05°",
+          "range": "±360°",
+          "power": "3W",
+          "weight": "80g"
+        }
+      },
+      "PA-IMU-01": {
+        "name": "PA-IMU-01",
+        "desc": "واحد اندازه‌گیری اینرسی با دقت بالا",
+        "specs": {
+          "accuracy": "0.01°/hr",
+          "range": "±100°/s",
+          "power": "2W",
+          "weight": "50g"
+        }
+      },
+      "PA-GS": {
+        "name": "PA-GS",
+        "desc": "سیستم ژیروسکوپ برای ناوبری",
+        "specs": {
+          "accuracy": "0.001°/hr",
+          "range": "±500°/s",
+          "power": "8W",
+          "weight": "200g"
+        }
+      },
+      "PA-ARG": {
+        "name": "PA-ARG",
+        "desc": "ژیروسکوپ مرجع وضعیت",
+        "specs": {
+          "accuracy": "0.2°",
+          "range": "±90°",
+          "power": "4W",
+          "weight": "120g"
+        }
+      },
+      "PA-LAMIII": {
+        "name": "PA-LAMIII",
+        "desc": "سیستم اندازه‌گیری زاویه لیزری",
+        "specs": {
+          "accuracy": "0.001°",
+          "range": "±45°",
+          "power": "10W",
+          "weight": "500g"
+        }
+      },
+      "PA-LASI": {
+        "name": "PA-LASI",
+        "desc": "سیستم شتاب‌سنج خطی",
+        "specs": {
+          "accuracy": "1μg",
+          "range": "±10g",
+          "power": "2W",
+          "weight": "40g"
+        }
+      },
+      "PM-C3000": {
+        "name": "PM-C3000",
+        "desc": "ماژول کنترلر حرکت",
+        "specs": {
+          "accuracy": "16-bit",
+          "interface": "RS485",
+          "power": "5W",
+          "weight": "100g"
+        }
+      },
+      "PA-VG11": {
+        "name": "PA-VG11",
+        "desc": "سیستم ژیروسکوپ عمودی",
+        "specs": {
+          "accuracy": "0.01°",
+          "range": "±90°",
+          "power": "5W",
+          "weight": "120g"
+        }
+      },
+      "PA-LASIII": {
+        "name": "PA-LASIII",
+        "desc": "سیستم اندازه‌گیری زاویه لیزری III",
+        "specs": {
+          "accuracy": "0.0005°",
+          "range": "±60°",
+          "power": "15W",
+          "weight": "600g"
+        }
+      },
+      "PA-IMU-02": {
+        "name": "PA-IMU-02",
+        "desc": "واحد اندازه‌گیری اینرسی دو محوره",
+        "specs": {
+          "accuracy": "0.005°/hr",
+          "range": "±200°/s",
+          "power": "3W",
+          "weight": "60g"
+        }
+      },
+      "PA-GSAUTO": {
+        "name": "PA-GSAUTO",
+        "desc": "سیستم ژیروسکوپ خودکار",
+        "specs": {
+          "accuracy": "0.001°/hr",
+          "range": "±360°",
+          "power": "10W",
+          "weight": "250g"
+        }
+      },
+      "PA-GSFA1": {
+        "name": "PA-GSFA1",
+        "desc": "سیستم ژیروسکوپ فیبر نوری",
+        "specs": {
+          "accuracy": "0.002°/hr",
+          "range": "±180°",
+          "power": "8W",
+          "weight": "180g"
+        }
+      },
+      "PM-TS-VG": {
+        "name": "PM-TS-VG",
+        "desc": "سنسور شیب ژیروسکوپ عمودی",
+        "specs": {
+          "accuracy": "0.02°",
+          "range": "±45°",
+          "power": "4W",
+          "weight": "90g"
+        }
+      }
+    },
+    "viewDetails": "مشاهده جزئیات",
+    "detail": {
+      "title": "جزئیات محصول",
+      "specs": "مشخصات فنی",
+      "quote": "درخواست قیمت"
+    },
+    "specsLabels": {
+      "accuracy": "Accuracy",
+      "range": "Range",
+      "power": "Power",
+      "weight": "Weight",
+      "interface": "Interface"
+    },
+    "back": "بازگشت به محصولات",
+    "ctaText": "آیا به این محصول علاقه‌مند هستید؟ برای راه‌حل سفارشی با ما تماس بگیرید.",
+    "share": "اشتراک‌گذاری این محصول"
+  },
+  "about": {
+    "title": "درباره MMES-MCTI",
+    "description": "MMES-MCTI یک ارائه‌دهنده پیشرو در سیستم‌های ناوبری اینرسی دقیق است که راه‌حل‌های پیشرفته برای هوافضا، دفاع و کاربردهای صنعتی در سراسر جهان ارائه می‌دهد.",
+    "yearsExperience": "سال تجربه",
+    "countriesServed": "کشور خدمات داده شده",
+    "productsDelivered": "محصول تحویل داده شده",
+    "ourMission": "مأموریت ما",
+    "missionText": "ارائه راه‌حل‌های ناوبری اینرسی پیشرفته که صنایع سراسر جهان را قادر به دستیابی به دقت و قابلیت اطمینان بی‌سابقه در کاربردهای خود می‌سازد.",
+    "ourVision": "چشم‌انداز ما",
+    "visionText": "رهبر جهانی در فناوری ناوبری دقیق باشیم، با تعیین استانداردهای جدید برای دقت، دوام و نوآوری در بخش‌های هوافضا، دفاع و صنعت."
+  },
+  "contact": {
+    "title": "تماس با ما",
+    "name": "نام",
+    "email": "ایمیل",
+    "phone": "تلفن",
+    "message": "پیام",
+    "submit": "ارسال",
+    "success": "ممنون! به زودی با شما تماس خواهیم گرفت.",
+    "error": "مشکلی پیش آمد. لطفاً دوباره تلاش کنید."
+  },
+  "inquiry": {
+    "title": "استعلام محصول",
+    "company": "نام شرکت",
+    "contact": "شخص تماس",
+    "email": "ایمیل",
+    "phone": "تلفن",
+    "product": "محصول مورد نظر",
+    "details": "جزئیات نیازمندی‌ها",
+    "submit": "ارسال استعلام",
+    "success": "استعلام شما ارسال شد. به زودی با شما تماس خواهیم گرفت.",
+    "error": "ارسال ناموفق بود. لطفاً دوباره تلاش کنید."
+  },
+  "footer": {
+    "copyright": "MMES-MCTI. تمام حقوق محفوظ است.",
+    "description": "ارائه دهنده پیشرو سیستم های ناوبری اینرسی دقیق برای کاربردهای هوافضا، دفاعی و صنعتی در سراسر جهان.",
+    "quickLinks": "پیوندهای سریع",
+    "languages": "زبان‌ها"
+  },
+  "specsLabels": {
+    "accuracy": "دقت",
+    "range": "محدوده",
+    "power": "توان",
+    "weight": "وزن",
+    "interface": "رابط",
+    "bias": "بایاس",
+    "scale": "مقیاس",
+    "bandwidth": "پهنای باند",
+    "voltage": "ولتاژ",
+    "dimensions": "ابعاد",
+    "operatingTemp": "دمای عملیاتی"
+  },
+  "language": {
+    "select": "زبان"
+  },
+  "blog": {
+    "title": "وبلاگ فنی",
+    "subtitle": "بینش‌ها، راهنماها و اخبار صنعت در مورد فناوری ناوبری دقیق",
+    "featured": "برجسته",
+    "newsletter": "به‌روز بمانید",
+    "newsletterDesc": "آخرین بینش‌ها در مورد فناوری ناوبری را دریافت کنید.",
+    "subscribe": "اکنون اشتراک",
+    "relatedPosts": "مقالات مرتبط",
+    "back": "بازگشت به وبلاگ",
+    "shareArticle": "این مقاله را به اشتراک بگذارید",
+    "needSolutions": "آیا به راه‌حل‌های ناوبری نیاز دارید؟",
+    "contactForSolution": "برای دریافت سیستم‌های ناوبری اینرسی سفارشی با ما تماس بگیرید.",
+    "getInTouch": "تماس با ما",
+    "minRead": "دقیقه مطالعه"
+  }
+}

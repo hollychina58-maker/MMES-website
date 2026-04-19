@@ -1,0 +1,288 @@
+{
+  "nav": {
+    "home": "Home",
+    "products": "Producta",
+    "about": "De Nobis",
+    "contact": "Contactus",
+    "blog": "Blog"
+  },
+  "home": {
+    "hero": {
+      "title": "Praecisionis Navigationis Inertialis Systemata",
+      "subtitle": "AHRS, IMU, et Gyroscopii Solutions summus pro Applications Industrialibus",
+      "cta": "Explore Producta"
+    },
+    "features": {
+      "title": "Cur MMES-MCTI Eligere",
+      "highPrecision": "Praecisio Alta",
+      "highPrecisionDesc": "Sub-gradus praecisio pro criticis applicationibus",
+      "reliable": "Fidele",
+      "reliableDesc": "Robusta fabricatio pro coercitionibus duris",
+      "innovative": "Innovativum",
+      "innovativeDesc": "Cuiusque aetatis technologie integra",
+      "support": "Subsidium Globale",
+      "supportDesc": "Subsidium technicume world"
+    },
+    "cta": {
+      "title": "Paratusne es incipere?",
+      "description": "Nostrum contack for customized solution.",
+      "button": "Require Precium"
+    },
+    "list": {
+      "PA-3ARG": {
+        "name": "PA-3ARG",
+        "desc": "Altus performantia Attitude Heading Reference System"
+      },
+      "PA-AHRS01": {
+        "name": "PA-AHRS01",
+        "desc": "Provectus AHRS pro UAV et roboticis"
+      },
+      "PA-IMU-01": {
+        "name": "PA-IMU-01",
+        "desc": "Altus precisionis Inertial Measurement Unit"
+      },
+      "PA-GS": {
+        "name": "PA-GS",
+        "desc": "Systema globi gyroscopii ad navigationem"
+      }
+    },
+    "products": {
+      "title": "Nostri Producta",
+      "viewAll": "Videre Omnia Producta"
+    }
+  },
+  "products": {
+    "title": "Producta",
+    "subtitle": "Navigationis inertia components summus",
+    "inquiry": "Mittere Inquiry",
+    "parameters": "Parametrii Technici",
+    "list": {
+      "PA-3ARG": {
+        "name": "PA-3ARG",
+        "desc": "Altus performantia Attitude Heading Reference System",
+        "specs": {
+          "accuracy": "0.1°",
+          "range": "±180°",
+          "power": "5W",
+          "weight": "150g"
+        }
+      },
+      "PA-AHRS01": {
+        "name": "PA-AHRS01",
+        "desc": "Provectus AHRS pro UAV et roboticis",
+        "specs": {
+          "accuracy": "0.05°",
+          "range": "±360°",
+          "power": "3W",
+          "weight": "80g"
+        }
+      },
+      "PA-IMU-01": {
+        "name": "PA-IMU-01",
+        "desc": "Altus precisionis Inertial Measurement Unit",
+        "specs": {
+          "accuracy": "0.01°/hr",
+          "range": "±100°/s",
+          "power": "2W",
+          "weight": "50g"
+        }
+      },
+      "PA-GS": {
+        "name": "PA-GS",
+        "desc": "Systema globi gyroscopii ad navigationem",
+        "specs": {
+          "accuracy": "0.001°/hr",
+          "range": "±500°/s",
+          "power": "8W",
+          "weight": "200g"
+        }
+      },
+      "PA-ARG": {
+        "name": "PA-ARG",
+        "desc": "Systema Gyroscopii Reference Attitude",
+        "specs": {
+          "accuracy": "0.2°",
+          "range": "±90°",
+          "power": "4W",
+          "weight": "120g"
+        }
+      },
+      "PA-LAMIII": {
+        "name": "PA-LAMIII",
+        "desc": "Systema mensurae angularis laser",
+        "specs": {
+          "accuracy": "0.001°",
+          "range": "±45°",
+          "power": "10W",
+          "weight": "500g"
+        }
+      },
+      "PA-LASI": {
+        "name": "PA-LASI",
+        "desc": "Systema accelerometeris linearis",
+        "specs": {
+          "accuracy": "1μg",
+          "range": "±10g",
+          "power": "2W",
+          "weight": "40g"
+        }
+      },
+      "PM-C3000": {
+        "name": "PM-C3000",
+        "desc": "Modulus controller motus",
+        "specs": {
+          "accuracy": "16-bit",
+          "interface": "RS485",
+          "power": "5W",
+          "weight": "100g"
+        }
+      },
+      "PA-VG11": {
+        "name": "PA-VG11",
+        "desc": "Systema Gyroscopii Verticalis",
+        "specs": {
+          "accuracy": "0.01°",
+          "range": "±90°",
+          "power": "5W",
+          "weight": "120g"
+        }
+      },
+      "PA-LASIII": {
+        "name": "PA-LASIII",
+        "desc": "Systema Mensurae Angularis Laser III",
+        "specs": {
+          "accuracy": "0.0005°",
+          "range": "±60°",
+          "power": "15W",
+          "weight": "600g"
+        }
+      },
+      "PA-IMU-02": {
+        "name": "PA-IMU-02",
+        "desc": "Unitati Mensurae Inertialis Biaxi",
+        "specs": {
+          "accuracy": "0.005°/hr",
+          "range": "±200°/s",
+          "power": "3W",
+          "weight": "60g"
+        }
+      },
+      "PA-GSAUTO": {
+        "name": "PA-GSAUTO",
+        "desc": "Systema Gyroscopii Automatica",
+        "specs": {
+          "accuracy": "0.001°/hr",
+          "range": "±360°",
+          "power": "10W",
+          "weight": "250g"
+        }
+      },
+      "PA-GSFA1": {
+        "name": "PA-GSFA1",
+        "desc": "Systema Gyroscopii Fibrae Opticae",
+        "specs": {
+          "accuracy": "0.002°/hr",
+          "range": "±180°",
+          "power": "8W",
+          "weight": "180g"
+        }
+      },
+      "PM-TS-VG": {
+        "name": "PM-TS-VG",
+        "desc": "Sensor Inclinationis Gyroscopii Verticalis",
+        "specs": {
+          "accuracy": "0.02°",
+          "range": "±45°",
+          "power": "4W",
+          "weight": "90g"
+        }
+      }
+    },
+    "viewDetails": "Videre Details",
+    "detail": {
+      "title": "Product Details",
+      "specs": "Technical Specifications",
+      "quote": "Request Quote"
+    },
+    "specsLabels": {
+      "accuracy": "Accuracy",
+      "range": "Range",
+      "power": "Power",
+      "weight": "Weight",
+      "interface": "Interface"
+    },
+    "back": "Back ad Producta",
+    "ctaText": "Interests in hoc producto? Contacte nos pro solutionem customizatam.",
+    "share": "Hoc productum partage"
+  },
+  "about": {
+    "title": "De MMES-MCTI",
+    "description": "MMES-MCTI est praebitor ducens precisionis navigationis inertialis systematum, solutiones advanced pro aerospace, defensione, et industrialibus applicationibus worldwide.",
+    "yearsExperience": "Anni Experientiae",
+    "countriesServed": "Terraevis Servitae",
+    "productsDelivered": "Producta Tradita",
+    "ourMission": "Nostrum Munus",
+    "missionText": "Praebere solutiones navigationis inertialis summus quae industrias per orbem terrarum ad precisionem et fiduciam haud antea visam aggredi possint.",
+    "ourVision": "Nostra Visio",
+    "visionText": "Esse ducem mundialem in technologia navigationis praecisionis, nova standards pro accuratia, duritia, et innovatione in aerospace, defensione, et sector industriali ponere."
+  },
+  "contact": {
+    "title": "Contactus",
+    "name": "Nomen",
+    "email": "Email",
+    "phone": "Telefonum",
+    "message": "Nuntius",
+    "submit": "Submit",
+    "success": "Gratias! Nos cito contactum.",
+    "error": "Aliquid ERRO. Fac iterum."
+  },
+  "inquiry": {
+    "title": "Producti Inquiry",
+    "company": "Nomen Societatis",
+    "contact": "Persona Contactus",
+    "email": "Email",
+    "phone": "Telefonum",
+    "product": "Productum Interest",
+    "details": "Requirment Details",
+    "submit": "Mittere Inquiry",
+    "success": "Inquiry yourum missum est. Nos brevi contactum.",
+    "error": "Missio non successit. Fac iterum."
+  },
+  "footer": {
+    "copyright": "MMES-MCTI. Omnia iura reservantur.",
+    "description": "Praestans provisor systematum navigationis inertialium pro applicationibus aerospace, defensionis et industrialibus per orbem terrarum.",
+    "quickLinks": "Nexūs Celerēs",
+    "languages": "Linguae"
+  },
+  "specsLabels": {
+    "accuracy": "Praecisiō",
+    "range": "Fascis",
+    "power": "Potentia",
+    "weight": "Pondus",
+    "interface": "Interfaciēs",
+    "bias": "Biās",
+    "scale": "Scāla",
+    "bandwidth": "Latitūdo",
+    "voltage": "Voltātum",
+    "dimensions": "Dīmensiōnēs",
+    "operatingTemp": "Temperātūra Operātīva"
+  },
+  "language": {
+    "select": "Lingua"
+  },
+  "blog": {
+    "title": "Blog Technica",
+    "subtitle": "Consilia et novitates industriae de technologia navigationis precisae",
+    "featured": "Electum",
+    "newsletter": "Manere updated",
+    "newsletterDesc": "Accipe recentissima consilia de technologia navigationis.",
+    "subscribe": "Nunc subscribere",
+    "relatedPosts": "Articula relacionado",
+    "back": "Back ad Blog",
+    "shareArticle": "Hoc articulum partage",
+    "needSolutions": "Navigatio solutions opus?",
+    "contactForSolution": "Contack nos pro inertial navigation systems custom pro tua applicatione.",
+    "getInTouch": "Contack nos",
+    "minRead": "min lectio"
+  }
+}
