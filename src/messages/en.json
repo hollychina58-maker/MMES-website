@@ -213,7 +213,8 @@
     },
     "back": "Back to Products",
     "ctaText": "Interested in this product? Contact us for a customized solution.",
-    "share": "Share this product"
+    "share": "Share this product",
+    "noProducts": "No products available"
   },
   "about": {
     "title": "About MMES-MCTI",

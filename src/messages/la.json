@@ -213,7 +213,8 @@
     },
     "back": "Back ad Producta",
     "ctaText": "Interests in hoc producto? Contacte nos pro solutionem customizatam.",
-    "share": "Hoc productum partage"
+    "share": "Hoc productum partage",
+    "noProducts": "Nullus productorum"
   },
   "about": {
     "title": "De MMES-MCTI",

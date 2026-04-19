@@ -213,7 +213,8 @@
     },
     "back": "返回产品列表",
     "ctaText": "对此产品感兴趣？联系我们获取定制解决方案。",
-    "share": "分享此产品"
+    "share": "分享此产品",
+    "noProducts": "暂无产品"
   },
   "about": {
     "title": "关于MMES-MCTI",
