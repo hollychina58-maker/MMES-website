@@ -24,14 +24,6 @@ interface Product {
   content: Record<string, { name: string; description: string }>;
 }
 
-const specsIcons: Record<string, string> = {
-  accuracy: "🎯",
-  range: "🌐",
-  power: "⚡",
-  weight: "⚖️",
-  interface: "🔌",
-};
-
 function getLocalizedContent(product: Product, locale: string) {
   const content = product.content[locale] || product.content.en || Object.values(product.content)[0];
   return {
@@ -40,11 +32,14 @@ function getLocalizedContent(product: Product, locale: string) {
   };
 }
 
-// Get image URL - use relative paths directly (from /public folder)
-// when they start with '/images/' (static assets), otherwise prepend IMAGE_BASE_URL
-// If already an absolute URL (http:// or https://), return as-is
+// Get image URL - normalize paths for static assets
+// /images/products/... -> /images/... (frontend has images in /public/images/)
 function getImageUrl(imagePath: string | undefined): string {
   if (!imagePath) return "";
+  // Normalize /images/products/ to /images/ for static file compatibility
+  if (imagePath.startsWith("/images/products/")) {
+    return imagePath.replace("/images/products/", "/images/");
+  }
   if (imagePath.startsWith("/images/")) return imagePath;
   if (imagePath.startsWith("/")) return imagePath;
   if (imagePath.startsWith("http://") || imagePath.startsWith("https://")) return imagePath;
@@ -77,7 +72,7 @@ export default function ProductDetailPage() {
       } catch (e) {
         console.log('Fallback timeout or failed, trying API...');
       }
-      
+
       // Try API
       try {
         const res = await fetch(API_ENDPOINTS.products);
@@ -118,16 +113,17 @@ export default function ProductDetailPage() {
   }
 
   const localized = getLocalizedContent(product, locale);
-  // Handle both old format (array) and new format (Record<string, array>)
-  // If target language specs array is empty, fallback to English
   const specsArray: ProductSpec[] = Array.isArray(product.specs)
     ? product.specs
     : ((product.specs[locale]?.length ?? 0) > 0
         ? product.specs[locale]
         : product.specs['en'] || []);
-  const specsEntries: [string, string][] = specsArray
-    .map((s, idx) => [s.name || s.value || `参数${idx + 1}`, s.value + (s.unit ? ` ${s.unit}` : "")])
-    .filter((entry): entry is [string, string] => (entry[0].trim() !== "" || entry[1].trim() !== ""));
+  const specsEntries: { name: string; value: string }[] = specsArray
+    .map((s, idx) => ({
+      name: s.name || s.value || `参数${idx + 1}`,
+      value: s.value + (s.unit ? ` ${s.unit}` : "")
+    }))
+    .filter((entry) => entry.name.trim() !== "" || entry.value.trim() !== "");
 
   return (
     <>
@@ -145,127 +141,137 @@ export default function ProductDetailPage() {
           { name: localized.name, url: `https://mmes-mcti.com/${locale}/products/${product.slug}` },
         ]}
       />
-    <div className="min-h-screen py-12">
-      <div className="container mx-auto px-4">
-        {/* Back Link */}
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="mb-8"
-        >
-          <Link
-            href="/products"
-            className="inline-flex items-center gap-2 text-slate-500 hover:text-blue-600 transition-colors"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-            <span>{t("back") || "Back to Products"}</span>
-          </Link>
-        </motion.div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
-          {/* Image Gallery */}
+      <div className="min-h-screen py-8 lg:py-12">
+        <div className="container mx-auto px-4">
+          {/* Back Link */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="lg:col-span-3 space-y-4"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="mb-6 lg:mb-8"
           >
-            {/* Main Image */}
-            <div className="relative aspect-square rounded-3xl overflow-hidden bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 shadow-2xl">
-              <div className="absolute inset-0 backdrop-blur-xl opacity-20" />
-              {product.image ? (
-                <img
-                  src={getImageUrl(product.image)}
-                  alt={localized.name}
-                  className="w-full h-full object-cover"
-                />
-              ) : (
-                <div className="absolute inset-0 flex items-center justify-center text-slate-400 z-10">
-                  <svg className="w-24 h-24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                  </svg>
+            <Link
+              href="/products"
+              className="inline-flex items-center gap-2 text-slate-500 hover:text-blue-600 transition-colors"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+              <span>{t("back") || "Back to Products"}</span>
+            </Link>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+            {/* Image Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+            >
+              {/* Main Image */}
+              <div className="relative aspect-square rounded-2xl lg:rounded-3xl overflow-hidden bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 shadow-xl lg:shadow-2xl">
+                <div className="absolute inset-0 backdrop-blur-xl opacity-20" />
+                {product.image ? (
+                  <img
+                    src={getImageUrl(product.image)}
+                    alt={localized.name}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="absolute inset-0 flex items-center justify-center text-slate-400 z-10">
+                    <svg className="w-24 h-24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                    </svg>
+                  </div>
+                )}
+                {/* Product Badge */}
+                <div className="absolute top-4 left-4 lg:top-6 lg:left-6 z-20 px-3 py-1.5 lg:px-4 lg:py-2 bg-white/90 dark:bg-slate-800/90 backdrop-blur-md rounded-full shadow-lg">
+                  <span className="text-xs lg:text-sm font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent whitespace-nowrap">
+                    {localized.name}
+                  </span>
                 </div>
-              )}
-              {/* Product Badge */}
-              <div className="absolute top-6 left-6 z-20 px-4 py-2 bg-white/90 dark:bg-slate-800/90 backdrop-blur-md rounded-full shadow-lg">
-                <span className="text-sm font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
+              </div>
+            </motion.div>
+
+            {/* Product Info Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="space-y-6"
+            >
+              {/* Title Card */}
+              <div className="p-6 lg:p-8 rounded-2xl lg:rounded-3xl bg-white dark:bg-slate-800 shadow-lg lg:shadow-xl border border-slate-200 dark:border-slate-700">
+                <h1 className="text-2xl lg:text-4xl font-bold mb-3 lg:mb-4 bg-gradient-to-r from-slate-900 to-slate-600 dark:from-white dark:to-slate-300 bg-clip-text text-transparent leading-tight">
                   {localized.name}
-                </span>
+                </h1>
+                <p className="text-base lg:text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
+                  {localized.description}
+                </p>
               </div>
-            </div>
-          </motion.div>
 
-          {/* Product Info */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="lg:col-span-2 space-y-6"
-          >
-            {/* Title Card */}
-            <div className="p-8 rounded-3xl bg-white dark:bg-slate-800 shadow-xl border border-slate-200 dark:border-slate-700">
-              <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-slate-900 to-slate-600 dark:from-white dark:to-slate-300 bg-clip-text text-transparent">
-                {localized.name}
-              </h1>
-              <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
-                {localized.description}
-              </p>
-            </div>
-
-            {/* Specs Card */}
-            <div className="p-8 rounded-3xl bg-gradient-to-br from-blue-600/5 to-cyan-500/5 dark:from-blue-600/10 dark:to-cyan-500/10 border border-blue-200 dark:border-blue-800 shadow-lg">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 flex items-center justify-center">
-                  <span className="text-white text-lg">⚙️</span>
+              {/* Specs Card */}
+              <div className="p-6 lg:p-8 rounded-2xl lg:rounded-3xl bg-gradient-to-br from-blue-600/5 to-cyan-500/5 dark:from-blue-600/10 dark:to-cyan-500/10 border border-blue-200 dark:border-blue-800 shadow-lg">
+                <div className="flex items-center gap-3 mb-4 lg:mb-6">
+                  <div className="w-8 h-8 lg:w-10 lg:h-10 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 flex items-center justify-center">
+                    <span className="text-white text-sm lg:text-lg">⚙️</span>
+                  </div>
+                  <h2 className="text-lg lg:text-xl font-bold">{t("detail.specs")}</h2>
                 </div>
-                <h2 className="text-xl font-bold">{t("detail.specs")}</h2>
+
+                {/* Specs Table - Responsive horizontal scroll for many specs */}
+                <div className="overflow-x-auto -mx-2 lg:-mx-4 px-2 lg:px-4">
+                  <table className="w-full min-w-[280px]">
+                    <tbody>
+                      {specsEntries.map((spec, index) => (
+                        <tr
+                          key={index}
+                          className="border-b border-slate-100 dark:border-slate-700 last:border-0 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors"
+                        >
+                          <td className="py-3 lg:py-4 pr-4 align-top">
+                            <span
+                              className="text-xs lg:text-sm text-slate-500 dark:text-slate-400 font-medium block truncate max-w-[120px] lg:max-w-[160px]"
+                              title={spec.name}
+                            >
+                              {spec.name}
+                            </span>
+                          </td>
+                          <td className="py-3 lg:py-4 align-top">
+                            <span className="text-sm lg:text-base font-semibold text-slate-900 dark:text-white block">
+                              {spec.value}
+                            </span>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {specsEntries.map(([key, value]) => (
-                  <motion.div
-                    key={key}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="flex items-center gap-3 p-4 rounded-2xl bg-white dark:bg-slate-800 shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-md hover:border-blue-300 dark:hover:border-blue-600 transition-all"
-                  >
-                    <span className="text-2xl">{specsIcons[key.toLowerCase()] || "📊"}</span>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-xs text-slate-500 uppercase tracking-wider truncate">{key}</p>
-                      <p className="font-bold text-lg truncate">{value}</p>
-                    </div>
-                  </motion.div>
-                ))}
+              {/* CTA Card */}
+              <div className="p-5 lg:p-6 rounded-2xl bg-gradient-to-r from-blue-600 to-cyan-500 shadow-lg lg:shadow-xl">
+                <p className="text-white/90 text-center mb-3 lg:mb-4 text-sm lg:text-base">
+                  {t("ctaText")}
+                </p>
+                <Link
+                  href="/contact"
+                  className="block w-full py-3 lg:py-4 bg-white text-blue-600 font-bold rounded-xl text-center hover:bg-slate-100 transition-colors shadow-lg text-sm lg:text-base"
+                >
+                  {t("detail.quote")}
+                </Link>
               </div>
-            </div>
 
-            {/* CTA Card */}
-            <div className="p-6 rounded-3xl bg-gradient-to-r from-blue-600 to-cyan-500 shadow-xl">
-              <p className="text-white/90 text-center mb-4">
-                {t("ctaText")}
-              </p>
-              <Link
-                href="/contact"
-                className="block w-full py-4 bg-white text-blue-600 font-bold rounded-xl text-center hover:bg-slate-100 transition-colors shadow-lg"
-              >
-                {t("detail.quote")}
-              </Link>
-            </div>
-
-            {/* Share */}
-            <div className="p-6 rounded-2xl bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
-              <p className="text-sm text-slate-500 mb-4 text-center">{t("share")}</p>
-              <ShareButtons
-                url={`https://mmes-mcti.com/products/${product.slug}`}
-                title={`${localized.name} - ${localized.description}`}
-              />
-            </div>
-          </motion.div>
+              {/* Share */}
+              <div className="p-5 lg:p-6 rounded-2xl bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+                <p className="text-xs lg:text-sm text-slate-500 mb-3 lg:mb-4 text-center">{t("share")}</p>
+                <ShareButtons
+                  url={`https://mmes-mcti.com/products/${product.slug}`}
+                  title={`${localized.name} - ${localized.description}`}
+                />
+              </div>
+            </motion.div>
+          </div>
         </div>
       </div>
-    </div>
     </>
   );
 }
