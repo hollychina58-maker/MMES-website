@@ -33,10 +33,8 @@ function getLocalizedContent(product: Product, locale: string) {
 }
 
 // Get image URL - normalize paths for static assets
-// /images/products/... -> /images/... (frontend has images in /public/images/)
 function getImageUrl(imagePath: string | undefined): string {
   if (!imagePath) return "";
-  // Normalize /images/products/ to /images/ for static file compatibility
   if (imagePath.startsWith("/images/products/")) {
     return imagePath.replace("/images/products/", "/images/");
   }
@@ -56,7 +54,6 @@ export default function ProductDetailPage() {
 
   useEffect(() => {
     async function fetchProduct() {
-      // Try API first with timeout
       try {
         const res = await Promise.race([
           fetch(API_ENDPOINTS.products),
@@ -146,13 +143,13 @@ export default function ProductDetailPage() {
           { name: localized.name, url: `https://mmes-mcti.com/${locale}/products/${product.slug}` },
         ]}
       />
-      <div className="min-h-screen py-8 lg:py-12">
-        <div className="container mx-auto px-4">
+      <div className="min-h-screen">
+        <div className="container mx-auto px-4 py-6 lg:py-8">
           {/* Back Link */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="mb-6 lg:mb-8"
+            className="mb-4 lg:mb-6"
           >
             <Link
               href="/products"
@@ -165,82 +162,105 @@ export default function ProductDetailPage() {
             </Link>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-            {/* Image Section */}
+          {/* Main Content - Two Column Layout */}
+          <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
+            {/* Left Column - Image (Sticky) */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
+              className="lg:w-5/12 xl:w-1/2"
             >
-              {/* Main Image */}
-              <div className="relative aspect-square rounded-2xl lg:rounded-3xl overflow-hidden bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 shadow-xl lg:shadow-2xl">
-                <div className="absolute inset-0 backdrop-blur-xl opacity-20" />
-                {product.image ? (
-                  <img
-                    src={getImageUrl(product.image)}
-                    alt={localized.name}
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <div className="absolute inset-0 flex items-center justify-center text-slate-400 z-10">
-                    <svg className="w-24 h-24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                    </svg>
+              <div className="lg:sticky lg:top-8">
+                {/* Main Image */}
+                <div className="relative aspect-square rounded-xl lg:rounded-2xl overflow-hidden bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 shadow-lg lg:shadow-xl">
+                  <div className="absolute inset-0 backdrop-blur-xl opacity-20" />
+                  {product.image ? (
+                    <img
+                      src={getImageUrl(product.image)}
+                      alt={localized.name}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center text-slate-400 z-10">
+                      <svg className="w-20 lg:w-24 h-20 lg:h-24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                      </svg>
+                    </div>
+                  )}
+                  {/* Product Badge */}
+                  <div className="absolute top-3 left-3 lg:top-4 lg:left-4 z-20 px-3 py-1.5 bg-white/90 dark:bg-slate-800/90 backdrop-blur-md rounded-full shadow-lg">
+                    <span className="text-xs lg:text-sm font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent whitespace-nowrap">
+                      {localized.name}
+                    </span>
                   </div>
-                )}
-                {/* Product Badge */}
-                <div className="absolute top-4 left-4 lg:top-6 lg:left-6 z-20 px-3 py-1.5 lg:px-4 lg:py-2 bg-white/90 dark:bg-slate-800/90 backdrop-blur-md rounded-full shadow-lg">
-                  <span className="text-xs lg:text-sm font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent whitespace-nowrap">
-                    {localized.name}
-                  </span>
+                </div>
+
+                {/* CTA Card - Below Image */}
+                <div className="mt-4 p-4 lg:p-5 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 shadow-lg lg:shadow-xl">
+                  <p className="text-white/90 text-center mb-3 text-sm lg:text-base">
+                    {t("ctaText")}
+                  </p>
+                  <Link
+                    href="/contact"
+                    className="block w-full py-2.5 lg:py-3 bg-white text-blue-600 font-bold rounded-lg text-center hover:bg-slate-100 transition-colors shadow text-sm lg:text-base"
+                  >
+                    {t("detail.quote")}
+                  </Link>
+                </div>
+
+                {/* Share - Below CTA */}
+                <div className="mt-4 p-4 rounded-xl bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+                  <p className="text-xs lg:text-sm text-slate-500 mb-3 text-center">{t("share")}</p>
+                  <ShareButtons
+                    url={`https://mmes-mcti.com/products/${product.slug}`}
+                    title={`${localized.name} - ${localized.description}`}
+                  />
                 </div>
               </div>
             </motion.div>
 
-            {/* Product Info Section */}
+            {/* Right Column - Product Info & Specs (Scrollable) */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="space-y-6"
+              className="lg:w-7/12 xl:w-1/2 space-y-4 lg:space-y-6"
             >
               {/* Title Card */}
-              <div className="p-6 lg:p-8 rounded-2xl lg:rounded-3xl bg-white dark:bg-slate-800 shadow-lg lg:shadow-xl border border-slate-200 dark:border-slate-700">
-                <h1 className="text-2xl lg:text-4xl font-bold mb-3 lg:mb-4 bg-gradient-to-r from-slate-900 to-slate-600 dark:from-white dark:to-slate-300 bg-clip-text text-transparent leading-tight">
+              <div className="p-5 lg:p-6 xl:p-8 rounded-xl lg:rounded-2xl bg-white dark:bg-slate-800 shadow-lg border border-slate-200 dark:border-slate-700">
+                <h1 className="text-xl lg:text-2xl xl:text-3xl font-bold mb-2 lg:mb-3 bg-gradient-to-r from-slate-900 to-slate-600 dark:from-white dark:to-slate-300 bg-clip-text text-transparent leading-tight">
                   {localized.name}
                 </h1>
-                <p className="text-base lg:text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
+                <p className="text-sm lg:text-base text-slate-600 dark:text-slate-400 leading-relaxed">
                   {localized.description}
                 </p>
               </div>
 
               {/* Specs Card */}
-              <div className="p-6 lg:p-8 rounded-2xl lg:rounded-3xl bg-gradient-to-br from-blue-600/5 to-cyan-500/5 dark:from-blue-600/10 dark:to-cyan-500/10 border border-blue-200 dark:border-blue-800 shadow-lg">
-                <div className="flex items-center gap-3 mb-4 lg:mb-6">
-                  <div className="w-8 h-8 lg:w-10 lg:h-10 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 flex items-center justify-center">
+              <div className="p-5 lg:p-6 xl:p-8 rounded-xl lg:rounded-2xl bg-gradient-to-br from-blue-600/5 to-cyan-500/5 dark:from-blue-600/10 dark:to-cyan-500/10 border border-blue-200 dark:border-blue-800 shadow-lg">
+                <div className="flex items-center gap-3 mb-4 lg:mb-5">
+                  <div className="w-8 h-8 lg:w-10 lg:h-10 rounded-lg lg:rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 flex items-center justify-center">
                     <span className="text-white text-sm lg:text-lg">⚙️</span>
                   </div>
-                  <h2 className="text-lg lg:text-xl font-bold">{t("detail.specs")}</h2>
+                  <h2 className="text-base lg:text-lg xl:text-xl font-bold">{t("detail.specs")}</h2>
                 </div>
 
-                {/* Specs Table - Responsive horizontal scroll for many specs */}
-                <div className="overflow-x-auto -mx-2 lg:-mx-4 px-2 lg:px-4">
-                  <table className="w-full min-w-[280px]">
+                {/* Specs Table */}
+                <div className="overflow-x-auto">
+                  <table className="w-full">
                     <tbody>
                       {specsEntries.map((spec, index) => (
                         <tr
                           key={index}
-                          className="border-b border-slate-100 dark:border-slate-700 last:border-0 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors"
+                          className="border-b border-slate-100 dark:border-slate-700/50 last:border-0"
                         >
-                          <td className="py-3 lg:py-4 pr-4 align-top">
-                            <span
-                              className="text-xs lg:text-sm text-slate-500 dark:text-slate-400 font-medium block truncate max-w-[120px] lg:max-w-[160px]"
-                              title={spec.name}
-                            >
+                          <td className="py-2.5 lg:py-3 pr-3 lg:pr-4 align-top">
+                            <span className="text-xs lg:text-sm text-slate-500 dark:text-slate-400 font-medium block">
                               {spec.name}
                             </span>
                           </td>
-                          <td className="py-3 lg:py-4 align-top">
+                          <td className="py-2.5 lg:py-3 align-top">
                             <span className="text-sm lg:text-base font-semibold text-slate-900 dark:text-white block">
                               {spec.value}
                             </span>
@@ -250,28 +270,6 @@ export default function ProductDetailPage() {
                     </tbody>
                   </table>
                 </div>
-              </div>
-
-              {/* CTA Card */}
-              <div className="p-5 lg:p-6 rounded-2xl bg-gradient-to-r from-blue-600 to-cyan-500 shadow-lg lg:shadow-xl">
-                <p className="text-white/90 text-center mb-3 lg:mb-4 text-sm lg:text-base">
-                  {t("ctaText")}
-                </p>
-                <Link
-                  href="/contact"
-                  className="block w-full py-3 lg:py-4 bg-white text-blue-600 font-bold rounded-xl text-center hover:bg-slate-100 transition-colors shadow-lg text-sm lg:text-base"
-                >
-                  {t("detail.quote")}
-                </Link>
-              </div>
-
-              {/* Share */}
-              <div className="p-5 lg:p-6 rounded-2xl bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
-                <p className="text-xs lg:text-sm text-slate-500 mb-3 lg:mb-4 text-center">{t("share")}</p>
-                <ShareButtons
-                  url={`https://mmes-mcti.com/products/${product.slug}`}
-                  title={`${localized.name} - ${localized.description}`}
-                />
               </div>
             </motion.div>
           </div>
