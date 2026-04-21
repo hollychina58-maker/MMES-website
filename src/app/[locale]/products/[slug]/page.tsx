@@ -64,6 +64,40 @@ export default function ProductDetailPage() {
         const found = products.find((p) => p.slug.toLowerCase() === slug.toLowerCase());
         setProduct(found || null);
         if (found) {
+          // Set Open Graph meta tags for social sharing
+          const localized = getLocalizedContent(found, locale);
+          const imageUrl = getImageUrl(found.image);
+          document.title = `${localized.name} - MMES-MCTI`;
+          document.querySelector('meta[name="description"]')?.setAttribute('content', localized.description);
+          // Facebook Open Graph
+          let ogImage = document.querySelector('meta[property="og:image"]');
+          if (!ogImage) {
+            ogImage = document.createElement('meta');
+            ogImage.setAttribute('property', 'og:image');
+            document.head.appendChild(ogImage);
+          }
+          ogImage.setAttribute('content', imageUrl);
+          let ogTitle = document.querySelector('meta[property="og:title"]');
+          if (!ogTitle) {
+            ogTitle = document.createElement('meta');
+            ogTitle.setAttribute('property', 'og:title');
+            document.head.appendChild(ogTitle);
+          }
+          ogTitle.setAttribute('content', localized.name);
+          let ogDesc = document.querySelector('meta[property="og:description"]');
+          if (!ogDesc) {
+            ogDesc = document.createElement('meta');
+            ogDesc.setAttribute('property', 'og:description');
+            document.head.appendChild(ogDesc);
+          }
+          ogDesc.setAttribute('content', localized.description);
+          let ogUrl = document.querySelector('meta[property="og:url"]');
+          if (!ogUrl) {
+            ogUrl = document.createElement('meta');
+            ogUrl.setAttribute('property', 'og:url');
+            document.head.appendChild(ogUrl);
+          }
+          ogUrl.setAttribute('content', `https://mmes-mcti.com/${locale}/products/${found.slug}`);
           setLoading(false);
           return;
         }
@@ -91,7 +125,7 @@ export default function ProductDetailPage() {
     if (slug) {
       fetchProduct();
     }
-  }, [slug]);
+  }, [slug, locale]);
 
   if (loading) {
     return (
