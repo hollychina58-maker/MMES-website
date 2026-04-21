@@ -114,14 +114,14 @@ export function ProductDetailClient() {
         name={localized.name}
         description={localized.description}
         image={getImageUrl(product.image)}
-        url={`https://mmes-mcti.com/${locale}/products/${product.slug}`}
+        url={`https://mmes-website-production.up.railway.app/${locale}/products/${product.slug}`}
         sku={product.id}
       />
       <BreadcrumbSchema
         items={[
-          { name: "Home", url: `https://mmes-mcti.com/${locale}` },
-          { name: "Products", url: `https://mmes-mcti.com/${locale}/products` },
-          { name: localized.name, url: `https://mmes-mcti.com/${locale}/products/${product.slug}` },
+          { name: "Home", url: `https://mmes-website-production.up.railway.app/${locale}` },
+          { name: "Products", url: `https://mmes-website-production.up.railway.app/${locale}/products` },
+          { name: localized.name, url: `https://mmes-website-production.up.railway.app/${locale}/products/${product.slug}` },
         ]}
       />
       <div className="min-h-screen">
@@ -194,7 +194,7 @@ export function ProductDetailClient() {
                 <div className="mt-4 p-4 rounded-xl bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
                   <p className="text-xs lg:text-sm text-slate-500 mb-3 text-center">{t("share")}</p>
                   <ShareButtons
-                    url={`https://mmes-mcti.com/${locale}/products/${product.slug}`}
+                    url={`https://mmes-website-production.up.railway.app/${locale}/products/${product.slug}`}
                     title={localized.name}
                   />
                 </div>

@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/admin/", "/api/"],
     },
-    sitemap: "https://mmes-mcti.com/sitemap.xml",
+    sitemap: "https://mmes-website-production.up.railway.app/sitemap.xml",
   };
 }

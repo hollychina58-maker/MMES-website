@@ -34,8 +34,8 @@ interface ArticleSchema {
 
 export function OrganizationSchema({
   name = "MMES-MCTI",
-  url = "https://mmes-mcti.com",
-  logo = "https://mmes-mcti.com/images/og-image.jpg",
+  url = "https://mmes-website-production.up.railway.app",
+  logo = "https://mmes-website-production.up.railway.app/images/og-image.jpg",
   description = "Leading provider of precision inertial navigation systems (AHRS, IMU, Gyroscope) for aerospace, defense, and industrial applications worldwide.",
   sameAs = [
     "https://www.linkedin.com/company/mmes-mcti",
@@ -45,7 +45,7 @@ export function OrganizationSchema({
   const schema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "@id": "https://mmes-mcti.com/#organization",
+    "@id": "https://mmes-website-production.up.railway.app/#organization",
     name,
     url,
     logo,
@@ -70,15 +70,15 @@ export function WebSiteSchema() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "@id": "https://mmes-mcti.com/#website",
+    "@id": "https://mmes-website-production.up.railway.app/#website",
     name: "MMES-MCTI",
-    url: "https://mmes-mcti.com",
+    url: "https://mmes-website-production.up.railway.app",
     publisher: {
-      "@id": "https://mmes-mcti.com/#organization",
+      "@id": "https://mmes-website-production.up.railway.app/#organization",
     },
     potentialAction: {
       "@type": "SearchAction",
-      target: "https://mmes-mcti.com/{search_term_string}",
+      target: "https://mmes-website-production.up.railway.app/{search_term_string}",
       "query-input": "required name=search_term_string",
     },
   };
@@ -116,7 +116,7 @@ export function ProductSchema({
     },
     sku,
     manufacturer: {
-      "@id": "https://mmes-mcti.com/#organization",
+      "@id": "https://mmes-website-production.up.railway.app/#organization",
     },
     category,
     offers: {
@@ -125,7 +125,7 @@ export function ProductSchema({
       priceCurrency,
       availability,
       seller: {
-        "@id": "https://mmes-mcti.com/#organization",
+        "@id": "https://mmes-website-production.up.railway.app/#organization",
       },
     },
   };
@@ -166,7 +166,7 @@ export function ArticleSchema({
     publisher: {
       "@type": "Organization",
       name: publisher,
-      "@id": "https://mmes-mcti.com/#organization",
+      "@id": "https://mmes-website-production.up.railway.app/#organization",
     },
     mainEntityOfPage: {
       "@type": "WebPage",

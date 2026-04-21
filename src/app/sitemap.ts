@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://mmes-mcti.com";
+  const baseUrl = "https://mmes-website-production.up.railway.app";
   const locales = ["en", "ru", "ar", "zh", "fa", "la"];
 
   const routes = ["", "/products", "/about", "/contact", "/blog"];

@@ -80,7 +80,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const { name, description, image } = await getProductContent(product, locale);
-  const url = `https://mmes-mcti.com/${locale}/products/${product.slug}`;
+  const url = `https://mmes-website-production.up.railway.app/${locale}/products/${product.slug}`;
 
   return {
     title: `${name} - MMES-MCTI`,
@@ -88,11 +88,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: {
       canonical: url,
       languages: {
-        en: `https://mmes-mcti.com/en/products/${product.slug}`,
-        zh: `https://mmes-mcti.com/zh/products/${product.slug}`,
-        ru: `https://mmes-mcti.com/ru/products/${product.slug}`,
-        ar: `https://mmes-mcti.com/ar/products/${product.slug}`,
-        fa: `https://mmes-mcti.com/fa/products/${product.slug}`,
+        en: `https://mmes-website-production.up.railway.app/en/products/${product.slug}`,
+        zh: `https://mmes-website-production.up.railway.app/zh/products/${product.slug}`,
+        ru: `https://mmes-website-production.up.railway.app/ru/products/${product.slug}`,
+        ar: `https://mmes-website-production.up.railway.app/ar/products/${product.slug}`,
+        fa: `https://mmes-website-production.up.railway.app/fa/products/${product.slug}`,
         la: `https://mmes-mctI.com/la/products/${product.slug}`,
       },
     },
