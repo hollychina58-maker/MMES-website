@@ -213,7 +213,7 @@ export default function ProductDetailPage() {
                 <div className="mt-4 p-4 rounded-xl bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
                   <p className="text-xs lg:text-sm text-slate-500 mb-3 text-center">{t("share")}</p>
                   <ShareButtons
-                    url={`https://mmes-mcti.com/products/${product.slug}`}
+                    url={`https://mmes-mcti.com/${locale}/products/${product.slug}`}
                     title={`${localized.name} - ${localized.description}`}
                   />
                 </div>

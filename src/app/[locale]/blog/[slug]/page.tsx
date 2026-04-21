@@ -141,7 +141,7 @@ export default function BlogPostPage() {
 
             <div className="mt-8 p-6 rounded-2xl bg-slate-100 dark:bg-slate-800/50 text-center">
               <p className="text-slate-500 mb-4">{t("shareArticle")}</p>
-              <ShareButtons url={`https://mmes-mcti.com/blog/${post.slug}`} title={title} />
+              <ShareButtons url={`https://mmes-mcti.com/${locale}/blog/${post.slug}`} title={title} />
             </div>
           </motion.article>
 
