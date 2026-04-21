@@ -1,18 +1,44 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useEffect, useState } from "react";
+import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/routing";
 import { motion } from "framer-motion";
-import Image from "next/image";
+import { API_ENDPOINTS, IMAGE_BASE_URL } from "@/lib/api-config";
 
-const productIds = ["PA-3ARG", "PA-AHRS01", "PA-IMU-01", "PA-GS"];
+interface ProductSpec {
+  name: string;
+  value: string;
+  unit?: string;
+}
 
-const productImages: Record<string, string> = {
-  "PA-3ARG": "/images/PA-3ARG-A.jpg",
-  "PA-AHRS01": "/images/PA-AHRS01.jpg",
-  "PA-IMU-01": "/images/PA-IMU-01G.jpg",
-  "PA-GS": "/images/PA-GS.jpg",
-};
+interface Product {
+  id: string;
+  slug: string;
+  image: string;
+  specs: Record<string, ProductSpec[]>;
+  published: boolean;
+  content: Record<string, { name: string; description: string }>;
+}
+
+function getLocalizedContent(product: Product, locale: string) {
+  const content = product.content[locale] || product.content.en || Object.values(product.content)[0];
+  return {
+    name: content?.name || product.id,
+    description: content?.description || "",
+  };
+}
+
+function getImageUrl(imagePath: string | undefined): string {
+  if (!imagePath) return "";
+  if (imagePath.startsWith("/images/products/")) {
+    return imagePath.replace("/images/products/", "/images/");
+  }
+  if (imagePath.startsWith("/images/")) return imagePath;
+  if (imagePath.startsWith("/")) return imagePath;
+  if (imagePath.startsWith("http://") || imagePath.startsWith("https://")) return imagePath;
+  return `${IMAGE_BASE_URL}${imagePath}`;
+}
 
 const features = [
   { key: "highPrecision", icon: "🎯" },
@@ -23,6 +49,41 @@ const features = [
 
 export default function HomePage() {
   const t = useTranslations("home");
+  const locale = useLocale();
+  const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
+  const [loadingProducts, setLoadingProducts] = useState(true);
+
+  useEffect(() => {
+    async function fetchFeaturedProducts() {
+      try {
+        const res = await Promise.race([
+          fetch(API_ENDPOINTS.products),
+          new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 3000))
+        ]) as Response;
+        const data = await res.json();
+        const publishedProducts = (data.data || []).filter((p: Product) => p.published);
+        // Take first 4 products for featured section
+        setFeaturedProducts(publishedProducts.slice(0, 4));
+      } catch (error) {
+        console.error("API fetch failed or timed out:", error);
+        // Fallback to static JSON
+        try {
+          const fbRes = await Promise.race([
+            fetch("/data/products.json"),
+            new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 3000))
+          ]) as Response;
+          const fbData = await fbRes.json();
+          const fbProducts = (fbData.data || []).filter((p: Product) => p.published);
+          setFeaturedProducts(fbProducts.slice(0, 4));
+        } catch (fbErr) {
+          console.error("Fallback also failed:", fbErr);
+        }
+      } finally {
+        setLoadingProducts(false);
+      }
+    }
+    fetchFeaturedProducts();
+  }, []);
 
   return (
     <div className="flex flex-col">
@@ -123,31 +184,46 @@ export default function HomePage() {
           </motion.h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {productIds.map((productId, index) => (
-              <motion.div
-                key={productId}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="group"
-              >
-                <Link href={`/products/${productId.toLowerCase()}`}>
-                <div className="relative overflow-hidden rounded-2xl bg-white dark:bg-slate-800 p-4 shadow-lg group-hover:shadow-xl transition-shadow">
-                  <div className="aspect-square relative mb-4 bg-slate-100 dark:bg-slate-700 rounded-xl overflow-hidden">
-                    <Image
-                      src={productImages[productId]}
-                      alt={t(`list.${productId}.name`)}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
+            {loadingProducts ? (
+              <div className="col-span-4 flex justify-center py-12">
+                <div className="animate-spin w-12 h-12 border-4 border-[#0066ff] border-t-transparent rounded-full" />
+              </div>
+            ) : featuredProducts.length > 0 ? (
+              featuredProducts.map((product, index) => (
+                <motion.div
+                  key={product.id}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="group"
+                >
+                  <Link href={`/products/${product.slug.toLowerCase()}`}>
+                  <div className="relative overflow-hidden rounded-2xl bg-white dark:bg-slate-800 p-4 shadow-lg group-hover:shadow-xl transition-shadow">
+                    <div className="aspect-square relative mb-4 bg-slate-100 dark:bg-slate-700 rounded-xl overflow-hidden">
+                      {product.image ? (
+                        <img
+                          src={getImageUrl(product.image)}
+                          alt={getLocalizedContent(product, locale).name}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center text-slate-400">
+                          <svg className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                          </svg>
+                        </div>
+                      )}
+                    </div>
+                    <h3 className="font-semibold text-lg mb-1">{getLocalizedContent(product, locale).name}</h3>
+                    <p className="text-slate-600 dark:text-slate-400 text-sm line-clamp-2">{getLocalizedContent(product, locale).description}</p>
                   </div>
-                  <h3 className="font-semibold text-lg mb-1">{t(`list.${productId}.name`)}</h3>
-                  <p className="text-slate-600 dark:text-slate-400 text-sm">{t(`list.${productId}.desc`)}</p>
-                </div>
-                </Link>
-              </motion.div>
-            ))}
+                  </Link>
+                </motion.div>
+              ))
+            ) : (
+              <p className="col-span-4 text-center text-slate-500 py-12">暂无产品</p>
+            )}
           </div>
 
           <div className="text-center mt-12">
