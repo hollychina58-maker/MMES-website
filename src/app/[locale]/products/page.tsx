@@ -51,18 +51,6 @@ export default function ProductsPage() {
         setProducts(publishedProducts);
       } catch (error) {
         console.error("API fetch failed or timed out:", error);
-        // Fallback to static JSON when API unavailable
-        try {
-          const fbRes = await Promise.race([
-            fetch("/data/products.json"),
-            new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 3000))
-          ]) as Response;
-          const fbData = await fbRes.json();
-          const fbProducts = (fbData.data || []).filter((p: Product) => p.published);
-          setProducts(fbProducts);
-        } catch (fbErr) {
-          console.error("Fallback also failed:", fbErr);
-        }
       } finally {
         setLoading(false);
       }

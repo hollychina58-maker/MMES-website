@@ -63,27 +63,8 @@ export function ProductDetailClient() {
         const products: Product[] = data.data || [];
         const found = products.find((p) => p.slug.toLowerCase() === slug.toLowerCase());
         setProduct(found || null);
-        if (found) {
-          setLoading(false);
-          return;
-        }
       } catch (error) {
         console.error("API fetch failed or timed out:", error);
-      }
-
-      // Fallback to static JSON when API unavailable
-      try {
-        const fbRes = await Promise.race([
-          fetch('/data/products.json'),
-          new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 3000))
-        ]) as Response;
-        const fbData = await fbRes.json();
-        const fbFound = (fbData.data || []).find((p: Product) => p.slug.toLowerCase() === slug.toLowerCase());
-        if (fbFound) {
-          setProduct(fbFound);
-        }
-      } catch (fbErr) {
-        console.error("Fallback also failed:", fbErr);
       } finally {
         setLoading(false);
       }

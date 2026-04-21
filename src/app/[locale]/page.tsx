@@ -66,18 +66,6 @@ export default function HomePage() {
         setFeaturedProducts(publishedProducts.slice(0, 4));
       } catch (error) {
         console.error("API fetch failed or timed out:", error);
-        // Fallback to static JSON
-        try {
-          const fbRes = await Promise.race([
-            fetch("/data/products.json"),
-            new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 3000))
-          ]) as Response;
-          const fbData = await fbRes.json();
-          const fbProducts = (fbData.data || []).filter((p: Product) => p.published);
-          setFeaturedProducts(fbProducts.slice(0, 4));
-        } catch (fbErr) {
-          console.error("Fallback also failed:", fbErr);
-        }
       } finally {
         setLoadingProducts(false);
       }
