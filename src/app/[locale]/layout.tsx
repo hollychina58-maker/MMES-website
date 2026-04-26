@@ -6,6 +6,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { GA4 } from "@/components/GA4";
 import { SEO } from "@/components/SEO";
+import { PlausibleAnalytics } from "@/components/PlausibleAnalytics";
 import "../globals.css";
 
 export function generateStaticParams() {
@@ -33,6 +34,7 @@ export default async function LocaleLayout({
     <html lang={locale} dir={isRTL ? "rtl" : "ltr"}>
       <head>
         <GA4 />
+        <PlausibleAnalytics />
         <SEO locale={locale} canonical="" />
       </head>
       <body className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-900">
