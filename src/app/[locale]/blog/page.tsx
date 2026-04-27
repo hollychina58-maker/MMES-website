@@ -103,7 +103,7 @@ export default function BlogPage() {
               <div className="relative min-h-[500px] rounded-3xl overflow-hidden bg-slate-900">
                 <div className="absolute inset-0">
                   <img
-                    src={`${IMAGE_BASE_URL}${featuredPost.coverImage}`}
+                    src={featuredPost.coverImage.startsWith('http') ? featuredPost.coverImage : `${IMAGE_BASE_URL}${featuredPost.coverImage}`}
                     alt={getLocalizedContent(featuredPost, locale).title}
                     className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700"
                   />
@@ -153,7 +153,7 @@ export default function BlogPage() {
                   {/* Image */}
                   <div className="relative aspect-video overflow-hidden">
                     <img
-                      src={`${IMAGE_BASE_URL}${post.coverImage}`}
+                      src={post.coverImage.startsWith('http') ? post.coverImage : `${IMAGE_BASE_URL}${post.coverImage}`}
                       alt={getLocalizedContent(post, locale).title}
                       className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
                     />
