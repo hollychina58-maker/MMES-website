@@ -12,10 +12,11 @@ export default function AboutPage() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="max-w-4xl mx-auto text-center"
+          className="max-w-3xl"
         >
-          <h1 className="text-4xl md:text-5xl font-bold mb-8">{t("title")}</h1>
-          <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed">
+          <p className="text-sm font-medium text-blue-600 tracking-widest uppercase mb-6">About Us</p>
+          <h1 className="text-4xl md:text-6xl font-bold mb-8 tracking-tight leading-[1.1]">{t("title")}</h1>
+          <p className="text-lg text-slate-500 dark:text-slate-400 leading-relaxed">
             {t("description")}
           </p>
         </motion.div>
@@ -24,18 +25,18 @@ export default function AboutPage() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8"
+          className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-px bg-slate-200 dark:bg-slate-700"
         >
           {[
             { value: "15+", label: t("yearsExperience") },
             { value: "50+", label: t("countriesServed") },
             { value: "1000+", label: t("productsDelivered") },
           ].map((stat, index) => (
-            <div key={index} className="text-center p-8 rounded-2xl bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-slate-800 dark:to-slate-900">
-              <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent mb-2">
+            <div key={index} className="text-center p-12 bg-white dark:bg-slate-900">
+              <div className="text-5xl md:text-6xl font-bold mb-3 tracking-tight text-slate-900 dark:text-white">
                 {stat.value}
               </div>
-              <div className="text-slate-600 dark:text-slate-400">{stat.label}</div>
+              <div className="text-sm text-slate-500 dark:text-slate-400 uppercase tracking-wider">{stat.label}</div>
             </div>
           ))}
         </motion.div>
@@ -44,17 +45,17 @@ export default function AboutPage() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
-          className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8"
+          className="mt-24 grid grid-cols-1 md:grid-cols-2 gap-16"
         >
-          <div className="p-8 rounded-2xl bg-white dark:bg-slate-800 shadow-lg border border-slate-200 dark:border-slate-700">
-            <h2 className="text-2xl font-bold mb-4">{t("ourMission")}</h2>
-            <p className="text-slate-600 dark:text-slate-400">
+          <div>
+            <h2 className="text-2xl font-semibold mb-6 text-slate-900 dark:text-white tracking-tight">{t("ourMission")}</h2>
+            <p className="text-slate-500 dark:text-slate-400 leading-relaxed">
               {t("missionText")}
             </p>
           </div>
-          <div className="p-8 rounded-2xl bg-white dark:bg-slate-800 shadow-lg border border-slate-200 dark:border-slate-700">
-            <h2 className="text-2xl font-bold mb-4">{t("ourVision")}</h2>
-            <p className="text-slate-600 dark:text-slate-400">
+          <div>
+            <h2 className="text-2xl font-semibold mb-6 text-slate-900 dark:text-white tracking-tight">{t("ourVision")}</h2>
+            <p className="text-slate-500 dark:text-slate-400 leading-relaxed">
               {t("visionText")}
             </p>
           </div>

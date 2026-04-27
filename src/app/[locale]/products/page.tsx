@@ -80,13 +80,13 @@ export default function ProductsPage() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">{t("title")}</h1>
-          <p className="text-xl text-slate-600 dark:text-slate-400">{t("subtitle")}</p>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">{t("title")}</h1>
+          <p className="text-lg text-slate-500 dark:text-slate-400 max-w-xl mx-auto">{t("subtitle")}</p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {products.map((product, index) => (
             <motion.div
               key={product.id}
@@ -95,40 +95,37 @@ export default function ProductsPage() {
               transition={{ delay: index * 0.05 }}
               className="group"
             >
-              <div className="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-200 dark:border-slate-700">
-                <Link href={`/products/${product.slug.toLowerCase()}`}>
-                  <div className="aspect-square relative bg-slate-100 dark:bg-slate-700">
-                    {product.image ? (
-                      <img
-                        src={product.image.startsWith('http') ? product.image : `${IMAGE_BASE_URL}${product.image}`}
-                        alt={getLocalizedContent(product, locale).name}
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <div className="absolute inset-0 flex items-center justify-center text-slate-400">
-                        <svg className="w-16 h-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                        </svg>
-                      </div>
-                    )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </div>
-                </Link>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2">
+              <Link href={`/products/${product.slug.toLowerCase()}`} className="block bg-white dark:bg-slate-800 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-700 transition-colors">
+                <div className="aspect-square relative bg-slate-100 dark:bg-slate-700">
+                  {product.image ? (
+                    <img
+                      src={product.image.startsWith('http') ? product.image : `${IMAGE_BASE_URL}${product.image}`}
+                      alt={getLocalizedContent(product, locale).name}
+                      className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center text-slate-400">
+                      <svg className="w-16 h-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                      </svg>
+                    </div>
+                  )}
+                </div>
+                <div className="p-8">
+                  <h3 className="text-xl font-semibold mb-3 text-slate-900 dark:text-white">
                     {getLocalizedContent(product, locale).name}
                   </h3>
-                  <p className="text-slate-600 dark:text-slate-400 text-sm mb-4 line-clamp-2">
+                  <p className="text-slate-500 dark:text-slate-400 text-sm mb-6 line-clamp-2 leading-relaxed">
                     {getLocalizedContent(product, locale).description}
                   </p>
-                  <Link
-                    href={`/products/${product.slug}`}
-                    className="block w-full text-center py-2 bg-gradient-to-r from-blue-600 to-cyan-500 text-white rounded-lg font-medium hover:shadow-lg hover:shadow-blue-500/30 transition-all"
-                  >
+                  <span className="inline-flex items-center gap-2 text-sm font-medium text-blue-600 dark:text-blue-400 group-hover:gap-3 transition-all">
                     {t("viewDetails")}
-                  </Link>
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </span>
                 </div>
-              </div>
+              </Link>
             </motion.div>
           ))}
         </div>

@@ -154,8 +154,7 @@ export function ProductDetailClient() {
             >
               <div className="lg:sticky lg:top-8">
                 {/* Main Image */}
-                <div className="relative aspect-square rounded-xl lg:rounded-2xl overflow-hidden bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 shadow-lg lg:shadow-xl">
-                  <div className="absolute inset-0 backdrop-blur-xl opacity-20" />
+                <div className="relative aspect-square rounded-3xl overflow-hidden bg-slate-100 dark:bg-slate-800">
                   {product.image ? (
                     <img
                       src={getImageUrl(product.image)}
@@ -170,21 +169,21 @@ export function ProductDetailClient() {
                     </div>
                   )}
                   {/* Product Badge */}
-                  <div className="absolute top-3 left-3 lg:top-4 lg:left-4 z-20 px-3 py-1.5 bg-white/90 dark:bg-slate-800/90 backdrop-blur-md rounded-full shadow-lg">
-                    <span className="text-xs lg:text-sm font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent whitespace-nowrap">
+                  <div className="absolute top-4 left-4 z-20">
+                    <span className="px-4 py-2 bg-white/90 dark:bg-slate-800/90 backdrop-blur-md rounded-full shadow-lg text-sm font-bold text-slate-900 dark:text-white">
                       {localized.name}
                     </span>
                   </div>
                 </div>
 
                 {/* CTA Card - Below Image */}
-                <div className="mt-4 p-4 lg:p-5 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 shadow-lg lg:shadow-xl">
-                  <p className="text-white/90 text-center mb-3 text-sm lg:text-base">
+                <div className="mt-6 p-6 rounded-3xl bg-slate-900">
+                  <p className="text-slate-400 text-center mb-4 text-sm">
                     {t("ctaText")}
                   </p>
                   <Link
                     href="/contact"
-                    className="block w-full py-2.5 lg:py-3 bg-white text-blue-600 font-bold rounded-lg text-center hover:bg-slate-100 transition-colors shadow text-sm lg:text-base"
+                    className="block w-full py-4 bg-white text-slate-900 font-semibold rounded-full text-center hover:bg-slate-100 active:scale-[0.98] transition-all"
                   >
                     {t("detail.quote")}
                   </Link>
@@ -209,47 +208,34 @@ export function ProductDetailClient() {
               className="lg:w-7/12 xl:w-1/2 space-y-4 lg:space-y-6"
             >
               {/* Title Card */}
-              <div className="p-5 lg:p-6 xl:p-8 rounded-xl lg:rounded-2xl bg-white dark:bg-slate-800 shadow-lg border border-slate-200 dark:border-slate-700">
-                <h1 className="text-xl lg:text-2xl xl:text-3xl font-bold mb-2 lg:mb-3 bg-gradient-to-r from-slate-900 to-slate-600 dark:from-white dark:to-slate-300 bg-clip-text text-transparent leading-tight">
+              <div className="p-8 rounded-3xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                <h1 className="text-2xl lg:text-3xl xl:text-4xl font-bold mb-4 tracking-tight text-slate-900 dark:text-white leading-tight">
                   {localized.name}
                 </h1>
-                <p className="text-sm lg:text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+                <p className="text-base text-slate-500 dark:text-slate-400 leading-relaxed">
                   {localized.description}
                 </p>
               </div>
 
               {/* Specs Card */}
-              <div className="p-5 lg:p-6 xl:p-8 rounded-xl lg:rounded-2xl bg-gradient-to-br from-blue-600/5 to-cyan-500/5 dark:from-blue-600/10 dark:to-cyan-500/10 border border-blue-200 dark:border-blue-800 shadow-lg">
-                <div className="flex items-center gap-3 mb-4 lg:mb-5">
-                  <div className="w-8 h-8 lg:w-10 lg:h-10 rounded-lg lg:rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 flex items-center justify-center">
-                    <span className="text-white text-sm lg:text-lg">⚙️</span>
-                  </div>
-                  <h2 className="text-base lg:text-lg xl:text-xl font-bold">{t("detail.specs")}</h2>
-                </div>
+              <div className="p-8 rounded-3xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                <h2 className="text-lg font-semibold mb-6 text-slate-900 dark:text-white tracking-tight">{t("detail.specs")}</h2>
 
                 {/* Specs Table */}
-                <div className="overflow-x-auto">
-                  <table className="w-full">
-                    <tbody>
-                      {specsEntries.map((spec, index) => (
-                        <tr
-                          key={index}
-                          className="border-b border-slate-100 dark:border-slate-700/50 last:border-0"
-                        >
-                          <td className="py-2.5 lg:py-3 pr-3 lg:pr-4 align-top">
-                            <span className="text-xs lg:text-sm text-slate-500 dark:text-slate-400 font-medium block">
-                              {spec.name}
-                            </span>
-                          </td>
-                          <td className="py-2.5 lg:py-3 align-top">
-                            <span className="text-sm lg:text-base font-semibold text-slate-900 dark:text-white block">
-                              {spec.value}
-                            </span>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                <div className="space-y-4">
+                  {specsEntries.map((spec, index) => (
+                    <div
+                      key={index}
+                      className="flex justify-between items-start py-3 border-b border-slate-100 dark:border-slate-700/50 last:border-0"
+                    >
+                      <span className="text-sm text-slate-500 dark:text-slate-400">
+                        {spec.name}
+                      </span>
+                      <span className="text-sm font-semibold text-slate-900 dark:text-white text-right">
+                        {spec.value}
+                      </span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </motion.div>

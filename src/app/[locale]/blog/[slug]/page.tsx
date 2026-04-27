@@ -126,10 +126,10 @@ export default function BlogPostPage() {
             </div>
 
             <div className="prose prose-lg dark:prose-invert max-w-none">
-              <div className="bg-white dark:bg-slate-800 rounded-2xl p-8 md:p-12 shadow-lg border border-slate-200 dark:border-slate-700">
+              <div className="bg-white dark:bg-slate-800 rounded-3xl p-8 md:p-12 border border-slate-200 dark:border-slate-700">
                 {articleContent.split('\n').map((line, index) => {
-                  if (line.startsWith('# ')) return <h1 key={index} className="text-3xl font-bold mt-8 mb-4">{line.slice(2)}</h1>;
-                  else if (line.startsWith('## ')) return <h2 key={index} className="text-2xl font-bold mt-8 mb-4">{line.slice(3)}</h2>;
+                  if (line.startsWith('# ')) return <h1 key={index} className="text-3xl font-bold mt-8 mb-4 tracking-tight">{line.slice(2)}</h1>;
+                  else if (line.startsWith('## ')) return <h2 key={index} className="text-2xl font-bold mt-8 mb-4 tracking-tight">{line.slice(3)}</h2>;
                   else if (line.startsWith('### ')) return <h3 key={index} className="text-xl font-bold mt-6 mb-3">{line.slice(4)}</h3>;
                   else if (line.startsWith('- ')) return <li key={index} className="ml-4 mb-2">{line.slice(2)}</li>;
                   else if (line.startsWith('| ')) return <div key={index} className="font-mono text-sm bg-slate-100 dark:bg-slate-900 p-2 rounded my-2 overflow-x-auto">{line}</div>;
@@ -146,26 +146,26 @@ export default function BlogPostPage() {
           </motion.article>
 
           <aside className="space-y-8">
-            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 }} className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg border border-slate-200 dark:border-slate-700">
-              <h3 className="text-lg font-bold mb-4">{t("relatedPosts")}</h3>
-              <div className="space-y-4">
+            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 }} className="bg-white dark:bg-slate-800 rounded-3xl p-8 border border-slate-200 dark:border-slate-700">
+              <h3 className="text-lg font-semibold mb-6 tracking-tight text-slate-900 dark:text-white">{t("relatedPosts")}</h3>
+              <div className="space-y-6">
                 {allPosts.map((relatedPost) => (
                   <Link key={relatedPost.id} href={`/blog/${encodeURIComponent(relatedPost.slug)}`} className="group block">
-                    <div className="flex gap-3 items-start">
-                      <div className="relative w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+                    <div className="flex gap-4 items-start">
+                      <div className="relative w-20 h-20 rounded-2xl overflow-hidden flex-shrink-0">
                         <img src={`${IMAGE_BASE_URL}${relatedPost.coverImage}`} alt="" className="w-full h-full object-cover" />
                       </div>
-                      <p className="text-sm font-medium group-hover:text-blue-600 transition-colors line-clamp-2">{getLocalizedTitle(relatedPost)}</p>
+                      <p className="text-sm font-medium group-hover:text-blue-600 transition-colors line-clamp-2 leading-relaxed">{getLocalizedTitle(relatedPost)}</p>
                     </div>
                   </Link>
                 ))}
               </div>
             </motion.div>
 
-            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 }} className="p-6 rounded-2xl bg-gradient-to-br from-blue-600 to-cyan-500 text-white">
-              <h3 className="text-lg font-bold mb-2">{t("needSolutions")}</h3>
-              <p className="text-sm text-white/90 mb-4">{t("contactForSolution")}</p>
-              <Link href="/contact" className="block w-full py-2 bg-white text-blue-600 font-semibold rounded-lg text-center hover:bg-slate-100 transition-colors">{t("getInTouch")}</Link>
+            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 }} className="p-8 rounded-3xl bg-slate-900 text-white">
+              <h3 className="text-lg font-semibold mb-2 tracking-tight">{t("needSolutions")}</h3>
+              <p className="text-sm text-slate-400 mb-6 leading-relaxed">{t("contactForSolution")}</p>
+              <Link href="/contact" className="block w-full py-4 bg-white text-slate-900 font-semibold rounded-full text-center hover:bg-slate-100 active:scale-[0.98] transition-all">{t("getInTouch")}</Link>
             </motion.div>
           </aside>
         </div>

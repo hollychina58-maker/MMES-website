@@ -82,12 +82,11 @@ export default function BlogPage() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-16"
+          className="max-w-3xl mb-20"
         >
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-slate-900 to-slate-600 dark:from-white dark:to-slate-300 bg-clip-text text-transparent">
-            {t("title")}
-          </h1>
-          <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+          <p className="text-sm font-medium text-blue-600 tracking-widest uppercase mb-6">Blog</p>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">{t("title")}</h1>
+          <p className="text-lg text-slate-500 dark:text-slate-400 leading-relaxed">
             {t("subtitle")}
           </p>
         </motion.div>
@@ -98,21 +97,21 @@ export default function BlogPage() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.1 }}
-            className="mb-16"
+            className="mb-24"
           >
             <Link href={`/blog/${encodeURIComponent(featuredPost.slug)}`} className="group block">
-              <div className="relative h-[400px] rounded-3xl overflow-hidden bg-gradient-to-br from-slate-900 to-slate-800 dark:from-slate-800 dark:to-slate-900 shadow-2xl">
+              <div className="relative min-h-[500px] rounded-3xl overflow-hidden bg-slate-900">
                 <div className="absolute inset-0">
                   <img
                     src={`${IMAGE_BASE_URL}${featuredPost.coverImage}`}
                     alt={getLocalizedContent(featuredPost, locale).title}
-                    className="w-full h-full object-cover opacity-40 group-hover:opacity-30 transition-opacity"
+                    className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/80 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent" />
                 </div>
-                <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className="px-3 py-1 bg-blue-500 text-white text-xs font-semibold rounded-full">
+                <div className="absolute bottom-0 left-0 right-0 p-10 md:p-16">
+                  <div className="flex items-center gap-3 mb-6">
+                    <span className="px-3 py-1 bg-blue-600 text-white text-xs font-semibold rounded-full">
                       {t("featured")}
                     </span>
                     {featuredPost.tags.map((tag) => (
@@ -121,10 +120,10 @@ export default function BlogPage() {
                       </span>
                     ))}
                   </div>
-                  <h2 className="text-2xl md:text-4xl font-bold text-white mb-4 group-hover:text-blue-400 transition-colors">
+                  <h2 className="text-3xl md:text-5xl font-bold text-white mb-4 tracking-tight group-hover:text-blue-400 transition-colors">
                     {getLocalizedContent(featuredPost, locale).title}
                   </h2>
-                  <p className="text-slate-300 mb-4 max-w-2xl">
+                  <p className="text-slate-300 mb-6 max-w-2xl text-lg leading-relaxed">
                     {getLocalizedContent(featuredPost, locale).excerpt}
                   </p>
                   <div className="flex items-center gap-4 text-slate-400 text-sm">
@@ -141,7 +140,7 @@ export default function BlogPage() {
         )}
 
         {/* Blog Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {otherPosts.map((post, index) => (
             <motion.article
               key={post.id}
@@ -150,33 +149,32 @@ export default function BlogPage() {
               transition={{ delay: 0.2 + index * 0.1 }}
             >
               <Link href={`/blog/${encodeURIComponent(post.slug)}`} className="group block h-full">
-                <div className="h-full rounded-2xl overflow-hidden bg-white dark:bg-slate-800 shadow-lg hover:shadow-2xl transition-all border border-slate-200 dark:border-slate-700">
+                <div className="h-full rounded-3xl overflow-hidden bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-700 transition-colors">
                   {/* Image */}
-                  <div className="relative h-48 overflow-hidden">
+                  <div className="relative aspect-video overflow-hidden">
                     <img
                       src={`${IMAGE_BASE_URL}${post.coverImage}`}
                       alt={getLocalizedContent(post, locale).title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent" />
                   </div>
 
                   {/* Content */}
-                  <div className="p-6">
-                    <div className="flex flex-wrap gap-2 mb-3">
+                  <div className="p-8">
+                    <div className="flex flex-wrap gap-2 mb-4">
                       {post.tags.map((tag) => (
                         <span key={tag} className={`px-2 py-1 text-xs rounded-full ${tagColors[tag] || "bg-slate-200 dark:bg-slate-700"}`}>
                           {tag}
                         </span>
                       ))}
                     </div>
-                    <h3 className="text-xl font-bold mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                    <h3 className="text-xl font-semibold mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors tracking-tight">
                       {getLocalizedContent(post, locale).title}
                     </h3>
-                    <p className="text-slate-600 dark:text-slate-400 text-sm mb-4 line-clamp-2">
+                    <p className="text-slate-500 dark:text-slate-400 text-sm mb-6 line-clamp-2 leading-relaxed">
                       {getLocalizedContent(post, locale).excerpt}
                     </p>
-                    <div className="flex items-center gap-3 text-xs text-slate-500">
+                    <div className="flex items-center gap-3 text-xs text-slate-400">
                       <span>{post.date}</span>
                       <span>•</span>
                       <span>{post.readTime} {t("minRead")}</span>
@@ -200,15 +198,15 @@ export default function BlogPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
-          className="mt-16 p-8 md:p-12 rounded-3xl bg-gradient-to-r from-blue-600 to-cyan-500 text-white text-center"
+          className="mt-24 p-10 md:p-16 rounded-3xl bg-slate-900 text-white text-center"
         >
-          <h3 className="text-2xl font-bold mb-4">{t("newsletter")}</h3>
-          <p className="text-white/90 mb-6 max-w-xl mx-auto">
+          <h3 className="text-2xl md:text-3xl font-bold mb-4 tracking-tight">{t("newsletter")}</h3>
+          <p className="text-slate-400 mb-8 max-w-xl mx-auto leading-relaxed">
             {t("newsletterDesc")}
           </p>
           <Link
             href="/contact"
-            className="inline-block px-8 py-3 bg-white text-blue-600 font-semibold rounded-xl hover:bg-slate-100 transition-colors"
+            className="inline-block px-8 py-4 bg-white text-slate-900 font-semibold rounded-full hover:bg-slate-100 active:scale-[0.98] transition-all"
           >
             {t("subscribe")}
           </Link>
