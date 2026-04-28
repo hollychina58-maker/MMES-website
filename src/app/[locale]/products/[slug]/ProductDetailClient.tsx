@@ -146,6 +146,7 @@ export function ProductDetailClient() {
                       fill
                       sizes="(max-width: 1024px) 100vw, 50vw"
                       className="object-cover"
+                      priority
                     />
                   ) : (
                     <div className="absolute inset-0 flex items-center justify-center text-slate-400 z-10">

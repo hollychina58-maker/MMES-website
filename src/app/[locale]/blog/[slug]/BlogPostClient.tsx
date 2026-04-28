@@ -117,6 +117,7 @@ export function BlogPostClient({ initialPost, initialAllPosts, locale }: BlogPos
                   fill
                   sizes="(max-width: 1024px) 100vw, 75vw"
                   className="object-cover"
+                  priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-8">
