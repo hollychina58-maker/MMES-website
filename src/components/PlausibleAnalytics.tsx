@@ -5,7 +5,7 @@ export function PlausibleAnalytics() {
     <>
       <Script
         src="https://plausible.io/js/script.manual.js"
-        strategy="afterInteractive"
+        strategy="lazyOnload"
         async
       />
       <Script
@@ -14,7 +14,7 @@ export function PlausibleAnalytics() {
             window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }
           `,
         }}
-        strategy="afterInteractive"
+        strategy="lazyOnload"
       />
     </>
   );

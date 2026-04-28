@@ -7,11 +7,14 @@ import { Footer } from "@/components/Footer";
 import { GA4 } from "@/components/GA4";
 import { SEO } from "@/components/SEO";
 import { PlausibleAnalytics } from "@/components/PlausibleAnalytics";
+import { Inter } from "next/font/google";
 import "../globals.css";
 
-export function generateStaticParams() {
-  return routing.locales.map((locale) => ({ locale }));
-}
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+});
 
 export default async function LocaleLayout({
   children,
@@ -31,7 +34,7 @@ export default async function LocaleLayout({
   const isRTL = locale === "ar" || locale === "fa";
 
   return (
-    <html lang={locale} dir={isRTL ? "rtl" : "ltr"}>
+    <html lang={locale} dir={isRTL ? "rtl" : "ltr"} className={inter.variable}>
       <head>
         <GA4 />
         <PlausibleAnalytics />
@@ -40,7 +43,7 @@ export default async function LocaleLayout({
           <meta name="google-site-verification" content={process.env.NEXT_PUBLIC_GSC_VERIFICATION} />
         )}
       </head>
-      <body className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-900">
+      <body className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-900 font-sans">
         <NextIntlClientProvider messages={messages}>
           <Header locale={locale as Locale} />
           <main className="flex-1">{children}</main>

@@ -9,7 +9,7 @@ export function GA4() {
     <>
       <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`}
-        strategy="afterInteractive"
+        strategy="lazyOnload"
       />
       <Script
         dangerouslySetInnerHTML={{
@@ -20,7 +20,7 @@ export function GA4() {
             gtag('config', '${GA4_ID}');
           `,
         }}
-        strategy="afterInteractive"
+        strategy="lazyOnload"
       />
     </>
   );
