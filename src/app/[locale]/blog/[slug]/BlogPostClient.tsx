@@ -7,7 +7,7 @@ import Link from "next/link";
 import DOMPurify from "isomorphic-dompurify";
 import { ShareButtons } from "@/components/ShareButtons";
 import { ArticleSchema, BreadcrumbSchema } from "@/components/StructuredData";
-import { BASE_URL, IMAGE_BASE_URL, TWITTER_HANDLE } from "@/lib/api-config";
+import { BASE_URL, IMAGE_BASE_URL } from "@/lib/api-config";
 import { getImageUrl, getLocalizedBlogContent } from "@/lib/content";
 
 interface BlogContent {
@@ -67,14 +67,13 @@ export function BlogPostClient({ initialPost, initialAllPosts, locale }: BlogPos
   // Render sanitized content line by line with proper markup
   const renderContent = (content: string) => {
     return content.split('\n').map((line, index) => {
-      const cleanLine = DOMPurify.sanitize(line, { ALLOWED_TAGS: [] });
-      if (line.startsWith('# ')) return <h1 key={index} className="text-3xl font-bold mt-8 mb-4 tracking-tight">{cleanLine.slice(2)}</h1>;
-      else if (line.startsWith('## ')) return <h2 key={index} className="text-2xl font-bold mt-8 mb-4 tracking-tight">{cleanLine.slice(3)}</h2>;
-      else if (line.startsWith('### ')) return <h3 key={index} className="text-xl font-bold mt-6 mb-3">{cleanLine.slice(4)}</h3>;
-      else if (line.startsWith('- ')) return <li key={index} className="ml-4 mb-2">{cleanLine.slice(2)}</li>;
-      else if (line.startsWith('| ')) return <div key={index} className="font-mono text-sm bg-slate-100 dark:bg-slate-900 p-2 rounded my-2 overflow-x-auto">{cleanLine}</div>;
+      if (line.startsWith('# ')) return <h1 key={index} className="text-3xl font-bold mt-8 mb-4 tracking-tight">{line.slice(2)}</h1>;
+      else if (line.startsWith('## ')) return <h2 key={index} className="text-2xl font-bold mt-8 mb-4 tracking-tight">{line.slice(3)}</h2>;
+      else if (line.startsWith('### ')) return <h3 key={index} className="text-xl font-bold mt-6 mb-3">{line.slice(4)}</h3>;
+      else if (line.startsWith('- ')) return <li key={index} className="ml-4 mb-2">{line.slice(2)}</li>;
+      else if (line.startsWith('| ')) return <div key={index} className="font-mono text-sm bg-slate-100 dark:bg-slate-900 p-2 rounded my-2 overflow-x-auto">{line}</div>;
       else if (line.trim() === '') return <div key={index} className="h-4"></div>;
-      else return <p key={index} className="mb-4 leading-relaxed">{cleanLine}</p>;
+      else return <p key={index} className="mb-4 leading-relaxed">{line}</p>;
     });
   };
 
