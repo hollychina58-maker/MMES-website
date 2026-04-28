@@ -7,7 +7,8 @@ import { useParams } from "next/navigation";
 import { Link } from "@/routing";
 import { ShareButtons } from "@/components/ShareButtons";
 import { ProductSchema, BreadcrumbSchema } from "@/components/StructuredData";
-import { API_ENDPOINTS, IMAGE_BASE_URL, BASE_URL } from "@/lib/api-config";
+import { API_ENDPOINTS, BASE_URL } from "@/lib/api-config";
+import { getLocalizedContent, getImageUrl } from "@/lib/content";
 
 interface ProductSpec {
   name: string;
@@ -22,26 +23,6 @@ interface Product {
   specs: Record<string, ProductSpec[]>;
   published: boolean;
   content: Record<string, { name: string; description: string }>;
-}
-
-function getLocalizedContent(product: Product, locale: string) {
-  const content = product.content[locale] || product.content.en || Object.values(product.content)[0];
-  return {
-    name: content?.name || product.id,
-    description: content?.description || "",
-  };
-}
-
-// Get image URL - normalize paths for static assets
-function getImageUrl(imagePath: string | undefined): string {
-  if (!imagePath) return "";
-  if (imagePath.startsWith("/images/products/")) {
-    return imagePath.replace("/images/products/", "/images/");
-  }
-  if (imagePath.startsWith("/images/")) return imagePath;
-  if (imagePath.startsWith("/")) return imagePath;
-  if (imagePath.startsWith("http://") || imagePath.startsWith("https://")) return imagePath;
-  return `${IMAGE_BASE_URL}${imagePath}`;
 }
 
 export function ProductDetailClient() {
@@ -97,7 +78,7 @@ export function ProductDetailClient() {
     );
   }
 
-  const localized = getLocalizedContent(product, locale);
+  const localized = getLocalizedContent(product.content, locale, product.id);
   const specsArray: ProductSpec[] = Array.isArray(product.specs)
     ? product.specs
     : ((product.specs[locale]?.length ?? 0) > 0

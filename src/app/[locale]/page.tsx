@@ -5,6 +5,7 @@ import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/routing";
 import { motion } from "framer-motion";
 import { API_ENDPOINTS, IMAGE_BASE_URL } from "@/lib/api-config";
+import { getLocalizedContent, getImageUrl } from "@/lib/content";
 import {
   Target,
   Shield,
@@ -25,25 +26,6 @@ interface Product {
   specs: Record<string, ProductSpec[]>;
   published: boolean;
   content: Record<string, { name: string; description: string }>;
-}
-
-function getLocalizedContent(product: Product, locale: string) {
-  const content = product.content[locale] || product.content.en || Object.values(product.content)[0];
-  return {
-    name: content?.name || product.id,
-    description: content?.description || "",
-  };
-}
-
-function getImageUrl(imagePath: string | undefined): string {
-  if (!imagePath) return "";
-  if (imagePath.startsWith("/images/products/")) {
-    return imagePath.replace("/images/products/", "/images/");
-  }
-  if (imagePath.startsWith("/images/")) return imagePath;
-  if (imagePath.startsWith("/")) return imagePath;
-  if (imagePath.startsWith("http://") || imagePath.startsWith("https://")) return imagePath;
-  return `${IMAGE_BASE_URL}${imagePath}`;
 }
 
 const features = [
@@ -228,7 +210,7 @@ export default function HomePage() {
                         {product.image ? (
                           <img
                             src={getImageUrl(product.image)}
-                            alt={getLocalizedContent(product, locale).name}
+                            alt={getLocalizedContent(product.content, locale, product.id).name}
                             className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
                           />
                         ) : (
@@ -240,8 +222,8 @@ export default function HomePage() {
                         )}
                       </div>
                       <div className="p-6">
-                        <h3 className="font-semibold text-lg mb-2 text-slate-900 dark:text-white">{getLocalizedContent(product, locale).name}</h3>
-                        <p className="text-slate-600 dark:text-slate-400 text-sm line-clamp-2 leading-relaxed">{getLocalizedContent(product, locale).description}</p>
+                        <h3 className="font-semibold text-lg mb-2 text-slate-900 dark:text-white">{getLocalizedContent(product.content, locale, product.id).name}</h3>
+                        <p className="text-slate-600 dark:text-slate-400 text-sm line-clamp-2 leading-relaxed">{getLocalizedContent(product.content, locale, product.id).description}</p>
                       </div>
                     </div>
                   </Link>

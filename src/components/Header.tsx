@@ -57,6 +57,7 @@ export function Header({ locale }: { locale: Locale }) {
             <button
               onClick={() => setIsLangOpen(!isLangOpen)}
               className="flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+              aria-label="Select language"
             >
               <span className="text-sm">{languages.find((l) => l.code === locale)?.native}</span>
               <motion.svg

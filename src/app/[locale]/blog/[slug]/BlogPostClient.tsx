@@ -3,10 +3,12 @@
 import { useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
-import { Link } from "@/routing";
+import Link from "next/link";
+import DOMPurify from "dompurify";
 import { ShareButtons } from "@/components/ShareButtons";
 import { ArticleSchema, BreadcrumbSchema } from "@/components/StructuredData";
-import { BASE_URL, IMAGE_BASE_URL } from "@/lib/api-config";
+import { BASE_URL, IMAGE_BASE_URL, TWITTER_HANDLE } from "@/lib/api-config";
+import { getImageUrl, getLocalizedBlogContent } from "@/lib/content";
 
 interface BlogContent {
   title: string;
@@ -42,15 +44,6 @@ export function BlogPostClient({ initialPost, initialAllPosts, locale }: BlogPos
     return content?.title || post.slug;
   }
 
-  function getLocalizedContent(post: BlogPost) {
-    const content = post.content[locale] || post.content.en || Object.values(post.content)[0];
-    return {
-      title: content?.title || post.slug,
-      excerpt: content?.excerpt || "",
-      content: content?.content || "",
-    };
-  }
-
   if (!post) {
     return (
       <div className="min-h-screen py-12 flex items-center justify-center">
@@ -64,9 +57,26 @@ export function BlogPostClient({ initialPost, initialAllPosts, locale }: BlogPos
     );
   }
 
-  const localized = getLocalizedContent(post);
+  const localized = getLocalizedBlogContent(post.content, locale, post.slug);
   const articleContent = localized.content || "";
   const url = `${BASE_URL}/${locale}/blog/${post.slug}`;
+
+  // Sanitize content to prevent XSS
+  const sanitizedContent = DOMPurify.sanitize(articleContent, { ALLOWED_TAGS: ['p', 'br', 'h1', 'h2', 'h3', 'li', 'ul', 'ol'] });
+
+  // Render sanitized content line by line with proper markup
+  const renderContent = (content: string) => {
+    return content.split('\n').map((line, index) => {
+      const cleanLine = DOMPurify.sanitize(line, { ALLOWED_TAGS: [] });
+      if (line.startsWith('# ')) return <h1 key={index} className="text-3xl font-bold mt-8 mb-4 tracking-tight">{cleanLine.slice(2)}</h1>;
+      else if (line.startsWith('## ')) return <h2 key={index} className="text-2xl font-bold mt-8 mb-4 tracking-tight">{cleanLine.slice(3)}</h2>;
+      else if (line.startsWith('### ')) return <h3 key={index} className="text-xl font-bold mt-6 mb-3">{cleanLine.slice(4)}</h3>;
+      else if (line.startsWith('- ')) return <li key={index} className="ml-4 mb-2">{cleanLine.slice(2)}</li>;
+      else if (line.startsWith('| ')) return <div key={index} className="font-mono text-sm bg-slate-100 dark:bg-slate-900 p-2 rounded my-2 overflow-x-auto">{cleanLine}</div>;
+      else if (line.trim() === '') return <div key={index} className="h-4"></div>;
+      else return <p key={index} className="mb-4 leading-relaxed">{cleanLine}</p>;
+    });
+  };
 
   return (
     <>
@@ -102,8 +112,8 @@ export function BlogPostClient({ initialPost, initialAllPosts, locale }: BlogPos
             <motion.article initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="lg:col-span-3">
               <div className="relative h-[350px] md:h-[450px] rounded-3xl overflow-hidden mb-8">
                 <img
-                  src={post.coverImage.startsWith('http') ? post.coverImage : `${IMAGE_BASE_URL}${post.coverImage}`}
-                  alt={localized.title}
+                  src={getImageUrl(post.coverImage)}
+                  alt={localized.title || post.slug}
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent" />
@@ -120,22 +130,14 @@ export function BlogPostClient({ initialPost, initialAllPosts, locale }: BlogPos
               <div className="flex flex-wrap items-center gap-4 mb-8 text-sm text-slate-500">
                 <span className="font-semibold text-slate-700 dark:text-slate-300">{post.author}</span>
                 <span>•</span>
-                <span>{post.date}</span>
+                <time dateTime={post.date}>{post.date}</time>
                 <span>•</span>
                 <span>{post.readTime}</span>
               </div>
 
               <div className="prose prose-lg dark:prose-invert max-w-none">
                 <div className="bg-white dark:bg-slate-800 rounded-3xl p-8 md:p-12 border border-slate-200 dark:border-slate-700">
-                  {articleContent.split('\n').map((line, index) => {
-                    if (line.startsWith('# ')) return <h1 key={index} className="text-3xl font-bold mt-8 mb-4 tracking-tight">{line.slice(2)}</h1>;
-                    else if (line.startsWith('## ')) return <h2 key={index} className="text-2xl font-bold mt-8 mb-4 tracking-tight">{line.slice(3)}</h2>;
-                    else if (line.startsWith('### ')) return <h3 key={index} className="text-xl font-bold mt-6 mb-3">{line.slice(4)}</h3>;
-                    else if (line.startsWith('- ')) return <li key={index} className="ml-4 mb-2">{line.slice(2)}</li>;
-                    else if (line.startsWith('| ')) return <div key={index} className="font-mono text-sm bg-slate-100 dark:bg-slate-900 p-2 rounded my-2 overflow-x-auto">{line}</div>;
-                    else if (line.trim() === '') return <div key={index} className="h-4"></div>;
-                    else return <p key={index} className="mb-4 leading-relaxed">{line}</p>;
-                  })}
+                  {renderContent(sanitizedContent)}
                 </div>
               </div>
 
@@ -154,7 +156,7 @@ export function BlogPostClient({ initialPost, initialAllPosts, locale }: BlogPos
                       <div className="flex gap-4 items-start">
                         <div className="relative w-20 h-20 rounded-2xl overflow-hidden flex-shrink-0">
                           <img
-                            src={relatedPost.coverImage.startsWith('http') ? relatedPost.coverImage : `${IMAGE_BASE_URL}${relatedPost.coverImage}`}
+                            src={getImageUrl(relatedPost.coverImage)}
                             alt=""
                             className="w-full h-full object-cover"
                           />

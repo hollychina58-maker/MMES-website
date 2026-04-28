@@ -36,6 +36,9 @@ export default async function LocaleLayout({
         <GA4 />
         <PlausibleAnalytics />
         <SEO locale={locale} canonical="" />
+        {process.env.NEXT_PUBLIC_GSC_VERIFICATION && (
+          <meta name="google-site-verification" content={process.env.NEXT_PUBLIC_GSC_VERIFICATION} />
+        )}
       </head>
       <body className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-900">
         <NextIntlClientProvider messages={messages}>

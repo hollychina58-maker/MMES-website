@@ -23,3 +23,6 @@ export const API_ENDPOINTS = {
 // Image base URL - for loading product/blog images from backend
 // In production, this should be the same as API_BASE_URL
 export const IMAGE_BASE_URL = process.env.NEXT_PUBLIC_IMAGE_URL || API_BASE_URL;
+
+// Social media handles
+export const TWITTER_HANDLE = process.env.NEXT_PUBLIC_SITE_TWITTER_HANDLE || '@mmes_mcti';

@@ -5,6 +5,7 @@ import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
 import { Link } from "@/routing";
 import { API_ENDPOINTS, IMAGE_BASE_URL } from "@/lib/api-config";
+import { getLocalizedContent, getImageUrl } from "@/lib/content";
 
 interface ProductSpec {
   name: string;
@@ -21,19 +22,12 @@ interface Product {
   content: Record<string, { name: string; description: string }>;
 }
 
-function getLocalizedContent(product: Product, locale: string) {
-  const content = product.content[locale] || product.content.en || Object.values(product.content)[0];
-  return {
-    name: content?.name || product.id,
-    description: content?.description || "",
-  };
-}
-
 export default function ProductsPage() {
   const t = useTranslations("products");
   const locale = useLocale();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchProducts() {
@@ -43,14 +37,17 @@ export default function ProductsPage() {
           new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 3000))
         ]);
         if (res instanceof Response) {
+          if (!res.ok) {
+            throw new Error(`Error: ${res.status}`);
+          }
           const data = await res.json();
           const publishedProducts = (data.data || []).filter(
             (p: Product) => p.published
           );
           setProducts(publishedProducts);
         }
-      } catch {
-        // Error handled silently - user sees empty state
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Failed to load products");
       } finally {
         setLoading(false);
       }
@@ -62,6 +59,28 @@ export default function ProductsPage() {
     return (
       <div className="min-h-screen py-24 flex items-center justify-center">
         <div className="animate-spin w-12 h-12 border-4 border-[#0066ff] border-t-transparent rounded-full" />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen py-24 flex items-center justify-center">
+        <div className="text-center max-w-md mx-auto px-4">
+          <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
+            <svg className="w-8 h-8 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+          </div>
+          <h2 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">Unable to load products</h2>
+          <p className="text-slate-500 dark:text-slate-400 mb-6">{error}</p>
+          <button
+            onClick={() => window.location.reload()}
+            className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors"
+          >
+            Try again
+          </button>
+        </div>
       </div>
     );
   }
@@ -99,8 +118,8 @@ export default function ProductsPage() {
                 <div className="aspect-square relative bg-slate-100 dark:bg-slate-700">
                   {product.image ? (
                     <img
-                      src={product.image.startsWith('http') ? product.image : `${IMAGE_BASE_URL}${product.image}`}
-                      alt={getLocalizedContent(product, locale).name}
+                      src={getImageUrl(product.image)}
+                      alt={getLocalizedContent(product.content, locale, product.id).name}
                       className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
                     />
                   ) : (
@@ -113,10 +132,10 @@ export default function ProductsPage() {
                 </div>
                 <div className="p-8">
                   <h3 className="text-xl font-semibold mb-3 text-slate-900 dark:text-white">
-                    {getLocalizedContent(product, locale).name}
+                    {getLocalizedContent(product.content, locale, product.id).name}
                   </h3>
                   <p className="text-slate-500 dark:text-slate-400 text-sm mb-6 line-clamp-2 leading-relaxed">
-                    {getLocalizedContent(product, locale).description}
+                    {getLocalizedContent(product.content, locale, product.id).description}
                   </p>
                   <span className="inline-flex items-center gap-2 text-sm font-medium text-blue-600 dark:text-blue-400 group-hover:gap-3 transition-all">
                     {t("viewDetails")}
