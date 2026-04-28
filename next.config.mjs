@@ -15,6 +15,14 @@ const nextConfig = {
         hostname: "mmes-mcti.com",
       },
       {
+        protocol: "https",
+        hostname: "**.ucarecdn.com",
+      },
+      {
+        protocol: "https",
+        hostname: "ucarecdn.com",
+      },
+      {
         protocol: "http",
         hostname: "localhost",
         port: "3001",
