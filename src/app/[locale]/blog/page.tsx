@@ -55,8 +55,8 @@ export default function BlogPage() {
           const response = await res.json();
           setPosts(response.data || []);
         }
-      } catch (error) {
-        console.error("Failed to fetch posts:", error);
+      } catch {
+        // Error handled silently - user sees empty state
       } finally {
         setLoading(false);
       }

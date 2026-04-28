@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { Link } from "@/routing";
 import { ShareButtons } from "@/components/ShareButtons";
 import { ArticleSchema, BreadcrumbSchema } from "@/components/StructuredData";
+import { BASE_URL, IMAGE_BASE_URL } from "@/lib/api-config";
 
 interface BlogContent {
   title: string;
@@ -65,7 +66,7 @@ export function BlogPostClient({ initialPost, initialAllPosts, locale }: BlogPos
 
   const localized = getLocalizedContent(post);
   const articleContent = localized.content || "";
-  const url = `https://mmes-website-production.up.railway.app/${locale}/blog/${post.slug}`;
+  const url = `${BASE_URL}/${locale}/blog/${post.slug}`;
 
   return (
     <>
@@ -77,11 +78,12 @@ export function BlogPostClient({ initialPost, initialAllPosts, locale }: BlogPos
         datePublished={post.date}
         author={post.author}
         tags={post.tags}
+        locale={locale}
       />
       <BreadcrumbSchema
         items={[
-          { name: "Home", url: `https://mmes-website-production.up.railway.app/${locale}` },
-          { name: "Blog", url: `https://mmes-website-production.up.railway.app/${locale}/blog` },
+          { name: "Home", url: `${BASE_URL}/${locale}` },
+          { name: "Blog", url: `${BASE_URL}/${locale}/blog` },
           { name: localized.title, url: url },
         ]}
       />
@@ -100,7 +102,7 @@ export function BlogPostClient({ initialPost, initialAllPosts, locale }: BlogPos
             <motion.article initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="lg:col-span-3">
               <div className="relative h-[350px] md:h-[450px] rounded-3xl overflow-hidden mb-8">
                 <img
-                  src={post.coverImage.startsWith('http') ? post.coverImage : `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL || ''}${post.coverImage}`}
+                  src={post.coverImage.startsWith('http') ? post.coverImage : `${IMAGE_BASE_URL}${post.coverImage}`}
                   alt={localized.title}
                   className="w-full h-full object-cover"
                 />
@@ -152,7 +154,7 @@ export function BlogPostClient({ initialPost, initialAllPosts, locale }: BlogPos
                       <div className="flex gap-4 items-start">
                         <div className="relative w-20 h-20 rounded-2xl overflow-hidden flex-shrink-0">
                           <img
-                            src={relatedPost.coverImage.startsWith('http') ? relatedPost.coverImage : `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL || ''}${relatedPost.coverImage}`}
+                            src={relatedPost.coverImage.startsWith('http') ? relatedPost.coverImage : `${IMAGE_BASE_URL}${relatedPost.coverImage}`}
                             alt=""
                             className="w-full h-full object-cover"
                           />

@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { API_ENDPOINTS, IMAGE_BASE_URL } from "@/lib/api-config";
+import { API_ENDPOINTS, IMAGE_BASE_URL, BASE_URL } from "@/lib/api-config";
 import { ProductDetailClient } from "./ProductDetailClient";
 
 interface ProductSpec {
@@ -36,19 +36,8 @@ async function getProduct(slug: string): Promise<Product | null> {
       const products: Product[] = data.data || [];
       return products.find((p) => p.slug.toLowerCase() === slug.toLowerCase()) || null;
     }
-  } catch (error) {
-    console.error("API fetch failed:", error);
-  }
-
-  // Fallback to static JSON
-  try {
-    const fbRes = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || ""}/data/products.json`, { cache: "no-store" });
-    if (fbRes.ok) {
-      const fbData = await fbRes.json();
-      return (fbData.data || []).find((p: Product) => p.slug.toLowerCase() === slug.toLowerCase()) || null;
-    }
-  } catch (error) {
-    console.error("Fallback also failed:", error);
+  } catch {
+    // Silently handle - will return null
   }
 
   return null;
@@ -80,7 +69,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const { name, description, image } = await getProductContent(product, locale);
-  const url = `https://mmes-website-production.up.railway.app/${locale}/products/${product.slug}`;
+  const url = `${BASE_URL}/${locale}/products/${product.slug}`;
 
   return {
     title: `${name} - MMES-MCTI`,
@@ -88,12 +77,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: {
       canonical: url,
       languages: {
-        en: `https://mmes-website-production.up.railway.app/en/products/${product.slug}`,
-        zh: `https://mmes-website-production.up.railway.app/zh/products/${product.slug}`,
-        ru: `https://mmes-website-production.up.railway.app/ru/products/${product.slug}`,
-        ar: `https://mmes-website-production.up.railway.app/ar/products/${product.slug}`,
-        fa: `https://mmes-website-production.up.railway.app/fa/products/${product.slug}`,
-        la: `https://mmes-mctI.com/la/products/${product.slug}`,
+        en: `${BASE_URL}/en/products/${product.slug}`,
+        zh: `${BASE_URL}/zh/products/${product.slug}`,
+        ru: `${BASE_URL}/ru/products/${product.slug}`,
+        ar: `${BASE_URL}/ar/products/${product.slug}`,
+        fa: `${BASE_URL}/fa/products/${product.slug}`,
+        la: `${BASE_URL}/la/products/${product.slug}`,
       },
     },
     openGraph: {

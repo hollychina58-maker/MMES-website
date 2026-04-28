@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { API_ENDPOINTS } from "@/lib/api-config";
+import { API_ENDPOINTS, BASE_URL } from "@/lib/api-config";
 import { BlogPostClient } from "./BlogPostClient";
 
 interface BlogContent {
@@ -30,8 +30,8 @@ async function getBlogPost(slug: string): Promise<{ post: BlogPost | null; allPo
       const others = posts.filter((p) => p.slug.toLowerCase() !== slug.toLowerCase()).slice(0, 3);
       return { post: found, allPosts: others };
     }
-  } catch (error) {
-    console.error("API fetch failed:", error);
+  } catch {
+    // Silently handle - caller will check for null
   }
   return { post: null, allPosts: [] };
 }
@@ -53,7 +53,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const content = post.content[locale] || post.content.en || Object.values(post.content)[0];
   const title = content?.title || post.slug;
   const description = content?.excerpt || "";
-  const url = `https://mmes-website-production.up.railway.app/${locale}/blog/${post.slug}`;
+  const url = `${BASE_URL}/${locale}/blog/${post.slug}`;
 
   return {
     title: `${title} - MMES-MCTI`,
@@ -61,12 +61,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: {
       canonical: url,
       languages: {
-        en: `https://mmes-website-production.up.railway.app/en/blog/${post.slug}`,
-        zh: `https://mmes-website-production.up.railway.app/zh/blog/${post.slug}`,
-        ru: `https://mmes-website-production.up.railway.app/ru/blog/${post.slug}`,
-        ar: `https://mmes-website-production.up.railway.app/ar/blog/${post.slug}`,
-        fa: `https://mmes-website-production.up.railway.app/fa/blog/${post.slug}`,
-        la: `https://mmes-website-production.up.railway.app/la/blog/${post.slug}`,
+        en: `${BASE_URL}/en/blog/${post.slug}`,
+        zh: `${BASE_URL}/zh/blog/${post.slug}`,
+        ru: `${BASE_URL}/ru/blog/${post.slug}`,
+        ar: `${BASE_URL}/ar/blog/${post.slug}`,
+        fa: `${BASE_URL}/fa/blog/${post.slug}`,
+        la: `${BASE_URL}/la/blog/${post.slug}`,
       },
     },
     openGraph: {

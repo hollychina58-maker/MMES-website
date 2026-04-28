@@ -1,3 +1,5 @@
+import { BASE_URL } from "@/lib/api-config";
+
 interface OrganizationSchema {
   name?: string;
   url?: string;
@@ -30,12 +32,13 @@ interface ArticleSchema {
   publisher?: string;
   category?: string;
   tags?: string[];
+  locale?: string;
 }
 
 export function OrganizationSchema({
   name = "MMES-MCTI",
-  url = "https://mmes-website-production.up.railway.app",
-  logo = "https://mmes-website-production.up.railway.app/images/og-image.jpg",
+  url = BASE_URL,
+  logo = `${BASE_URL}/images/og-image.jpg`,
   description = "Leading provider of precision inertial navigation systems (AHRS, IMU, Gyroscope) for aerospace, defense, and industrial applications worldwide.",
   sameAs = [
     "https://www.linkedin.com/company/mmes-mcti",
@@ -45,7 +48,7 @@ export function OrganizationSchema({
   const schema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "@id": "https://mmes-website-production.up.railway.app/#organization",
+    "@id": `${BASE_URL}/#organization`,
     name,
     url,
     logo,
@@ -70,15 +73,15 @@ export function WebSiteSchema() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "@id": "https://mmes-website-production.up.railway.app/#website",
+    "@id": `${BASE_URL}/#website`,
     name: "MMES-MCTI",
-    url: "https://mmes-website-production.up.railway.app",
+    url: BASE_URL,
     publisher: {
-      "@id": "https://mmes-website-production.up.railway.app/#organization",
+      "@id": `${BASE_URL}/#organization`,
     },
     potentialAction: {
       "@type": "SearchAction",
-      target: "https://mmes-website-production.up.railway.app/{search_term_string}",
+      target: `${BASE_URL}/{search_term_string}`,
       "query-input": "required name=search_term_string",
     },
   };
@@ -116,7 +119,7 @@ export function ProductSchema({
     },
     sku,
     manufacturer: {
-      "@id": "https://mmes-website-production.up.railway.app/#organization",
+      "@id": `${BASE_URL}/#organization`,
     },
     category,
     offers: {
@@ -125,7 +128,7 @@ export function ProductSchema({
       priceCurrency,
       availability,
       seller: {
-        "@id": "https://mmes-website-production.up.railway.app/#organization",
+        "@id": `${BASE_URL}/#organization`,
       },
     },
   };
@@ -149,6 +152,7 @@ export function ArticleSchema({
   publisher = "MMES-MCTI",
   category,
   tags = [],
+  locale = "en",
 }: ArticleSchema) {
   const schema = {
     "@context": "https://schema.org",
@@ -166,7 +170,7 @@ export function ArticleSchema({
     publisher: {
       "@type": "Organization",
       name: publisher,
-      "@id": "https://mmes-website-production.up.railway.app/#organization",
+      "@id": `${BASE_URL}/#organization`,
     },
     mainEntityOfPage: {
       "@type": "WebPage",
@@ -174,7 +178,7 @@ export function ArticleSchema({
     },
     articleSection: category,
     keywords: tags.join(", "),
-    inLanguage: "en",
+    inLanguage: locale,
   };
 
   return (

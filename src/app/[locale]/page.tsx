@@ -65,13 +65,14 @@ export default function HomePage() {
         const res = await Promise.race([
           fetch(API_ENDPOINTS.products),
           new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 3000))
-        ]) as Response;
-        const data = await res.json();
-        const publishedProducts = (data.data || []).filter((p: Product) => p.published);
-        // Take first 4 products for featured section
-        setFeaturedProducts(publishedProducts.slice(0, 4));
-      } catch (error) {
-        console.error("API fetch failed or timed out:", error);
+        ]);
+        if (res instanceof Response) {
+          const data = await res.json();
+          const publishedProducts = (data.data || []).filter((p: Product) => p.published);
+          setFeaturedProducts(publishedProducts.slice(0, 4));
+        }
+      } catch {
+        // Error handled silently - user sees empty products
       } finally {
         setLoadingProducts(false);
       }

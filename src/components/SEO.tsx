@@ -1,7 +1,6 @@
 import { routing } from "@/routing";
+import { BASE_URL } from "@/lib/api-config";
 import { OrganizationSchema, WebSiteSchema } from "./StructuredData";
-
-const BASE_URL = "https://mmes-website-production.up.railway.app";
 
 interface SEOProps {
   title?: string;

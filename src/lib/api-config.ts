@@ -8,6 +8,9 @@
 // Get API base URL from environment variable, default to localhost in development
 export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 
+// Frontend base URL for SEO (sitemap, meta tags, structured data)
+export const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://mmes-website-production.up.railway.app';
+
 // API endpoints
 export const API_ENDPOINTS = {
   products: `${API_BASE_URL}/api/products`,

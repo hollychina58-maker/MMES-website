@@ -7,7 +7,7 @@ import { useParams } from "next/navigation";
 import { Link } from "@/routing";
 import { ShareButtons } from "@/components/ShareButtons";
 import { ProductSchema, BreadcrumbSchema } from "@/components/StructuredData";
-import { API_ENDPOINTS, IMAGE_BASE_URL } from "@/lib/api-config";
+import { API_ENDPOINTS, IMAGE_BASE_URL, BASE_URL } from "@/lib/api-config";
 
 interface ProductSpec {
   name: string;
@@ -58,13 +58,15 @@ export function ProductDetailClient() {
         const res = await Promise.race([
           fetch(API_ENDPOINTS.products),
           new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 3000))
-        ]) as Response;
-        const data = await res.json();
-        const products: Product[] = data.data || [];
-        const found = products.find((p) => p.slug.toLowerCase() === slug.toLowerCase());
-        setProduct(found || null);
-      } catch (error) {
-        console.error("API fetch failed or timed out:", error);
+        ]);
+        if (res instanceof Response) {
+          const data = await res.json();
+          const products: Product[] = data.data || [];
+          const found = products.find((p) => p.slug.toLowerCase() === slug.toLowerCase());
+          setProduct(found || null);
+        }
+      } catch {
+        // Error handled silently - user will see empty state
       } finally {
         setLoading(false);
       }
@@ -114,14 +116,14 @@ export function ProductDetailClient() {
         name={localized.name}
         description={localized.description}
         image={getImageUrl(product.image)}
-        url={`https://mmes-website-production.up.railway.app/${locale}/products/${product.slug}`}
+        url={`${BASE_URL}/${locale}/products/${product.slug}`}
         sku={product.id}
       />
       <BreadcrumbSchema
         items={[
-          { name: "Home", url: `https://mmes-website-production.up.railway.app/${locale}` },
-          { name: "Products", url: `https://mmes-website-production.up.railway.app/${locale}/products` },
-          { name: localized.name, url: `https://mmes-website-production.up.railway.app/${locale}/products/${product.slug}` },
+          { name: "Home", url: `${BASE_URL}/${locale}` },
+          { name: "Products", url: `${BASE_URL}/${locale}/products` },
+          { name: localized.name, url: `${BASE_URL}/${locale}/products/${product.slug}` },
         ]}
       />
       <div className="min-h-screen">
@@ -193,7 +195,7 @@ export function ProductDetailClient() {
                 <div className="mt-4 p-4 rounded-xl bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
                   <p className="text-xs lg:text-sm text-slate-500 mb-3 text-center">{t("share")}</p>
                   <ShareButtons
-                    url={`https://mmes-website-production.up.railway.app/${locale}/products/${product.slug}`}
+                    url={`${BASE_URL}/${locale}/products/${product.slug}`}
                     title={localized.name}
                   />
                 </div>
