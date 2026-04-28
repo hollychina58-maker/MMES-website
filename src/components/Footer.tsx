@@ -1,11 +1,12 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Link } from "@/routing";
+import { Link, usePathname } from "@/routing";
 
 export function Footer() {
   const t = useTranslations("nav");
   const tFooter = useTranslations("footer");
+  const pathname = usePathname();
 
   const languages = [
     { code: "en", name: "English" },
@@ -44,7 +45,7 @@ export function Footer() {
             <ul className="space-y-2 text-slate-400">
               {languages.map((lang) => (
                 <li key={lang.code}>
-                  <Link href="/" locale={lang.code} className="hover:text-blue-400 transition-colors">
+                  <Link href={pathname} locale={lang.code} className="hover:text-blue-400 transition-colors">
                     {lang.name}
                   </Link>
                 </li>
