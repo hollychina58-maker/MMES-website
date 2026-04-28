@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
 import { Link } from "@/routing";
@@ -95,10 +96,12 @@ export function BlogClient() {
             <Link href={`/blog/${encodeURIComponent(featuredPost.slug)}`} className="group block">
               <div className="relative min-h-[500px] rounded-3xl overflow-hidden bg-slate-900">
                 <div className="absolute inset-0">
-                  <img
+                  <Image
                     src={getImageUrl(featuredPost.coverImage)}
                     alt={getLocalizedBlogContent(featuredPost.content, locale, featuredPost.slug).title}
-                    className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700"
+                    fill
+                    sizes="100vw"
+                    className="object-cover group-hover:scale-[1.02] transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent" />
                 </div>
@@ -145,10 +148,12 @@ export function BlogClient() {
                 <div className="h-full rounded-3xl overflow-hidden bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-700 transition-colors">
                   {/* Image */}
                   <div className="relative aspect-video overflow-hidden">
-                    <img
+                    <Image
                       src={getImageUrl(post.coverImage)}
                       alt={getLocalizedBlogContent(post.content, locale, post.slug).title}
-                      className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover group-hover:scale-[1.02] transition-transform duration-500"
                     />
                   </div>
 

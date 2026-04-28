@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
 import { useParams } from "next/navigation";
@@ -139,10 +140,12 @@ export function ProductDetailClient() {
                 {/* Main Image */}
                 <div className="relative aspect-square rounded-3xl overflow-hidden bg-slate-100 dark:bg-slate-800">
                   {product.image ? (
-                    <img
+                    <Image
                       src={getImageUrl(product.image)}
                       alt={localized.name}
-                      className="w-full h-full object-cover"
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      className="object-cover"
                     />
                   ) : (
                     <div className="absolute inset-0 flex items-center justify-center text-slate-400 z-10">

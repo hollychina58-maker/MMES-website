@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/routing";
 import { motion } from "framer-motion";
@@ -40,25 +41,29 @@ export default function HomePage() {
   const locale = useLocale();
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
   const [loadingProducts, setLoadingProducts] = useState(true);
+  const [productsError, setProductsError] = useState(false);
+
+  const fetchFeaturedProducts = async () => {
+    setLoadingProducts(true);
+    setProductsError(false);
+    try {
+      const res = await Promise.race([
+        fetch(API_ENDPOINTS.products),
+        new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 3000))
+      ]);
+      if (res instanceof Response) {
+        const data = await res.json();
+        const publishedProducts = (data.data || []).filter((p: Product) => p.published);
+        setFeaturedProducts(publishedProducts.slice(0, 4));
+      }
+    } catch {
+      setProductsError(true);
+    } finally {
+      setLoadingProducts(false);
+    }
+  };
 
   useEffect(() => {
-    async function fetchFeaturedProducts() {
-      try {
-        const res = await Promise.race([
-          fetch(API_ENDPOINTS.products),
-          new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 3000))
-        ]);
-        if (res instanceof Response) {
-          const data = await res.json();
-          const publishedProducts = (data.data || []).filter((p: Product) => p.published);
-          setFeaturedProducts(publishedProducts.slice(0, 4));
-        }
-      } catch {
-        // Error handled silently - user sees empty products
-      } finally {
-        setLoadingProducts(false);
-      }
-    }
     fetchFeaturedProducts();
   }, []);
 
@@ -208,10 +213,12 @@ export default function HomePage() {
                     <div className="bg-white dark:bg-slate-800 rounded-3xl overflow-hidden">
                       <div className="aspect-square relative bg-slate-100 dark:bg-slate-700">
                         {product.image ? (
-                          <img
+                          <Image
                             src={getImageUrl(product.image)}
                             alt={getLocalizedContent(product.content, locale, product.id).name}
-                            className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                            fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                            className="object-cover group-hover:scale-[1.02] transition-transform duration-500"
                           />
                         ) : (
                           <div className="absolute inset-0 flex items-center justify-center text-slate-400">
@@ -229,6 +236,16 @@ export default function HomePage() {
                   </Link>
                 </motion.div>
               ))
+            ) : productsError ? (
+              <div className="col-span-4 flex flex-col items-center justify-center py-12 gap-4">
+                <p className="text-red-500">加载失败</p>
+                <button
+                  onClick={fetchFeaturedProducts}
+                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                >
+                  重试
+                </button>
+              </div>
             ) : (
               <p className="col-span-4 text-center text-slate-500 py-12">暂无产品</p>
             )}

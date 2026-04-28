@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -110,10 +111,12 @@ export function BlogPostClient({ initialPost, initialAllPosts, locale }: BlogPos
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
             <motion.article initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="lg:col-span-3">
               <div className="relative h-[350px] md:h-[450px] rounded-3xl overflow-hidden mb-8">
-                <img
+                <Image
                   src={getImageUrl(post.coverImage)}
                   alt={localized.title || post.slug}
-                  className="w-full h-full object-cover"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 75vw"
+                  className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-8">
@@ -154,10 +157,12 @@ export function BlogPostClient({ initialPost, initialAllPosts, locale }: BlogPos
                     <Link key={relatedPost.id} href={`/blog/${encodeURIComponent(relatedPost.slug)}`} className="group block">
                       <div className="flex gap-4 items-start">
                         <div className="relative w-20 h-20 rounded-2xl overflow-hidden flex-shrink-0">
-                          <img
+                          <Image
                             src={getImageUrl(relatedPost.coverImage)}
-                            alt=""
-                            className="w-full h-full object-cover"
+                            alt={getLocalizedTitle(relatedPost)}
+                            fill
+                            sizes="80px"
+                            className="object-cover"
                           />
                         </div>
                         <p className="text-sm font-medium group-hover:text-blue-600 transition-colors line-clamp-2 leading-relaxed">{getLocalizedTitle(relatedPost)}</p>

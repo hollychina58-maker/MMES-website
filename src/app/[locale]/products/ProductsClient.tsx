@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
 import { Link } from "@/routing";
@@ -117,10 +118,12 @@ export function ProductsClient() {
               <Link href={`/products/${product.slug.toLowerCase()}`} className="block bg-white dark:bg-slate-800 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-700 transition-colors">
                 <div className="aspect-square relative bg-slate-100 dark:bg-slate-700">
                   {product.image ? (
-                    <img
+                    <Image
                       src={getImageUrl(product.image)}
                       alt={getLocalizedContent(product.content, locale, product.id).name}
-                      className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                      className="object-cover group-hover:scale-[1.02] transition-transform duration-500"
                     />
                   ) : (
                     <div className="absolute inset-0 flex items-center justify-center text-slate-400">

@@ -1,5 +1,5 @@
 import { routing } from "@/routing";
-import { BASE_URL } from "@/lib/api-config";
+import { BASE_URL, TWITTER_HANDLE } from "@/lib/api-config";
 import { OrganizationSchema, WebSiteSchema } from "./StructuredData";
 
 interface SEOProps {
@@ -44,7 +44,7 @@ export function SEO({
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={`${BASE_URL}${image}`} />
-      <meta name="twitter:site" content="@mmes_mcti" />
+      <meta name="twitter:site" content={TWITTER_HANDLE} />
 
       {/* hreflang - include all locales including current */}
       <link rel="alternate" hrefLang="x-default" href={`${BASE_URL}/en${canonical || ""}`} />
