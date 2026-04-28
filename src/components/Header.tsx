@@ -2,18 +2,8 @@
 
 import { useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
-import { Link, usePathname } from "@/routing";
+import { Link, usePathname, locales, languageNames, type Locale } from "@/routing";
 import { motion } from "framer-motion";
-import { Locale } from "@/routing";
-
-const languages = [
-  { code: "en", name: "English", native: "English" },
-  { code: "zh", name: "Chinese", native: "中文" },
-  { code: "ru", name: "Russian", native: "Русский" },
-  { code: "ar", name: "Arabic", native: "العربية" },
-  { code: "fa", name: "Persian", native: "فارسی" },
-  { code: "la", name: "Latin", native: "Latina" },
-];
 
 export function Header({ locale }: { locale: Locale }) {
   const t = useTranslations("nav");
@@ -59,7 +49,7 @@ export function Header({ locale }: { locale: Locale }) {
               className="flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
               aria-label="Select language"
             >
-              <span className="text-sm">{languages.find((l) => l.code === locale)?.native}</span>
+              <span className="text-sm">{languageNames[locale as Locale]?.native}</span>
               <motion.svg
                 animate={{ rotate: isLangOpen ? 180 : 0 }}
                 className="w-4 h-4"
@@ -73,18 +63,18 @@ export function Header({ locale }: { locale: Locale }) {
 
             {isLangOpen && (
               <div className="absolute end-0 mt-2 w-40 py-2 bg-white dark:bg-slate-800 rounded-lg shadow-xl border border-slate-200 dark:border-slate-700 z-50">
-                {languages.map((lang) => (
+                {locales.map((loc) => (
                   <Link
-                    key={lang.code}
+                    key={loc}
                     href={pathname}
-                    locale={lang.code}
+                    locale={loc}
                     onClick={() => setIsLangOpen(false)}
                     className={`block px-4 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-700 ${
-                      locale === lang.code ? "text-blue-600 font-medium" : "text-slate-700 dark:text-slate-200"
+                      locale === loc ? "text-blue-600 font-medium" : "text-slate-700 dark:text-slate-200"
                     }`}
                   >
-                    <span className="font-medium">{lang.native}</span>
-                    <span className="text-slate-500 ms-2 text-xs">{lang.name}</span>
+                    <span className="font-medium">{languageNames[loc].native}</span>
+                    <span className="text-slate-500 ms-2 text-xs">{languageNames[loc].name}</span>
                   </Link>
                 ))}
               </div>

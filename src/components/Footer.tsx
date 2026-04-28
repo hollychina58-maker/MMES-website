@@ -1,21 +1,12 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Link, usePathname } from "@/routing";
+import { Link, usePathname, locales, languageNames } from "@/routing";
 
 export function Footer() {
   const t = useTranslations("nav");
   const tFooter = useTranslations("footer");
   const pathname = usePathname();
-
-  const languages = [
-    { code: "en", name: "English" },
-    { code: "zh", name: "中文" },
-    { code: "ru", name: "Русский" },
-    { code: "ar", name: "العربية" },
-    { code: "fa", name: "فارسی" },
-    { code: "la", name: "Latina" },
-  ];
 
   return (
     <footer className="bg-gradient-to-br from-slate-900 to-slate-800 text-white py-12">
@@ -43,10 +34,10 @@ export function Footer() {
           <div>
             <h4 className="font-semibold mb-4 text-slate-200">{tFooter("languages")}</h4>
             <ul className="space-y-2 text-slate-400">
-              {languages.map((lang) => (
-                <li key={lang.code}>
-                  <Link href={pathname} locale={lang.code} className="hover:text-blue-400 transition-colors">
-                    {lang.name}
+              {locales.map((locale) => (
+                <li key={locale}>
+                  <Link href={pathname} locale={locale} className="hover:text-blue-400 transition-colors">
+                    {languageNames[locale].name}
                   </Link>
                 </li>
               ))}
