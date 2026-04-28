@@ -1,5 +1,6 @@
 import { Metadata } from "next";
-import { API_ENDPOINTS, IMAGE_BASE_URL, BASE_URL } from "@/lib/api-config";
+import { API_ENDPOINTS, BASE_URL } from "@/lib/api-config";
+import { getImageUrl } from "@/lib/content";
 import { ProductDetailClient } from "./ProductDetailClient";
 
 interface ProductSpec {
@@ -15,17 +16,6 @@ interface Product {
   specs: Record<string, ProductSpec[]>;
   published: boolean;
   content: Record<string, { name: string; description: string }>;
-}
-
-function getImageUrl(imagePath: string | undefined): string {
-  if (!imagePath) return "";
-  if (imagePath.startsWith("/images/products/")) {
-    return imagePath.replace("/images/products/", "/images/");
-  }
-  if (imagePath.startsWith("/images/")) return imagePath;
-  if (imagePath.startsWith("/")) return imagePath;
-  if (imagePath.startsWith("http://") || imagePath.startsWith("https://")) return imagePath;
-  return `${IMAGE_BASE_URL}${imagePath}`;
 }
 
 async function getProduct(slug: string): Promise<Product | null> {
