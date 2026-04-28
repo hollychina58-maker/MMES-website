@@ -8,19 +8,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "backend-production-d2c5.up.railway.app",
-      },
-      {
-        protocol: "https",
-        hostname: "mmes-mcti.com",
-      },
-      {
-        protocol: "https",
-        hostname: "**.ucarecdn.com",
-      },
-      {
-        protocol: "https",
-        hostname: "ucarecdn.com",
+        hostname: "**",
       },
       {
         protocol: "http",
