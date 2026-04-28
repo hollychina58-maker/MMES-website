@@ -17,6 +17,16 @@ const nextConfig = {
       },
     ],
   },
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        canvas: false,
+        jsdom: false,
+      };
+    }
+    return config;
+  },
 };
 
 export default withNextIntl(nextConfig);
