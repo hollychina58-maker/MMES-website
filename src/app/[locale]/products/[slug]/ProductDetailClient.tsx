@@ -10,6 +10,7 @@ import { ShareButtons } from "@/components/ShareButtons";
 import { ProductSchema, BreadcrumbSchema } from "@/components/StructuredData";
 import { API_ENDPOINTS, BASE_URL } from "@/lib/api-config";
 import { getLocalizedContent, getImageUrl } from "@/lib/content";
+import { usePageTracking } from "@/lib/useAnalytics";
 
 interface ProductSpec {
   name: string;
@@ -30,6 +31,7 @@ export function ProductDetailClient() {
   const params = useParams();
   const t = useTranslations("products");
   const locale = useLocale();
+  usePageTracking();
   const slug = params.slug as string;
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);

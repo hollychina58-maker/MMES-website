@@ -4,9 +4,11 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
+import { usePageTracking } from "@/lib/useAnalytics";
 
 export default function ContactPage() {
   const t = useTranslations("contact");
+  usePageTracking();
   const [formData, setFormData] = useState({
     name: "",
     email: "",

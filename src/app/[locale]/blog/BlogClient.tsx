@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { Link } from "@/routing";
 import { API_ENDPOINTS } from "@/lib/api-config";
 import { getImageUrl, getLocalizedBlogContent } from "@/lib/content";
+import { usePageTracking } from "@/lib/useAnalytics";
 
 interface BlogPost {
   id: string;
@@ -38,6 +39,7 @@ const tagColors: Record<string, string> = {
 export function BlogClient() {
   const t = useTranslations("blog");
   const locale = useLocale();
+  usePageTracking();
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
 

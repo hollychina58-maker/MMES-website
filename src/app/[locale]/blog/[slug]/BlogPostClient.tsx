@@ -10,6 +10,7 @@ import { ShareButtons } from "@/components/ShareButtons";
 import { ArticleSchema, BreadcrumbSchema } from "@/components/StructuredData";
 import { BASE_URL, IMAGE_BASE_URL } from "@/lib/api-config";
 import { getImageUrl, getLocalizedBlogContent } from "@/lib/content";
+import { usePageTracking } from "@/lib/useAnalytics";
 
 interface BlogContent {
   title: string;
@@ -37,6 +38,7 @@ interface BlogPostClientProps {
 
 export function BlogPostClient({ initialPost, initialAllPosts, locale }: BlogPostClientProps) {
   const t = useTranslations("blog");
+  usePageTracking();
   const [post] = useState<BlogPost | null>(initialPost);
   const [allPosts] = useState<BlogPost[]>(initialAllPosts);
 

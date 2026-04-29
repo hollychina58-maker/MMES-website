@@ -18,6 +18,7 @@ export const API_ENDPOINTS = {
   upload: `${API_BASE_URL}/api/upload`,
   translate: `${API_BASE_URL}/api/translate`,
   login: `${API_BASE_URL}/api/admin/login`,
+  analyticsTrack: `${API_BASE_URL}/api/analytics/track`,
 } as const;
 
 // Image base URL - for loading product/blog images from backend

@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { Link } from "@/routing";
 import { API_ENDPOINTS } from "@/lib/api-config";
 import { getLocalizedContent, getImageUrl } from "@/lib/content";
+import { usePageTracking } from "@/lib/useAnalytics";
 
 interface ProductSpec {
   name: string;
@@ -26,6 +27,7 @@ interface Product {
 export function ProductsClient() {
   const t = useTranslations("products");
   const locale = useLocale();
+  usePageTracking();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

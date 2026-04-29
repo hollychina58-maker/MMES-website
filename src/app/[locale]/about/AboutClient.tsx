@@ -2,9 +2,11 @@
 
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
+import { usePageTracking } from "@/lib/useAnalytics";
 
 export function AboutClient() {
   const t = useTranslations("about");
+  usePageTracking();
 
   return (
     <div className="min-h-screen py-24">

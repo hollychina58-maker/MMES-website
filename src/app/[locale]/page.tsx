@@ -7,6 +7,7 @@ import { Link } from "@/routing";
 import { motion } from "framer-motion";
 import { API_ENDPOINTS, IMAGE_BASE_URL } from "@/lib/api-config";
 import { getLocalizedContent, getImageUrl } from "@/lib/content";
+import { usePageTracking } from "@/lib/useAnalytics";
 import {
   Target,
   Shield,
@@ -39,6 +40,7 @@ const features = [
 export default function HomePage() {
   const t = useTranslations("home");
   const locale = useLocale();
+  usePageTracking();
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
   const [loadingProducts, setLoadingProducts] = useState(true);
   const [productsError, setProductsError] = useState(false);
