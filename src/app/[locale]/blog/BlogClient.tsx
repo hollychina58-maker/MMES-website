@@ -68,8 +68,8 @@ export function BlogClient() {
     );
   }
 
-  const featuredPost = posts[0];
-  const otherPosts = posts.slice(1);
+  const publishedPosts = posts.filter(post => post.published); const featuredPost = publishedPosts[0];
+  const otherPosts = publishedPosts.slice(1);
 
   return (
     <div className="min-h-screen py-12">
