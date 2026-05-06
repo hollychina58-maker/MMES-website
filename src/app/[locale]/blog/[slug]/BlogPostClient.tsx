@@ -6,7 +6,6 @@ import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 import { ShareButtons } from "@/components/ShareButtons";
 import { ArticleSchema, BreadcrumbSchema } from "@/components/StructuredData";
 import { BASE_URL, IMAGE_BASE_URL } from "@/lib/api-config";
@@ -69,7 +68,6 @@ export function BlogPostClient({ initialPost, initialAllPosts, locale }: BlogPos
   const renderContent = () => {
     return (
       <ReactMarkdown
-        remarkPlugins={[remarkGfm]}
         components={{
           h1: ({children}) => <h1 className="text-3xl font-bold mt-8 mb-4 tracking-tight text-slate-900 dark:text-white">{children}</h1>,
           h2: ({children}) => <h2 className="text-2xl font-bold mt-8 mb-4 tracking-tight text-slate-900 dark:text-white">{children}</h2>,
@@ -78,12 +76,6 @@ export function BlogPostClient({ initialPost, initialAllPosts, locale }: BlogPos
           ul: ({children}) => <ul className="list-disc list-inside mb-4 space-y-2">{children}</ul>,
           ol: ({children}) => <ol className="list-decimal list-inside mb-4 space-y-2">{children}</ol>,
           li: ({children}) => <li className="text-slate-700 dark:text-slate-300">{children}</li>,
-          table: ({children}) => <table className="min-w-full divide-y divide-slate-200 dark:divide-slate-700 mb-4">{children}</table>,
-          thead: ({children}) => <thead className="bg-slate-50 dark:bg-slate-800">{children}</thead>,
-          tbody: ({children}) => <tbody className="divide-y divide-slate-200 dark:divide-slate-700">{children}</tbody>,
-          tr: ({children}) => <tr>{children}</tr>,
-          th: ({children}) => <th className="px-4 py-2 text-left text-sm font-semibold text-slate-900 dark:text-white">{children}</th>,
-          td: ({children}) => <td className="px-4 py-2 text-sm text-slate-700 dark:text-slate-300">{children}</td>,
           code: ({children, className}) => {
             const isInline = !className;
             if (isInline) {
