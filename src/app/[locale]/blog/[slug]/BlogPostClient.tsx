@@ -5,7 +5,8 @@ import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import DOMPurify from "isomorphic-dompurify";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { ShareButtons } from "@/components/ShareButtons";
 import { ArticleSchema, BreadcrumbSchema } from "@/components/StructuredData";
 import { BASE_URL, IMAGE_BASE_URL } from "@/lib/api-config";
@@ -64,20 +65,43 @@ export function BlogPostClient({ initialPost, initialAllPosts, locale }: BlogPos
   const articleContent = localized.content || "";
   const url = `${BASE_URL}/${locale}/blog/${post.slug}`;
 
-  // Sanitize content to prevent XSS
-  const sanitizedContent = DOMPurify.sanitize(articleContent, { ALLOWED_TAGS: ['p', 'br', 'h1', 'h2', 'h3', 'li', 'ul', 'ol'] });
-
-  // Render sanitized content line by line with proper markup
-  const renderContent = (content: string) => {
-    return content.split('\n').map((line, index) => {
-      if (line.startsWith('# ')) return <h1 key={index} className="text-3xl font-bold mt-8 mb-4 tracking-tight">{line.slice(2)}</h1>;
-      else if (line.startsWith('## ')) return <h2 key={index} className="text-2xl font-bold mt-8 mb-4 tracking-tight">{line.slice(3)}</h2>;
-      else if (line.startsWith('### ')) return <h3 key={index} className="text-xl font-bold mt-6 mb-3">{line.slice(4)}</h3>;
-      else if (line.startsWith('- ')) return <li key={index} className="ml-4 mb-2">{line.slice(2)}</li>;
-      else if (line.startsWith('| ')) return <div key={index} className="font-mono text-sm bg-slate-100 dark:bg-slate-900 p-2 rounded my-2 overflow-x-auto">{line}</div>;
-      else if (line.trim() === '') return <div key={index} className="h-4"></div>;
-      else return <p key={index} className="mb-4 leading-relaxed">{line}</p>;
-    });
+  // Render markdown content with proper styling
+  const renderContent = () => {
+    return (
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm]}
+        components={{
+          h1: ({children}) => <h1 className="text-3xl font-bold mt-8 mb-4 tracking-tight text-slate-900 dark:text-white">{children}</h1>,
+          h2: ({children}) => <h2 className="text-2xl font-bold mt-8 mb-4 tracking-tight text-slate-900 dark:text-white">{children}</h2>,
+          h3: ({children}) => <h3 className="text-xl font-bold mt-6 mb-3 text-slate-900 dark:text-white">{children}</h3>,
+          p: ({children}) => <p className="mb-4 leading-relaxed text-slate-700 dark:text-slate-300">{children}</p>,
+          ul: ({children}) => <ul className="list-disc list-inside mb-4 space-y-2">{children}</ul>,
+          ol: ({children}) => <ol className="list-decimal list-inside mb-4 space-y-2">{children}</ol>,
+          li: ({children}) => <li className="text-slate-700 dark:text-slate-300">{children}</li>,
+          table: ({children}) => <table className="min-w-full divide-y divide-slate-200 dark:divide-slate-700 mb-4">{children}</table>,
+          thead: ({children}) => <thead className="bg-slate-50 dark:bg-slate-800">{children}</thead>,
+          tbody: ({children}) => <tbody className="divide-y divide-slate-200 dark:divide-slate-700">{children}</tbody>,
+          tr: ({children}) => <tr>{children}</tr>,
+          th: ({children}) => <th className="px-4 py-2 text-left text-sm font-semibold text-slate-900 dark:text-white">{children}</th>,
+          td: ({children}) => <td className="px-4 py-2 text-sm text-slate-700 dark:text-slate-300">{children}</td>,
+          code: ({children, className}) => {
+            const isInline = !className;
+            if (isInline) {
+              return <code className="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 rounded text-sm font-mono text-blue-600 dark:text-blue-400">{children}</code>;
+            }
+            return <code className="block p-4 bg-slate-100 dark:bg-slate-800 rounded-lg text-sm font-mono overflow-x-auto mb-4 text-slate-800 dark:text-slate-200">{children}</code>;
+          },
+          pre: ({children}) => <pre className="bg-slate-100 dark:bg-slate-800 rounded-lg p-4 mb-4 overflow-x-auto">{children}</pre>,
+          blockquote: ({children}) => <blockquote className="border-l-4 border-blue-500 pl-4 italic text-slate-600 dark:text-slate-400 mb-4">{children}</blockquote>,
+          hr: () => <hr className="my-8 border-slate-200 dark:border-slate-700" />,
+          a: ({href, children}) => <a href={href} className="text-blue-600 hover:text-blue-800 underline" target="_blank" rel="noopener noreferrer">{children}</a>,
+          strong: ({children}) => <strong className="font-semibold text-slate-900 dark:text-white">{children}</strong>,
+          em: ({children}) => <em className="italic">{children}</em>,
+        }}
+      >
+        {articleContent}
+      </ReactMarkdown>
+    );
   };
 
   return (
@@ -141,10 +165,10 @@ export function BlogPostClient({ initialPost, initialAllPosts, locale }: BlogPos
               </div>
 
               <div className="prose prose-lg dark:prose-invert max-w-none">
-                <div className="bg-white dark:bg-slate-800 rounded-3xl p-8 md:p-12 border border-slate-200 dark:border-slate-700">
-                  {renderContent(sanitizedContent)}
+                  <div className="bg-white dark:bg-slate-800 rounded-3xl p-8 md:p-12 border border-slate-200 dark:border-slate-700">
+                    {renderContent()}
+                  </div>
                 </div>
-              </div>
 
               <div className="mt-8 p-6 rounded-2xl bg-slate-100 dark:bg-slate-800/50 text-center">
                 <p className="text-slate-500 mb-4">{t("shareArticle")}</p>
