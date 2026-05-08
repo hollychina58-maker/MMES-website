@@ -87,7 +87,8 @@ export function BlogPostClient({ initialPost, initialAllPosts, locale }: BlogPos
           blockquote: ({children}) => <blockquote className="border-l-4 border-blue-500 pl-4 italic text-slate-600 dark:text-slate-400 mb-4">{children}</blockquote>,
           hr: () => <hr className="my-8 border-slate-200 dark:border-slate-700" />,
           a: ({href, children}) => <a href={href} className="text-blue-600 hover:text-blue-800 underline" target="_blank" rel="noopener noreferrer">{children}</a>,
-          strong: ({children}) => <strong className="font-bold text-slate-900 dark:text-white">{children}</strong>,
+          strong: ({children}) => <strong className="!font-bold text-slate-900 dark:text-white">{children}</strong>,
+          b: ({children}) => <b className="!font-bold text-slate-900 dark:text-white">{children}</b>,
           em: ({children}) => <em className="italic">{children}</em>,
         }}
       >
