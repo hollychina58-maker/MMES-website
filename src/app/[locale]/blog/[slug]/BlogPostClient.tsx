@@ -90,6 +90,12 @@ export function BlogPostClient({ initialPost, initialAllPosts, locale }: BlogPos
           strong: ({children}) => <strong className="!font-bold text-slate-900 dark:text-white">{children}</strong>,
           b: ({children}) => <b className="!font-bold text-slate-900 dark:text-white">{children}</b>,
           em: ({children}) => <em className="italic">{children}</em>,
+          table: ({children}) => <table className="min-w-full divide-y divide-slate-200 dark:divide-slate-700 mb-4">{children}</table>,
+          thead: ({children}) => <thead className="bg-slate-50 dark:bg-slate-800">{children}</thead>,
+          tbody: ({children}) => <tbody className="divide-y divide-slate-200 dark:divide-slate-700">{children}</tbody>,
+          tr: ({children}) => <tr className="text-slate-700 dark:text-slate-300">{children}</tr>,
+          th: ({children}) => <th className="px-4 py-3 text-left text-sm font-semibold text-slate-900 dark:text-white">{children}</th>,
+          td: ({children}) => <td className="px-4 py-3 text-sm text-slate-700 dark:text-slate-300">{children}</td>,
         }}
       >
         {articleContent}
